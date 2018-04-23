@@ -1,0 +1,15 @@
+page-route-finder {
+    .tab-button {
+        &[aria-selected="false"] {
+          color: #8c8c8c !important;
+        }
+    
+        &[aria-selected="true"] {
+          color: #f53d3d !important;
+        }
+      }
+
+      ion-card.cards-list-demo ion-card-header {
+        color: map-get($colors, primary);
+      }
+}
