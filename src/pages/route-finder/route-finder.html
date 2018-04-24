@@ -8,22 +8,26 @@
 
   <ion-navbar>
     <ion-title>Route Finder</ion-title>
+
   </ion-navbar>
+
+    <ion-toolbar no-border-top>
+        <ion-segment [(ngModel)]="routeFinder">
+          <ion-segment-button value="near by">
+            what's Near
+          </ion-segment-button>
+          <ion-segment-button value="directions">
+            Directions
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
 
 </ion-header>
 
-<ion-toolbar no-border-top>
-  <ion-segment [(ngModel)]="routeFinder">
-    <ion-segment-button value="near by">
-      what's Near
-    </ion-segment-button>
-    <ion-segment-button value="directions">
-      Directions
-    </ion-segment-button>
-  </ion-segment>
-</ion-toolbar>
+
 
 <ion-content padding>
+
 
 <div #map id="map"></div>
 
