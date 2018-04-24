@@ -50,3 +50,17 @@ let pageArr = [MyApp,
 })
 export class AppModule {
 }
+
+  // Initialize Firebase
+  export const firebaseConfig= {
+    apiKey: "AIzaSyDRh5UlR5gh8hIIzPYcICv0o-29TAi19ZI",
+    authDomain: "traveldb-43fbd.firebaseapp.com",
+    databaseURL: "https://traveldb-43fbd.firebaseio.com",
+    projectId: "traveldb-43fbd",
+    storageBucket: "",
+    messagingSenderId: "6054880400"
+  };
+  const myFirebaseAuthConfig = {
+    provider: AuthProviders.Password,
+    method: AuthMethods.Password
+  }
