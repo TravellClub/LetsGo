@@ -6,6 +6,7 @@ import { VehiclePage } from '../vehicle/vehicle';
 import { AccomodationPage } from '../accomodation/accomodation';
 import { Guide } from '../guide/guide';
 import { Equipment } from '../equipment/equipment';
+import { Directions } from '../directions/directions';
 
 @Component({
   selector: 'page-home',
@@ -25,6 +26,9 @@ export class HomePage {
   openRouteFinder(){
     this.navCtrl.push(RouteFinder);
   }
+  openDirections(){
+    this.navCtrl.push(Directions);
+  }
   openTransport(){
     this.navCtrl.push(VehiclePage);
   }
@@ -37,6 +41,5 @@ export class HomePage {
   openEquipment(){
     this.navCtrl.push(Equipment);
   }
-  
 
 }

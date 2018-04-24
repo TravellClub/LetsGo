@@ -11,6 +11,8 @@ import { Guide } from '../pages/guide/guide';
 import { RouteFinder } from '../pages/route-finder/route-finder';
 import { Places } from '../pages/places/places';
 import { Equipment } from '../pages/equipment/equipment';
+import { Login } from '../pages/login/login';
+import { Signup } from '../pages/signup/signup';
 
 
 @Component({

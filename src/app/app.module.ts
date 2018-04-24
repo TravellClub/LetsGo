@@ -10,10 +10,13 @@ import { AccomodationPage } from '../pages/accomodation/accomodation';
 import { Guide } from '../pages/guide/guide';
 import { RouteFinder } from '../pages/route-finder/route-finder';
 import { Places } from '../pages/places/places';
+import { Login } from '../pages/login/login';
 import { Equipment } from '../pages/equipment/equipment';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Directions } from '../pages/directions/directions';
+import { Signup } from '../pages/signup/signup';
 
 
 
@@ -28,7 +31,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Guide,
     RouteFinder,
     Places,
-    Equipment
+    Equipment,
+    Login,
+    Directions,
+    Signup
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Guide,
     RouteFinder,
     Places,
-    Equipment
+    Equipment,
+    Login,
+    Directions,
+    Signup
   ],
   providers: [
     StatusBar,
