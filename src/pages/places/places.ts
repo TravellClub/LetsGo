@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+//import { AppComponent } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MorePage } from '../more/more';
+//import { More } from './more';
 // $IMPORTSTATEMENT
 
 /**
@@ -11,7 +14,7 @@ import { NavController, NavParams } from 'ionic-angular';
 // $IONICPAGE
 @Component({
   selector: 'page-places',
-  templateUrl: 'places.html',
+  templateUrl: 'places.html'
 })
 export class Places {
 
@@ -21,5 +24,8 @@ export class Places {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Places');
   }
-
+  
+openmore(){
+   this.navCtrl.push(MorePage);
+  }
 }
