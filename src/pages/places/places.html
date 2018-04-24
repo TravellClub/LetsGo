@@ -8,11 +8,44 @@
 
   <ion-navbar>
     <ion-title>Places</ion-title>
+    
   </ion-navbar>
+
+  <ion-navbar color="primary" >
+    <ion-title>
+          Search Location
+         </ion-title>
+  </ion-navbar>
+
+  <ion-toolbar color="primary">
+    <ion-searchbar (input)="getItems($event)"></ion-searchbar>  
+  </ion-toolbar>
+
 
 </ion-header>
 
-
+ <!--<ion-item>
+  <ion-label floating>Add Location</ion-label>
+  <ion-input type="text"></ion-input>
+  </ion-item>
+<button ion-button>Search</button>-->
 <ion-content padding>
+
+<ion-card>
+  <img src="\\assets\\img\\store.png"/>
+  <ion-card-content>
+    <ion-card-title>Anuradapura </ion-card-title>
+      <p>
+        The most historical place.
+      </p>
+     <button ion-button block (click)= "openmore()">More</button>
+  </ion-card-content>
+</ion-card>
+
+<ion-list>
+  <ion-item *ngFor="let item of items">
+    {{ item }}
+  </ion-item>
+</ion-list>
 
 </ion-content>
