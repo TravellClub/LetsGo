@@ -10,38 +10,35 @@
     <ion-title>Accommodation</ion-title>
   </ion-navbar>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-<ion-list>
-  <ion-item *ngFor="let item of items">
-    {{ item }}
-  </ion-item>
-</ion-list>
 
 </ion-header>
 
 <ion-content padding>
 
-  
-  <ion-card>
-      
-    <img src="\\assets\\img\\1446529061Buffet_Restaurant.jpg"/>
-    <ion-card-content>
-      
-      <p>
-         Cinnamon Grand Colombo
-        Address: 77 Galle Rd, Colombo 00300
-        phone:0775817987
-      </p>
-      <button ion-button outline item-end icon-left (click)="opencall()">
+
+  <ion-list>
+    <ion-card *ngFor="let item of items">
+
+      <img src="\\assets\\img\\1446529061Buffet_Restaurant.jpg"/>
+      <ion-card-content>
+
+        <p> {{item.name}}</p>
+        <p>Address : {{item.address}}</p>
+        <p>Contact No : {{item.contact}}</p>
+        <p>Rating : {{item.rating}}</p>
+        <button ion-button outline item-end icon-left (click)="opencall()">
           <ion-icon name="call"></ion-icon>
-         Call
+          Call
         </button>
         <button ion-button outline item-end icon-left>
-            <ion-icon name="compass"></ion-icon>
-           Direction
-          </button>
-      <ion-card-title>
-          <button ion-button block (click)="openhotel()">more</button> 
-           </ion-card-title>
-    </ion-card-content>
-  </ion-card>
+          <ion-icon name="compass"></ion-icon>
+          Direction
+        </button>
+        <ion-card-title>
+          <button ion-button block (click)="openhotel()">more</button>
+        </ion-card-title>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
 </ion-content>
