@@ -9,24 +9,39 @@
   <ion-navbar>
     <ion-title>Accommodation</ion-title>
   </ion-navbar>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let item of items">
+    {{ item }}
+  </ion-item>
+</ion-list>
 
 </ion-header>
 
-
 <ion-content padding>
 
+  
   <ion-card>
-    <img src="assets\img\home1.jpg">
-  <ion-card-content>
-    <!-- <ion-content-title>
-      Holiday Inn
-    </ion-content-title> -->
+      
+    <img src="\\assets\\img\\1446529061Buffet_Restaurant.jpg"/>
+    <ion-card-content>
+      
       <p>
-        The best hotel in the beach side that you can find.
-        Come and visit us once.
+         Cinnamon Grand Colombo
+        Address: 77 Galle Rd, Colombo 00300
+        phone:0775817987
       </p>
-  </ion-card-content>
-
+      <button ion-button outline item-end icon-left (click)="opencall()">
+          <ion-icon name="call"></ion-icon>
+         Call
+        </button>
+        <button ion-button outline item-end icon-left>
+            <ion-icon name="compass"></ion-icon>
+           Direction
+          </button>
+      <ion-card-title>
+          <button ion-button block (click)="openhotel()">more</button> 
+           </ion-card-title>
+    </ion-card-content>
   </ion-card>
-
 </ion-content>

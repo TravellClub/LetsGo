@@ -14,7 +14,8 @@ import { Equipment } from '../pages/equipment/equipment';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Hotels} from '../pages/hotels/hotels';
+import { CallNumber } from '@ionic-native/call-number';
 
 
 
@@ -28,7 +29,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Guide,
     RouteFinder,
     Places,
-    Equipment
+    Equipment,
+    Hotels
   ],
   imports: [
     BrowserModule,
@@ -44,11 +46,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Guide,
     RouteFinder,
     Places,
-    Equipment
+    Equipment,
+    Hotels
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    CallNumber,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
