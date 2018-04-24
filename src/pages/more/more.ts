@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+//import { Direction } from '../direction/direction';
 //$IMPORTSTATEMENT
 
 /**
@@ -22,5 +23,9 @@ export class MorePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad More');
   }
+
+ /* opendirection(){
+    this.navCtrl.push(Direction);
+   }*/
 
 }
