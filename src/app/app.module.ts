@@ -16,6 +16,8 @@ import {Equipment} from '../pages/equipment/equipment';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {Geolocation} from '@ionic-native/geolocation';
+
 import {Directions} from '../pages/directions/directions';
 import {Signup} from '../pages/signup/signup';
 import {Hotels} from "../pages/hotels/hotels";
@@ -66,6 +68,7 @@ let pageArr = [MyApp,
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
