@@ -21,6 +21,22 @@ import {Signup} from '../pages/signup/signup';
 import {Hotels} from "../pages/hotels/hotels";
 import { MorePage } from '../pages/more/more';
 
+// Import the AF2 Module
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+
+// Initialize Firebase
+export const firebaseConfig= {
+  apiKey: "AIzaSyDRh5UlR5gh8hIIzPYcICv0o-29TAi19ZI",
+  authDomain: "traveldb-43fbd.firebaseapp.com",
+  databaseURL: "https://traveldb-43fbd.firebaseio.com",
+  projectId: "traveldb-43fbd",
+  storageBucket: "",
+  messagingSenderId: "6054880400"
+};
+
+
 let pageArr = [MyApp,
   HomePage,
   // ListPage,
@@ -42,6 +58,8 @@ let pageArr = [MyApp,
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: pageArr,
@@ -53,17 +71,3 @@ let pageArr = [MyApp,
 })
 export class AppModule {
 }
-
-  // Initialize Firebase
-  export const firebaseConfig= {
-    apiKey: "AIzaSyDRh5UlR5gh8hIIzPYcICv0o-29TAi19ZI",
-    authDomain: "traveldb-43fbd.firebaseapp.com",
-    databaseURL: "https://traveldb-43fbd.firebaseio.com",
-    projectId: "traveldb-43fbd",
-    storageBucket: "",
-    messagingSenderId: "6054880400"
-  };
-  const myFirebaseAuthConfig = {
-    provider: AuthProviders.Password,
-    method: AuthMethods.Password
-  }
