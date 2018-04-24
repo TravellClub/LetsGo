@@ -14,26 +14,8 @@ import { Equipment } from '../pages/equipment/equipment';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Geolocation } from '@ionic-native/geolocation';
-import { Login } from '../pages/login/login';
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
-import { HttpModule } from '@angular/http';
 
 
-
-  // Initialize Firebase
-  export const firebaseConfig= {
-    apiKey: "AIzaSyDRh5UlR5gh8hIIzPYcICv0o-29TAi19ZI",
-    authDomain: "traveldb-43fbd.firebaseapp.com",
-    databaseURL: "https://traveldb-43fbd.firebaseio.com",
-    projectId: "traveldb-43fbd",
-    storageBucket: "",
-    messagingSenderId: "6054880400"
-  };
-  const myFirebaseAuthConfig = {
-    provider: AuthProviders.Password,
-    method: AuthMethods.Password
-  }
 
 
 @NgModule({
@@ -46,15 +28,11 @@ import { HttpModule } from '@angular/http';
     Guide,
     RouteFinder,
     Places,
-    Equipment,
-    Login
+    Equipment
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
-    HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig ),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,13 +44,11 @@ import { HttpModule } from '@angular/http';
     Guide,
     RouteFinder,
     Places,
-    Equipment,
-    Login
+    Equipment
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

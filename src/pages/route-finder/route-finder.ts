@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
+
+
+// $IMPORTSTATEMENT
 
 /**
  * Generated class for the RouteFinder page.
@@ -15,6 +18,8 @@ import { NavController, NavParams } from 'ionic-angular';
 export class RouteFinder {
   rootPage = TabIconContentPage;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    
   }
 
   ionViewDidLoad() {
@@ -45,59 +50,15 @@ export class RouteFinder {
 `})
 export class TabIconContentPage {
   isAndroid: boolean = false;
-
-  constructor() {
   }
-
-  // export class BasicPage {
-  //   constructor(public toastCtrl: ToastController) { }
-  
-  //   showToast(position: string) {
-  //     let toast = this.toastCtrl.create({
-  //       message: 'Successfully added to favarites',
-  //       duration: 1000,
-  //       position: position
-  //     });
-  
-  //     toast.present(toast);
-  //   }
-  // loadMap() {
-
-  //   this.geolocation.getCurrentPosition().then((position) => {
-
-  //     let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  //     console.log("loc " + latLng);
-
-  //     let mapOptions = {
-  //       center: latLng,
-  //       zoom: 15,
-  //       mapTypeId: google.maps.MapTypeId.ROADMAP
-  //     }
-
-  //     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-  //     let marker = new google.maps.Marker({
-  //       map: this.map,
-  //       animation: google.maps.Animation.DROP,
-  //       position: latLng
-  //     });
-  //     let content = "<h4>My Location</h4>";
-
-  //     this.addInfoWindow(marker, content);
-
-  //   }, (err) => {
-  //     console.log("load map :" + err);
-  //   });
-
-
+  // export class segment{
+  //   routFinder: string = "near by";
+  //   isAndroid = platform.is('android');
   // }
 
 
-}
+
+  
 
 
 
-@Component({
-  templateUrl: 'RouteFinder.html'
-})
-export class ListPage { }

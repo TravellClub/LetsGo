@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { Login } from '../pages/login/login';
+// import { ListPage } from '../pages/list/list';
 import { VehiclePage } from '../pages/vehicle/vehicle';
 import { AccomodationPage } from '../pages/accomodation/accomodation';
 import { Guide } from '../pages/guide/guide';
@@ -19,7 +19,7 @@ import { Equipment } from '../pages/equipment/equipment';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Login;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
