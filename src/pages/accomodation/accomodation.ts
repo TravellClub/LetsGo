@@ -43,6 +43,7 @@ export class AccomodationPage {
   }
 
   ionViewDidLoad(){
+    console.log("Accommodation view did load");
     this.loadData();
   }
 
