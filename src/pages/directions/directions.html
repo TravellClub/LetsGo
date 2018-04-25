@@ -14,6 +14,15 @@
 
 
 <ion-content padding>
+  <!--<button ion-button (click)="addMarker()">Add</button>-->
+  <button ion-button icon-only >
+    <ion-icon name="information"></ion-icon>
+  </button>
+  <ion-card show="panelVisible">
+    <ion-card-content>
+      <div #directionsPanel></div>
+    </ion-card-content>
+  </ion-card>
 
    <div #map id="map"></div>
 

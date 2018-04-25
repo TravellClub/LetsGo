@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
 import{ Hotels } from'../hotels/hotels';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import {Observable} from "rxjs/Observable";
@@ -11,10 +11,13 @@ import {Observable} from "rxjs/Observable";
 export class AccomodationPage {
 
   items:  Observable<any>;
+  itemList:  AngularFireList<any>;
 
-  constructor(public navCtrl: NavController, afDatabase: AngularFireDatabase) {
-    this.items = afDatabase.list('/accommodations').valueChanges();
+  constructor(public navCtrl: NavController,public afDatabase: AngularFireDatabase, public alertCtrl : AlertController) {
+    this.itemList = afDatabase.list('/accommodations');
+    this.items = this.itemList.valueChanges();
   }
+
 
   openhotel(){
     this.navCtrl.push(Hotels);
@@ -51,4 +54,44 @@ export class AccomodationPage {
     // this.loadData();
   }
 
+  addHotel(){
+    let prompt = this.alertCtrl.create({
+      title: 'Song Name',
+      message: "Enter a name for this new song you're so keen on adding",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Title'
+        },
+        {
+          name: 'address',
+          placeholder:' Address'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            const newHotelRef = this.itemList.push({});
+
+            newHotelRef.set({
+              id: newHotelRef.key,
+              name : data.title,
+              address : data.address,
+              contact : "0777555222",
+              rating : 4.5,
+              image : "\\assets\\img\\home1.jpg"
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
 }

@@ -28,7 +28,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 
-// Initialize Firebase
+// Initialize Firebase 
 export const firebaseConfig= {
   apiKey: "AIzaSyDRh5UlR5gh8hIIzPYcICv0o-29TAi19ZI",
   authDomain: "traveldb-43fbd.firebaseapp.com",
