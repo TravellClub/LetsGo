@@ -26,6 +26,11 @@ import { MorePage } from '../pages/more/more';
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { Textiles } from '../pages/textiles/textiles';
+import { Statues } from '../pages/statues/statues';
+import { Accesories } from '../pages/accesories/accesories';
+import { Tools } from '../pages/tools/tools';
+import { Books } from '../pages/books/books';
 
 
 // Initialize Firebase
@@ -52,7 +57,14 @@ let pageArr = [MyApp,
   Directions,
   Signup,
   Hotels,
-  MorePage
+  MorePage,
+  Textiles,
+  Statues,
+  Accesories,
+  Tools,
+  Books
+
+  
 ];
 
 @NgModule({
