@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 //import { Direction } from '../direction/direction';
 //$IMPORTSTATEMENT
 
@@ -17,15 +18,54 @@ import { NavController, NavParams } from 'ionic-angular';
 
 export class MorePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  // Calling the added reviews to the page
+  public buttonClicked: boolean = false; 
+
+  public onButtonClick() {
+
+      this.buttonClicked = !this.buttonClicked;
+  }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad More');
   }
 
- /* opendirection(){
-    this.navCtrl.push(Direction);
-   }*/
+  // Adding reveiws using a prompt box
+  showPrompt() {
+    let prompt = this.alertCtrl.create({
+      title: 'Add Reviews',
+      //message: "Add a Review",
+      inputs: [
+        {
+          name: 'text',
+          placeholder: 'Text'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present()
+  }
+
+  showReviews(){
+
+    
+
+  }
 
 }
