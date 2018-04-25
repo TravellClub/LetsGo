@@ -12,7 +12,7 @@ import {Guide} from '../pages/guide/guide';
 import {RouteFinder} from '../pages/route-finder/route-finder';
 import {Places} from '../pages/places/places';
 import {Login} from '../pages/login/login';
-import {Equipment} from '../pages/equipment/equipment';
+import {Equipment} from '../pages/equipment/equipment'; 
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
