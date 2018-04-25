@@ -16,10 +16,11 @@ import {Equipment} from '../pages/equipment/equipment';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {Geolocation} from '@ionic-native/geolocation';
+
 import {Directions} from '../pages/directions/directions';
 import {Signup} from '../pages/signup/signup';
 import {Hotels} from "../pages/hotels/hotels";
-<<<<<<< HEAD
 import { MorePage } from '../pages/more/more';
 
 // Import the AF2 Module
@@ -27,7 +28,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 
-// Initialize Firebase 
+// Initialize Firebase
 export const firebaseConfig= {
   apiKey: "AIzaSyDRh5UlR5gh8hIIzPYcICv0o-29TAi19ZI",
   authDomain: "traveldb-43fbd.firebaseapp.com",
@@ -37,8 +38,6 @@ export const firebaseConfig= {
   messagingSenderId: "6054880400"
 };
 
-=======
->>>>>>> 4dfbc51c1c9c2dda16d9dffef7bcd0ff97b38b1e
 
 let pageArr = [MyApp,
   HomePage,
@@ -52,19 +51,24 @@ let pageArr = [MyApp,
   Login,
   Directions,
   Signup,
-  Hotels];
+  Hotels,
+  MorePage
+];
 
 @NgModule({
   declarations: pageArr,
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: pageArr,
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
