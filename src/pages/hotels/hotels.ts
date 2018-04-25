@@ -19,5 +19,6 @@ export class Hotels {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Hotels');
   }
+  
 
 }
