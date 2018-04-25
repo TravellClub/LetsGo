@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Tools } from '../tools/tools';
+import { Books } from '../books/books';
+import { Statues } from '../statues/statues';
+import { Accesories } from '../accesories/accesories';
+import { Textiles } from '../textiles/textiles';
+
+
 // $IMPORTSTATEMENT
 
 /**
@@ -21,5 +28,22 @@ export class Equipment {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Equipment');
   }
+  tool() {
+    this.navCtrl.push(Tools)
+  }
+  books() {
+    this.navCtrl.push(Books)
+  }
+  statue() {
+    this.navCtrl.push(Statues)
+  }
+  accesories()
+  {
+    this.navCtrl.push(Accesories)
+  }
+  textile()
+  {
+    this.navCtrl.push(Textiles)
 
+  }
 }
