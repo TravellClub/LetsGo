@@ -7,35 +7,84 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>more</ion-title>
+    <ion-title>More Details</ion-title>
   </ion-navbar>
+ 
 
 </ion-header>
 
 
 <ion-content padding>
     <ion-card>
-        <img src="\\assets\\img\\Picture1.png"/>
+        <img src="\\assets\\img\\Ruwanweli_Saya_1.jpg"/>
         <ion-card-content>
           <ion-card-title>
-            Nine Inch Nails Live
+            Ruwanwelisaya
             </ion-card-title>
           <p>
-            The most popular industrial group ever, and largely
-            responsible for bringing the music to a mass audience.
+            * The Ruwanwelisaya is a stupa, a hemispherical structure containing relics, in Sri Lanka, considered sacred to many Buddhists all over the world.
+          <br>
+          <br>
+            * It was built by King Dutugemunu.
+          <br>
+          <br>
+            * 140 B.C., who became lord of all Sri Lanka after a war in which the Chola King Ellalan, was defeated.
+          <br>
+          <br>
+            * It is also known as "Mahathupa", "Swarnamali Chaitya", "Suvarnamali Mahaceti" (in Pali) and "Rathnamali Dagaba".
           </p>
-        </ion-card-content>
+                 </ion-card-content>
       </ion-card>
 
+      
 
       <ion-list>
           <ion-item>
+
+              <button ion-button outline item-end color = "secondary" icon-right round clear>
+                  <ion-icon name="sunny" ></ion-icon>
+                  Weather
+                </button>
+
             <button ion-button outline item-end icon-left>
-              <ion-icon name="star"></ion-icon>
-              Left Icon
+              <ion-icon name="compass"></ion-icon>
+              Direction
             </button>
+
           </ion-item>
         </ion-list>
+
+        <ion-list>
+          <ion-item>
+        <button ion-button outline item-end color = "Dark" icon-left round clear (click)="onButtonClick()">
+            Reviews
+          </button>
+
+          <button ion-button outline item-end color = "Dark" icon-left round clear (click)= "showPrompt()">
+              <ion-icon name="add"></ion-icon>
+             Add Reviews
+            </button>
+            </ion-item>
+        </ion-list>
+
+        <ion-card *ngIf="buttonClicked" value="">
+           <!-- <img src="img/nin-live.png"/>-->
+            <ion-card-content>
+              <ion-card-title>
+                Nine Inch Nails Live
+                </ion-card-title>
+              <p>
+                The most popular industrial group ever, and largely
+                responsible for bringing the music to a mass audience.
+              </p>
+
+              <button ion-button outline item-end color ="Default" icon-left round clear>
+                  <ion-icon name="thumbs-up"></ion-icon>
+                  Like
+                </button>
+
+            </ion-card-content>
+          </ion-card>
 
 </ion-content>
 
