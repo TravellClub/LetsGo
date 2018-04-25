@@ -5,6 +5,7 @@ import { Books } from '../books/books';
 import { Statues } from '../statues/statues';
 import { Accesories } from '../accesories/accesories';
 import { Textiles } from '../textiles/textiles';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
 // $IMPORTSTATEMENT
@@ -23,7 +24,12 @@ import { Textiles } from '../textiles/textiles';
 export class Equipment {
 
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCrtl : AlertController) {
+  list: any;
+  equipmentlist: AngularFireList<any>;
+  constructor(public navCtrl: NavController,public afDatabase: AngularFireDatabase, public navParams: NavParams, public alertCrtl : AlertController) {
+    this.equipmentlist = afDatabase.list('/equipment');
+    this.list =this.equipmentlist.valueChanges();
+
   }
 
   ionViewDidLoad() {
@@ -62,7 +68,7 @@ export class Equipment {
           {
             text:'save',
             handler: data =>{
-              const newItem = this.itemlist.push({});
+              const newItem = this.equipmentlist.push({});
 
               newItem.set({
                 id: newItem.key,
@@ -70,28 +76,13 @@ export class Equipment {
                 price: data.itemprice,
                 quantity: data.quantity,
                 image :"\\assets\\img\\camping.jpg"
-
-
-
-
-              })
-
+               });
+              }
             }
-
-
-
-
-          }
-
-
-        ]
- 
-
-    })
-
-
-
-  }
+          ]
+           });
+           prompt.present();
+}
   tool() {
     this.navCtrl.push(Tools)
   }
