@@ -11,13 +11,20 @@
 
   </ion-navbar>
 
-
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      {{ item }}
+    </ion-item>
+  </ion-list>
 
 </ion-header>
 
 
 
 <ion-content padding>
+
+  <!-- <button class="restuerent" style="background-image:url('\\assets\\img\\breakfast.png'); background-size:cover" ></button> -->
 
 
 <div #map id="map"></div>
