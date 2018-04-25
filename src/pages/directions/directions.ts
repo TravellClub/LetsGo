@@ -1,6 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {NavParams, NavController} from 'ionic-angular';
-
+import {Geolocation} from '@ionic-native/geolocation';
 
 /**
  * Generated class for the Directions page.
@@ -19,7 +19,7 @@ export class Directions {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation) {
   }
 
   ionViewDidLoad() {
@@ -29,15 +29,23 @@ export class Directions {
 
   loadMap() {
 
-    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    this.geolocation.getCurrentPosition().then((position) => {
 
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      
+    }, (err) => {
+      console.log(err);
+    });
+
 
   }
 
