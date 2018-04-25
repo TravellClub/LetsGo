@@ -1,61 +1,77 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
+import {Geolocation} from '@ionic-native/geolocation';
 
 
-// $IMPORTSTATEMENT
+declare var google;
 
-/**
- * Generated class for the RouteFinder page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-// $IONICPAGE
 @Component({
   selector: 'page-route-finder',
   templateUrl: 'route-finder.html',
 })
 export class RouteFinder {
-  rootPage = TabIconContentPage;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
 
-    
+  @ViewChild('map') mapElement: ElementRef;
+  @ViewChild('directionsPanel') directionsPanel: ElementRef;
+  map: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RouteFinder');
+    console.log("Google maps loading")
+    this.loadMap();
   }
-  // TabsTextContentPage {
-  //   constructor() {}
-  // }
-  
-  // export class TabsTextPage {
-  //   constructor() {
-  //     this.tab1 = TabsTextContentPage;
-  //     this.tab2 = TabsTextContentPage;
-  //     ...
-  //   }
-  // }
 
+  loadMap() {
+
+    this.geolocation.getCurrentPosition().then((position) => {
+
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      // let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      console.log("Map load latlng : " + latLng);
+
+
+    }, (err) => {
+      console.log(err);
+    });
+
+  }
+
+  addMarker() {
+
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: this.map.getCenter()
+    });
+
+    let content = "<h4>Information!</h4>";
+
+    this.addInfoWindow(marker, content);
+
+  }
+
+  addInfoWindow(marker, content) {
+
+    let infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
+
+    google.maps.event.addListener(marker, 'click', () => {
+      infoWindow.open(this.map, marker);
+    });
+
+  }
 }
-@Component({
-  template: `
-    <ion-header>
-      <ion-navbar [color]="isAndroid ? 'danger' : 'primary'">
-        <ion-title>Tabs</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
-    </ion-content>
-`})
-export class TabIconContentPage {
-  isAndroid: boolean = false;
-  }
-  // export class segment{
-  //   routFinder: string = "near by";
-  //   isAndroid = platform.is('android');
-  // }
-
 
 
   

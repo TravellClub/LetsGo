@@ -11,12 +11,7 @@
 
   </ion-navbar>
 
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      {{ item }}
-    </ion-item>
-  </ion-list>
+  
 
 </ion-header>
 
@@ -24,17 +19,68 @@
 
 <ion-content padding>
 
-  <!-- <button class="restuerent" style="background-image:url('\\assets\\img\\breakfast.png'); background-size:cover" ></button> -->
+  <!-- <button class="restuerent" style="background-image:url('assets\\img\\breakfast.png'); background-size:cover" ></button> -->
 
+  
+
+  <ion-card show="panelVisible">
+      <ion-card-content>
+        <div #directionsPanel></div>
+      </ion-card-content>
+    </ion-card>
 
 <div #map id="map"></div>
 
+<ion-list>
+<button ion-button icon-only>
+  <ion-icon name="restaurant"></ion-icon>
+</button> 
 
+<button ion-button icon-only>
+  <ion-icon name="cafe"></ion-icon>
+</button>
 
+<button ion-button icon-only>
+  <ion-icon name="medical"></ion-icon>
+</button>
 
+<button ion-button icon-only>
+  <ion-icon name="build"></ion-icon>
+</button>
 
+<button ion-button icon-only>
+  <ion-icon name="cash"></ion-icon>
+</button>
 
- 
+<button ion-button icon-only>
+  <ion-icon name="cart"></ion-icon>
+</button>
+<!-- 
+<button ion-button block>Phamacies</button>
+
+<button ion-button block>Repair stations</button>
+
+<button ion-button block>Groceries</button>
+
+<button ion-button block>ATMs</button> -->
+</ion-list>
+
+<!-- <button ion-button>
+        Restuerent
+<img src="\\assets\\img\\breakfast.png">
+</button> -->
+
+<!-- 
+<button >
+<ion-icon name="restaurant"></ion-icon>
+</button>
+
+<!-- <ion-img [width]="imgWidth" hight="imgHight" src="\\assets\\img\\breakfast.png"></ion-img> -->
+<!-- 
+<button ion-button>
+    Cafes
+<ion-img width="80" hight="80" src="\\assets\\img\\breakfast.png"></ion-img>
+</button> --> 
 
 
 

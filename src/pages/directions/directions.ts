@@ -2,12 +2,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {NavParams, NavController} from 'ionic-angular';
 import {Geolocation} from '@ionic-native/geolocation';
 
-/**
- * Generated class for the Directions page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 declare var google;
 
 @Component({
