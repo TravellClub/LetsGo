@@ -15,25 +15,70 @@
 
 <ion-content padding>
     <ion-card>
-        <img src="\\assets\\img\\images (1).jpg"/>
+        <img src="\\assets\\img\\saree.jpg"/>
         <ion-card-content>
           <ion-card-title>
-            Nine Inch Nails Live
+         Ceylon Handloom store
             </ion-card-title>
-          <p>
-            The most popular industrial group ever, and largely
-            responsible for bringing the music to a mass audience.
-          </p>
         </ion-card-content>
-      </ion-card>
-      <ion-list>
-          <ion-item>
-            Left Icon Button
-            <button ion-button outline item-end icon-left>
-              <ion-icon name="star"></ion-icon>
-              Left Icon
-            </button>
-          </ion-item>
-        </ion-list>
+        <button ion-button outline item-end icon-left (click)="call()">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+          <button ion-button outline item-end icon-left (click)="openDirections()">
+            <ion-icon name="compass"></ion-icon>
+            Direction
+          </button>
+    </ion-card>
+    <ion-card>
+        <img src="\\assets\\img\\handloom.jpg"/>
+        <ion-card-content>
+          <ion-card-title>
+          Ishan Bathik
+            </ion-card-title>
+        </ion-card-content>
+       <button ion-button outline item-end icon-left (click)="call()">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+          <button ion-button outline item-end icon-left (click)="openDirections()">
+            <ion-icon name="compass"></ion-icon>
+            Direction
+          </button>
+    </ion-card>
 
+        <ion-card>
+          <img src="\\assets\\img\\blouse.jpg"/>
+          <ion-card-content>
+            <ion-card-title>
+                Laxala
+             </ion-card-title>
+         
+          </ion-card-content>
+          <button ion-button outline item-end icon-left (click)="call()">
+              <ion-icon name="call"></ion-icon>
+              Call
+            </button>
+            <button ion-button outline item-end icon-left (click)="openDirections()">
+              <ion-icon name="compass"></ion-icon>
+              Direction
+            </button>
+      </ion-card>
+
+          <ion-card>
+            <img src="\\assets\\img\\Batik-Sarong.jpg"/>
+            <ion-card-content>
+              <ion-card-title>
+             Ceylon Bathik Store
+                </ion-card-title>
+            </ion-card-content>
+            <button ion-button outline item-end icon-left (click)="call()">
+                <ion-icon name="call"></ion-icon>
+                Call
+              </button>
+              <button ion-button outline item-end icon-left (click)="openDirections()">
+                <ion-icon name="compass"></ion-icon>
+                Direction
+              </button> 
+        </ion-card>
 </ion-content>

@@ -14,26 +14,56 @@
 
 
 <ion-content padding>
+  <ion-card>
+    <img src="\\assets\\img\\history.jpg" />
+    <ion-card-content>
+      <ion-card-title>
+     Sakya books
+      </ion-card-title>
+    </ion-card-content>
+    <button ion-button outline item-end icon-left (click)="call()">
+      <ion-icon name="call"></ion-icon>
+      Call
+    </button>
+    <button ion-button outline item-end icon-left (click)="directions()">
+      <ion-icon name="compass"></ion-icon>
+      Direction
+    </button>
+  </ion-card>
+  <ion-card>
+      <img src="\\assets\\img\\reader.jpg" />
+      <ion-card-content>
+        <ion-card-title>
+         Gunawardhana book store
+        </ion-card-title>
+      </ion-card-content>
+      <button ion-button outline item-end icon-left (click)="call()">
+        <ion-icon name="call"></ion-icon>
+        Call
+      </button>
+      <button ion-button outline item-end icon-left (click)="directions()">
+        <ion-icon name="compass"></ion-icon>
+        Direction
+      </button>
+    </ion-card>
     <ion-card>
-        <img src="\\assets\\img\\images (1).jpg"/>
+        <img src="\\assets\\img\\piligrime guide.jpg" />
         <ion-card-content>
           <ion-card-title>
-            Nine Inch Nails Live
-            </ion-card-title>
-          <p>
-            The most popular industrial group ever, and largely
-            responsible for bringing the music to a mass audience.
-          </p>
+            Ceylon books store
+          </ion-card-title>
         </ion-card-content>
+        <button ion-button outline item-end icon-left (click)="call()">
+          <ion-icon name="call"></ion-icon>
+          Call
+        </button>
+        <button ion-button outline item-end icon-left (click)="directions()">
+          <ion-icon name="compass"></ion-icon>
+          Direction
+        </button>
       </ion-card>
-      <ion-list>
-          <ion-item>
-            Left Icon Button
-            <button ion-button outline item-end icon-left>
-              <ion-icon name="star"></ion-icon>
-              Left Icon
-            </button>
-          </ion-item>
-        </ion-list>
+      
+            
+
 
 </ion-content>
