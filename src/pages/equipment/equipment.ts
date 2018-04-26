@@ -1,21 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { Tools } from '../tools/tools';
-import { Books } from '../books/books';
-import { Statues } from '../statues/statues';
-import { Accesories } from '../accesories/accesories';
-import { Textiles } from '../textiles/textiles';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {EquipmentGallery} from '../equipmentgallery/equipmentgallery';
 
-
-// $IMPORTSTATEMENT
-
-/**
- * Generated class for the Equipment page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-// $IONICPAGE
 @Component({
   selector: 'page-equipment',
   templateUrl: 'equipment.html',
@@ -28,22 +14,35 @@ export class Equipment {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Equipment');
   }
+
   tool() {
-    this.navCtrl.push(Tools)
+    this.navCtrl.push(EquipmentGallery, {
+      "category": "Tools"
+    })
   }
+
   books() {
-    this.navCtrl.push(Books)
+    this.navCtrl.push(EquipmentGallery, {
+      "category": "Books"
+    })
   }
+
   statue() {
-    this.navCtrl.push(Statues)
+    this.navCtrl.push(EquipmentGallery, {
+      "category": "Statues"
+    })
   }
-  accesories()
-  {
-    this.navCtrl.push(Accesories)
+
+  accessories() {
+    this.navCtrl.push(EquipmentGallery, {
+      "category": "Accessories"
+    })
   }
-  textile()
-  {
-    this.navCtrl.push(Textiles)
+
+  textile() {
+    this.navCtrl.push(EquipmentGallery, {
+      "category": "Textiles"
+    })
 
   }
 }

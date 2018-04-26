@@ -12,7 +12,7 @@ import {Guide} from '../pages/guide/guide';
 import {RouteFinder} from '../pages/route-finder/route-finder';
 import {Places} from '../pages/places/places';
 import {Login} from '../pages/login/login';
-import {Equipment} from '../pages/equipment/equipment'; 
+import {Equipment} from '../pages/equipment/equipment';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -22,6 +22,7 @@ import {Directions} from '../pages/directions/directions';
 import {Signup} from '../pages/signup/signup';
 import {Hotels} from "../pages/hotels/hotels";
 import {MorePage} from '../pages/more/more';
+import {EquipmentGallery} from "../pages/equipmentgallery/equipmentgallery";
 
 // Import the AF2 Module
 import {AngularFireModule} from 'angularfire2';
@@ -52,7 +53,8 @@ let pageArr = [MyApp,
   Directions,
   Signup,
   Hotels,
-  MorePage
+  MorePage,
+  EquipmentGallery
 ];
 
 @NgModule({
