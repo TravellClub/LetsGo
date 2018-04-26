@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-//import { Direction } from '../direction/direction';
+import { Directions } from '../directions/directions';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import {Observable} from "rxjs/Observable";
 //$IMPORTSTATEMENT
 
 /**
@@ -18,6 +20,9 @@ import { AlertController } from 'ionic-angular';
 
 export class MorePage {
 
+  reviews:  Observable<any>;
+  reviewList:  AngularFireList<any>;
+
   // Calling the added reviews to the page
   public buttonClicked: boolean = false; 
 
@@ -26,53 +31,76 @@ export class MorePage {
       this.buttonClicked = !this.buttonClicked;
   }
 
-  public buttonClicked1: boolean = false; 
+  /*public buttonClicked1: boolean = false; 
 
   public onButtonClick1() {
 
       this.buttonClicked1 = !this.buttonClicked1;
-  }
+  }*/
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public afDatabase: AngularFireDatabase) {
+    this.reviewList = afDatabase.list('/reviews');
+    this.reviews = this.reviewList.valueChanges();
+
+    console.log("Reviews : ",this.reviews);
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad More');
   }
 
-  // Adding reveiws using a prompt box
-  showPrompt() {
-    let prompt = this.alertCtrl.create({
-      title: 'Add Reviews',
-      //message: "Add a Review",
-      inputs: [
-        {
-          name: 'text',
-          placeholder: 'Text'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            console.log('Saved clicked');
-          }
-        }
-      ]
-    });
-    prompt.present()
+  openDirections(){
+    this.navCtrl.push(Directions,
+      {
+        destination : {lat: 6.879127, lng: 79.859740}
+      });
   }
 
-  showReviews(){
-
+  sendClick(){
     
+      let prompt = this.alertCtrl.create({
+        title: 'Add Review',
+       // message: "Enter a name for this new song you're so keen on adding",
+        inputs: [
+          {
+            name: 'name',
+            placeholder: 'Name'
+          },
+          {
+            name: 'email',
+            placeholder:'Email'
+          },
+          {
+            name: 'review',
+            placeholder:'Review'
+          },
 
-  }
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Save',
+            handler: data => {
+              const newReviewRef = this.reviewList.push({});
+              console.log("More data add : " + newReviewRef.key + " data : " + data);
+  
+              newReviewRef.set({
+                id: newReviewRef.key,
+                name : data.name,
+                email : data.email,
+                reviews : data.review
+              });
+            }
+          }
+        ]
+      });
+      prompt.present();
+    }
 
 }

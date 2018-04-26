@@ -9,93 +9,83 @@
   <ion-navbar>
     <ion-title>More Details</ion-title>
   </ion-navbar>
- 
+
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-card>
-        <img src="\\assets\\img\\Ruwanweli_Saya_1.jpg"/>
-        <ion-card-content>
-          <ion-card-title>
-            Ruwanwelisaya
-            </ion-card-title>
-          <p>
-            * The Ruwanwelisaya is a stupa, a hemispherical structure containing relics, in Sri Lanka, considered sacred to many Buddhists all over the world.
-          <br>
-          <br>
-            * It was built by King Dutugemunu.
-          <br>
-          <br>
-            * 140 B.C., who became lord of all Sri Lanka after a war in which the Chola King Ellalan, was defeated.
-          <br>
-          <br>
-            * It is also known as "Mahathupa", "Swarnamali Chaitya", "Suvarnamali Mahaceti" (in Pali) and "Rathnamali Dagaba".
-          </p>
-                 </ion-card-content>
-      </ion-card>
+  <ion-card>
+    <img src="\\assets\\img\\Ruwanweli_Saya_1.jpg" />
+    <ion-card-content>
+      <ion-card-title>
+        Ruwanwelisaya
+      </ion-card-title>
+      <p>
+        * The Ruwanwelisaya is a stupa, a hemispherical structure containing relics, in Sri Lanka, considered sacred to many Buddhists
+        all over the world.
+        <br>
+        <br> * It was built by King Dutugemunu.
+        <br>
+        <br> * 140 B.C., who became lord of all Sri Lanka after a war in which the Chola King Ellalan, was defeated.
+        <br>
+        <br> * It is also known as "Mahathupa", "Swarnamali Chaitya", "Suvarnamali Mahaceti" (in Pali) and "Rathnamali Dagaba".
+      </p>
+    </ion-card-content>
+  </ion-card>
 
-      
 
-      <ion-list>
-          <ion-item>
 
-              <button ion-button outline item-end color = "secondary" icon-right round clear>
-                  <ion-icon name="sunny" ></ion-icon>
-                  Weather
-                </button>
+  <ion-list>
+    <ion-item>
 
-            <button ion-button outline item-end icon-left>
-              <ion-icon name="compass"></ion-icon>
-              Direction
-            </button>
+      <button ion-button outline item-end color="secondary" icon-right round clear>
+        <ion-icon name="sunny"></ion-icon>
+        Weather
+      </button>
 
-          </ion-item>
-        </ion-list>
+      <button ion-button outline item-end icon-left (click)="openDirections()">
+        <ion-icon name="compass"></ion-icon>
+        Direction
+      </button>
 
-        <ion-list>
-          <ion-item>
-        <button ion-button outline item-end color = "Dark" icon-left round clear (click)="onButtonClick()">
-            Reviews
-          </button>
-            </ion-item>
-        </ion-list>
+    </ion-item>
+  </ion-list>
+  <button ion-button outline item-end color="Dark" icon-left round clear (click)="onButtonClick()">
+    Reviews
+  </button>
+  <ion-list>
+    <ion-item>
 
-        <ion-card *ngIf="buttonClicked" value="">
+    </ion-item>
+  </ion-list>
+  <!-- *ngIf="buttonClicked" value=""-->
 
-            <ion-item>
+  <ion-card>
+
+    <ion-card-content *ngFor="let review of reviews | async">
+
+       <ion-item >
               <ion-avatar item-start>
-               <!-- <img src="img/marty-avatar.png">-->
+                  <img src="\\assets\\img\\profile_icon.png" />
               </ion-avatar>
-              <h2>Marty McFly</h2>
-              <p>November 5, 1955</p>
+              <h2><p> {{review.name}}</p></h2>
+              <p>{{review.email}}</p>
             </ion-item>
-          
-            <!--<img src="img/advance-card-bttf.png">-->
-          
-            <ion-card-content>
-              <p>Wait a minute. Wait a minute, Doc. Uhhh...
-                 Are you telling me that you built a time machine... out of a DeLorean?! Whoa.
-                 This is heavy.</p>
-                
-                 <button ion-button outline item-end color="Dark" icon-left round clear ion-icon only>
-                    <ion-icon name="trash"></ion-icon>
-                  </button>
 
-              <button ion-button outline item-end color="Dark" icon-left round clear (click)="onButtonClick1()">
-                  <ion-icon name="add"></ion-icon>
-                  Add Reviews
-                </button>
-                    <ion-input *ngIf="buttonClicked1" type="text" value=""></ion-input>
+     <!-- <h2>
+        <p> {{review.name}}</p>
+      </h2>
+      <p>{{review.email}}</p>-->
+      <p>{{review.reviews}}</p>
 
-                    <button ion-button *ngIf="buttonClicked1" outline item-end color="Dark" round clear>
-                    Send 
-                      </button>
-            </ion-card-content>
-          </ion-card>
 
+
+    </ion-card-content>
+  </ion-card>
+  <button ion-button outline item-end color="Dark" icon-left round clear (click)="sendClick()">
+    <ion-icon name="add"></ion-icon>
+    Add Reviews
+  </button>
 
 </ion-content>
-
-
