@@ -8,6 +8,7 @@ import {Directions} from "../directions/directions";
 @Component({
   selector: 'page-accomodation',
   templateUrl: 'accomodation.html'
+  //templateUrl: 'build/pages/search/search.html',
 })
 export class AccomodationPage {
 
@@ -65,8 +66,8 @@ export class AccomodationPage {
 
   addHotel(){
     let prompt = this.alertCtrl.create({
-      title: 'Song Name',
-      message: "Enter a name for this new song you're so keen on adding",
+      title: 'Hotels Name',
+      message: "Enter a name for this new hotels you're so keen on adding",
       inputs: [
         {
           name: 'title',
@@ -76,6 +77,23 @@ export class AccomodationPage {
           name: 'address',
           placeholder:' Address'
         },
+        {
+          
+          name: 'phonenumber',
+          placeholder:' Contact '
+        },
+        {
+          
+          name: 'rating',
+          placeholder:'Rating '
+        },
+        {
+          
+          name: 'image',
+          placeholder:'Image '
+        },
+        
+        
       ],
       buttons: [
         {
@@ -93,9 +111,9 @@ export class AccomodationPage {
               id: newHotelRef.key,
               name : data.title,
               address : data.address,
-              contact : "0777555222",
-              rating : 4.5,
-              image : "\\assets\\img\\home1.jpg"
+              contact : data.phonenumber,
+              rating : data.rating,
+              image : "\\assets\\img\\1446529061Buffet_Restaurant.jpg"
             });
           }
         }

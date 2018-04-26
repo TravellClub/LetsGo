@@ -9,24 +9,32 @@
   <ion-navbar>
     <ion-title>Accommodation</ion-title>
 
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <!--ion-searchbar (ionInput)="getItems($event)"></ion-searchbar-->
+    <ion-searchbar (ionInput)="getTopics($event)" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
+ 
+  <ion-list>
+    <ion-item *ngFor="let topic of topics">
+      {{ topic }}
+    </ion-item>
+  </ion-list>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="home">
   <button ion-button (click)="addHotel()" >Add Hotel</button>
   <ion-list>
-    <ion-card *ngFor="let item of items | async">
+    <ion-card *ngFor="let item of items | async"  >
 
-      <img [src]="item.image"/>
-      <ion-card-content>
+      <img [src]="item.image"(click)="openhotel()"/>
+      <ion-card-content (click)="openhotel()">
 
         <p> {{item.name}}</p>
         <p>Address : {{item.address}}</p>
         <p>Contact No : {{item.contact}}</p>
         <p>Rating : {{item.rating}}</p>
+        </ion-card-content>
         <button ion-button outline item-end icon-left (click)="opencall()">
           <ion-icon name="call"></ion-icon>
           Call
@@ -35,10 +43,7 @@
           <ion-icon name="compass"></ion-icon>
           Direction
         </button>
-        <ion-card-title>
-          <button ion-button block (click)="openhotel()">more</button>
-        </ion-card-title>
-      </ion-card-content>
+        
     </ion-card>
   </ion-list>
 
