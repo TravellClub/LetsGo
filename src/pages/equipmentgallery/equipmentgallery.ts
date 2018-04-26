@@ -12,7 +12,7 @@ export class EquipmentGallery {
   category: any;
   items: Observable<any>;
   itemList: AngularFireList<any>;
-  pageTitle:any;
+  public pageTitle:string;
 
   constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController, public navParams: NavParams) {
     this.category = navParams.get("category");
