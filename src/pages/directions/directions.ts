@@ -2,12 +2,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {NavParams, NavController} from 'ionic-angular';
 import {Geolocation} from '@ionic-native/geolocation';
 
-/**
- * Generated class for the Directions page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 declare var google;
 
 @Component({
@@ -20,11 +15,14 @@ export class Directions {
   @ViewChild('directionsPanel') directionsPanel: ElementRef;
   map: any;
 
+  destination:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation) {
+    this.destination = this.navParams.get('destination');
   }
 
   ionViewDidLoad() {
-    console.log("Google maps loading")
+    console.log("Google maps loading");
     this.loadMap();
   }
 
@@ -42,9 +40,10 @@ export class Directions {
       };
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      console.log("Map load latlng : " + latLng);
+      console.log("Map load latLng : " + latLng);
 
-      this.startNavigating(latLng)
+      // destination = {lat: 6.879127, lng: 79.859740};
+      this.startNavigating(latLng,this.destination);
 
     }, (err) => {
       console.log(err);
@@ -78,7 +77,7 @@ export class Directions {
 
   }
 
-  startNavigating(start) {
+  startNavigating(start,destination) {
     console.log("Current Start : " + start);
 
     let directionsService = new google.maps.DirectionsService;
@@ -89,7 +88,7 @@ export class Directions {
 
     directionsService.route({
       origin: start,
-      destination: {lat: 6.879127, lng: 79.859740},
+      destination: destination,
       travelMode: google.maps.TravelMode['DRIVING']
     }, (res, status) => {
 

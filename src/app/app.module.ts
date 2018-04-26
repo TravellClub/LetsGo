@@ -12,7 +12,7 @@ import {Guide} from '../pages/guide/guide';
 import {RouteFinder} from '../pages/route-finder/route-finder';
 import {Places} from '../pages/places/places';
 import {Login} from '../pages/login/login';
-import {Equipment} from '../pages/equipment/equipment';
+import {Equipment} from '../pages/equipment/equipment'; 
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -21,15 +21,15 @@ import {Geolocation} from '@ionic-native/geolocation';
 import {Directions} from '../pages/directions/directions';
 import {Signup} from '../pages/signup/signup';
 import {Hotels} from "../pages/hotels/hotels";
-import { MorePage } from '../pages/more/more';
+import {MorePage} from '../pages/more/more';
 
 // Import the AF2 Module
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 
 
 // Initialize Firebase
-export const firebaseConfig= {
+export const firebaseConfig = {
   apiKey: "AIzaSyDRh5UlR5gh8hIIzPYcICv0o-29TAi19ZI",
   authDomain: "traveldb-43fbd.firebaseapp.com",
   databaseURL: "https://traveldb-43fbd.firebaseio.com",
