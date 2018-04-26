@@ -11,7 +11,9 @@
 
   </ion-navbar>
 
-  
+  <!-- <ion-toolbar color="primary">
+    <ion-searchbar [(ngModel)]="autocomplete.imnput" (ionInput)"updateSearchResults()" placeholder="search for a place"></ion-searchbar>
+  </ion-toolbar> -->
 
 </ion-header>
 
@@ -19,22 +21,24 @@
 
 <ion-content padding>
 
-  <!-- <button class="restuerent" style="background-image:url('assets\\img\\breakfast.png'); background-size:cover" ></button> -->
 
-  
-
-  <ion-card show="panelVisible">
+  <!-- <ion-card show="panelVisible">
       <ion-card-content>
         <div #directionsPanel></div>
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
+    
+<button ion-button icon-only (click)="showCurrentLocation()">
+  <ion-icon name="locate"></ion-icon>
+ </button> 
+
 
 <div #map id="map"></div>
 
 
 
 <ion-list>
-<button ion-button icon-only>
+<button ion-button icon-only (click)="addMarkersOfPlaces('restaurant')">
   <ion-icon name="restaurant"></ion-icon>
 </button> 
 

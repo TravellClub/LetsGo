@@ -1,6 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-import {Geolocation} from '@ionic-native/geolocation';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+
+
+
 
 
 declare var google;
@@ -14,6 +17,7 @@ export class RouteFinder {
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('directionsPanel') directionsPanel: ElementRef;
   map: any;
+  currentPosition: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation) {
   }
@@ -35,6 +39,7 @@ export class RouteFinder {
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
+      this.currentPosition = latLng;
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
       console.log("Map load latlng : " + latLng);
@@ -46,15 +51,24 @@ export class RouteFinder {
 
   }
 
-  addMarker() {
+  showCurrentLocation() {
+    this.geolocation.getCurrentPosition().then((position) => {
+      this.addMarker(this.currentPosition,"Current Position");
+
+
+    }, (err) => {
+      console.log(err);
+    });
+
+  }
+
+  public addMarker(latLng,content) {
 
     let marker = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
+      position: latLng
     });
-
-    let content = "<h4>Information!</h4>";
 
     this.addInfoWindow(marker, content);
 
@@ -72,17 +86,50 @@ export class RouteFinder {
 
   }
 
-  ionViewEnter(){
-    this.map = new google.maps(document.getElementById('map'), {
-      center:{lat:-34.9011, lng: -56.1645},
-      zoom: 15
-    })
+  // ionViewEnter(){
+  //   this.map = new google.maps(document.getElementById('map'), {
+  //     center:{lat:-34.9011, lng: -56.1645},
+  //     zoom: 15
+  //   })
+  // }
+
+  searchPlaces(placetype) {
+    var service = new google.maps.places.PlacesService(this.map);
+    let request = {
+      location: this.currentPosition,
+      radius: 8047,
+      types: [placetype]
+    };
+    return new Promise((resolve, reject) => {
+      service.nearbySearch(request, function (results, status) {
+        console.log("status : ",status);
+        console.log("places service status : ",google.maps.places.PlacesServiceStatus.OK);
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          console.log("Places : ", results);
+          resolve(results);
+        } else {
+          console.log("Places : Error");
+        }
+      });
+    });
   }
+
+  addMarkersOfPlaces(placetype){
+    console.log("resolve call");
+    this.searchPlaces(placetype).then((results: Array<any>)=>{
+      for(var i = 0; i< results.length; i++){
+        this.addMarker(results[i].geometry.location,results[i].name);
+      }
+    },(status)=>console.log("serach places addMarkers status ",status));
+    
+  }
+
+
 
 }
 
 
-  
+
 
 
 
