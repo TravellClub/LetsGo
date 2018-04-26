@@ -19,20 +19,31 @@
 
   <ion-toolbar>
     <ion-searchbar (input)="getItems($event)"></ion-searchbar>  
+
+    <ion-list>
+        <ion-item *ngFor="let item of items">
+          {{ item }}
+        </ion-item>
+      </ion-list>
+
+     <!-- <ion-item>
+          <ion-label>Category</ion-label>
+          <ion-select [(ngModel)]="category">
+            <ion-option value="wild">Wild Life</ion-option>
+            <ion-option value="beach">Beaches</ion-option>
+            <ion-option value="waterfall">Waterfalls</ion-option>
+            <ion-option value="ancient">Ancient</ion-option>
+            
+          </ion-select>
+        </ion-item>-->
+
   </ion-toolbar>
 
 
 </ion-header>
 
- <!--<ion-item>
-  <ion-label floating>Add Location</ion-label>
-  <ion-input type="text"></ion-input>
-  </ion-item>
-<button ion-button>Search</button>-->
-<ion-content padding>
-
+<ion-content>
 <ion-card>
-
     <button ion-button outline item-end small icon-left round clear block (click)= "openmore()">
         <ion-icon name="more"></ion-icon>
         More Details
@@ -54,10 +65,6 @@ The Ruwanwelisaya is a stupa, a hemispherical structure containing relics, in Sr
   </ion-card-content>
 </ion-card>
 
-<ion-list>
-  <ion-item *ngFor="let item of items">
-    {{ item }}
-  </ion-item>
-</ion-list>
+
 
 </ion-content>
