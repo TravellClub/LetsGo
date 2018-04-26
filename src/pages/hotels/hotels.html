@@ -21,7 +21,7 @@
           <ion-card-title>
               Cinnamon Grand Colombo
             </ion-card-title>
-            <button  ion-button outline item-end icon-left (click)="openwebside()" >
+            <button  ion-button color="secondary" clear (click)="openwebside()" >
                 
                website
               </button>
@@ -40,16 +40,16 @@
           
     
         </ion-card-content>
-  
+        
+            
+          <button ion-button color = "Dark"  (click)="onButtonClick()">
+              <ion-icon name="star">Reviews</ion-icon> 
+            </button>
+              
+          
             
       </ion-card>
-      <ion-list>
-          <ion-item>
-        <button ion-button outline item-end color = "Dark" icon-left round clear (click)="onButtonClick()">
-            Reviews *******
-          </button>
-            </ion-item>
-        </ion-list>
+      
         <ion-list>
             <ion-item>
               Rating 

@@ -26,6 +26,7 @@ export class Hotels {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     this.ratings = [this.defaultColor,this.defaultColor,this.defaultColor,this.defaultColor,this.defaultColor]
+    
   }
 
   ionViewDidLoad() {
