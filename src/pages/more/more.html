@@ -59,32 +59,42 @@
         <button ion-button outline item-end color = "Dark" icon-left round clear (click)="onButtonClick()">
             Reviews
           </button>
-
-          <button ion-button outline item-end color = "Dark" icon-left round clear (click)= "showPrompt()">
-              <ion-icon name="add"></ion-icon>
-             Add Reviews
-            </button>
             </ion-item>
         </ion-list>
 
         <ion-card *ngIf="buttonClicked" value="">
-           <!-- <img src="img/nin-live.png"/>-->
+
+            <ion-item>
+              <ion-avatar item-start>
+               <!-- <img src="img/marty-avatar.png">-->
+              </ion-avatar>
+              <h2>Marty McFly</h2>
+              <p>November 5, 1955</p>
+            </ion-item>
+          
+            <!--<img src="img/advance-card-bttf.png">-->
+          
             <ion-card-content>
-              <ion-card-title>
-                Nine Inch Nails Live
-                </ion-card-title>
-              <p>
-                The most popular industrial group ever, and largely
-                responsible for bringing the music to a mass audience.
-              </p>
+              <p>Wait a minute. Wait a minute, Doc. Uhhh...
+                 Are you telling me that you built a time machine... out of a DeLorean?! Whoa.
+                 This is heavy.</p>
+                
+                 <button ion-button outline item-end color="Dark" icon-left round clear ion-icon only>
+                    <ion-icon name="trash"></ion-icon>
+                  </button>
 
-              <button ion-button outline item-end color ="Default" icon-left round clear>
-                  <ion-icon name="thumbs-up"></ion-icon>
-                  Like
+              <button ion-button outline item-end color="Dark" icon-left round clear (click)="onButtonClick1()">
+                  <ion-icon name="add"></ion-icon>
+                  Add Reviews
                 </button>
+                    <ion-input *ngIf="buttonClicked1" type="text" value=""></ion-input>
 
+                    <button ion-button *ngIf="buttonClicked1" outline item-end color="Dark" round clear>
+                    Send 
+                      </button>
             </ion-card-content>
           </ion-card>
+
 
 </ion-content>
 

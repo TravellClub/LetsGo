@@ -2,7 +2,11 @@ import { Component } from '@angular/core';
 //import { AppComponent } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MorePage } from '../more/more';
-//import { More } from './more';
+import { Geolocation } from '@ionic-native/geolocation';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+//import { myService } from '../service';
+
+
 // $IMPORTSTATEMENT
 
 /**
@@ -18,14 +22,24 @@ import { MorePage } from '../more/more';
 })
 export class Places {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  restuarents: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, angFire: AngularFireDatabase){//public _myservice: myService) {
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Places');
+    
   }
   
 openmore(){
    this.navCtrl.push(MorePage);
   }
+//Search action
+
+
+
+
+
 }

@@ -3,6 +3,7 @@ import {AlertController, NavController} from 'ionic-angular';
 import{ Hotels } from'../hotels/hotels';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import {Observable} from "rxjs/Observable";
+import {Directions} from "../directions/directions";
 
 @Component({
   selector: 'page-accomodation',
@@ -23,6 +24,14 @@ export class AccomodationPage {
   openhotel(){
     this.navCtrl.push(Hotels);
   }
+
+  openDirections(){
+    this.navCtrl.push(Directions,
+      {
+        destination : {lat: 6.879127, lng: 79.859740}
+      });
+  }
+
   opencall(){
     console.log("calling number");
   //   this.callNumber.callNumber("0775817987", true)

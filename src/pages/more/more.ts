@@ -26,6 +26,13 @@ export class MorePage {
       this.buttonClicked = !this.buttonClicked;
   }
 
+  public buttonClicked1: boolean = false; 
+
+  public onButtonClick1() {
+
+      this.buttonClicked1 = !this.buttonClicked1;
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
   }
 
