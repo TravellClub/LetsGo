@@ -71,6 +71,14 @@ export class RouteFinder {
     });
 
   }
+
+  ionViewEnter(){
+    this.map = new google.maps(document.getElementById('map'), {
+      center:{lat:-34.9011, lng: -56.1645},
+      zoom: 15
+    })
+  }
+
 }
 
 
