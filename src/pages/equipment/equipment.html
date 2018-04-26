@@ -8,55 +8,36 @@
 
   <ion-navbar>
     <ion-title>Traveling Equipment</ion-title>
+ <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   </ion-navbar>
+
 
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      Type of the Equipment
-    </ion-card-header>
-  
-    <ion-list>
-      <button ion-button (click)="additem()">AddItem</button>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="\\assets\\img\\textile.jpg">
-        </ion-thumbnail>
-        <h2>Textile</h2>
-        <button ion-button (click)="textile()" clear item-end>View</button>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="\\assets\\img\\camping.jpg">
-        </ion-thumbnail>
-        <h2>Tools</h2>
-        <button ion-button (click)="tool()" clear item-end>View</button>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="\\assets\\img\\download (1).jpg">
-        </ion-thumbnail>
-        <h2>References Books</h2>
-        <button ion-button (click)="books()" clear item-end>View</button>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="\\assets\\img\\statue.jpg">
-        </ion-thumbnail>
-        <h2>Statues</h2>
-        <button ion-button (click)="statue()" clear item-end>View</button>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="\\assets\\img\\camera.jpg">
-        </ion-thumbnail>
-        <h2>Accesories</h2>
-        <button ion-button (click)="accesories()" clear item-end>View</button>
-      </ion-item>
-    </ion-list>
-  </ion-card>
+  <button ion-button (click)="additem()" >Add Item</button>
+  <ion-list>
+    <ion-card *ngFor="let item of items | async">
 
+      <img [src]="item.image"/>
+      <ion-card-content>
+
+        <p> {{list.name}}</p>
+        <p>Price: {{list.itemprice}}</p>
+        <p>Quantity : {{list.quantity}}</p>
+        <button ion-button outline item-end icon-left (click)="opencall()">
+          <ion-icon name="call"></ion-icon>
+          Call
+        </button>
+        <button ion-button outline item-end icon-left>
+          <ion-icon name="compass"></ion-icon>
+          Direction
+        </button>
+        <ion-card-title>
+          <button ion-button block (click)="itemlist()">more</button>
+        </ion-card-title>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 
 </ion-content>

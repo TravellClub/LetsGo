@@ -31,6 +31,7 @@ import { Statues } from '../pages/statues/statues';
 import { Accesories } from '../pages/accesories/accesories';
 import { Tools } from '../pages/tools/tools';
 import { Books } from '../pages/books/books';
+import { Itemlist } from '../pages/itemlist/itemlist';
 
 
 // Initialize Firebase
@@ -62,7 +63,8 @@ let pageArr = [MyApp,
   Statues,
   Accesories,
   Tools,
-  Books
+  Books,
+  Itemlist
 
   
 ];

@@ -12,9 +12,35 @@
 
 </ion-header>
 
-
+  
 <ion-content padding>
-    <ion-card>
+   <!-- <button ion-button (click)="additem()" >Add Item</button>
+    <ion-list>
+      <ion-card *ngFor="let item of items | async">
+  
+        <img [src]="item.image"/>
+        <ion-card-content>
+  
+          <p> {{item.name}}</p>
+          <p>Price : {{item.itemprice}}</p>
+          <p>Qunatity : {{item.quantity}}</p>
+      
+          <button ion-button outline item-end icon-left (click)="opencall()">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+          <button ion-button outline item-end icon-left>
+            <ion-icon name="compass"></ion-icon>
+            Direction
+          </button>
+          <ion-card-title>
+            <button ion-button block (click)="()">more</button>
+          </ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    </ion-list> -->
+  
+   <ion-card>
         <img src="\\assets\\img\\sunglases.jpg"/>
         <ion-card-content>
           <ion-card-title>
@@ -70,9 +96,7 @@
                 <ion-card-title>
              Liberty plaza
                   </ion-card-title>
-               <!-- <p> {{list.ItemName}}</p>
-                  <p>price: {{list.itemprice}}</p>
-                    <p>quantity:{{list.quantity}} </p> -->
+              
               </ion-card-content>
               <button ion-button outline item-end icon-left (click)="call()">
                 <ion-icon name="call"></ion-icon>
@@ -100,5 +124,5 @@
                 <ion-icon name="compass"></ion-icon>
                 Direction
               </button>
-            </ion-card>
+            </ion-card> 
 </ion-content>

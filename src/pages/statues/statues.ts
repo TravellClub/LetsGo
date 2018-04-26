@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Directions } from '../directions/directions';
 //$IMPORTSTATEMENT
 
 /**
@@ -21,8 +22,18 @@ export class Statues {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Statues');
   }
-  statue()
-  {
-     this.navCtrl.push(Statues)
+  statue() {
+    this.navCtrl.push(Statues)
   }
+
+
+  openDirections() {
+
+    this.navCtrl.push(Directions,
+      {
+        destination: { lat: 6.879127, lng: 79.859740 }
+
+      });
+  }
+
 }

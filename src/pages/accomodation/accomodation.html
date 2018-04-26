@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Accommodation</ion-title>
+    <ion-title>Equipment</ion-title>
 
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   </ion-navbar>
@@ -16,7 +16,7 @@
 
 
 <ion-content padding>
-  <button ion-button (click)="addHotel()" >Add Hotel</button>
+  <button ion-button (click)="additem()" >Add Item</button>
   <ion-list>
     <ion-card *ngFor="let item of items | async">
 
@@ -24,7 +24,7 @@
       <ion-card-content>
 
         <p> {{item.name}}</p>
-        <p>Address : {{item.address}}</p>
+       <!-- <p>Addr : {{item.}}</p> -->
         <p>Contact No : {{item.contact}}</p>
         <p>Rating : {{item.rating}}</p>
         <button ion-button outline item-end icon-left (click)="opencall()">

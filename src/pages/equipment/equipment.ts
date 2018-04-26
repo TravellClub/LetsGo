@@ -6,6 +6,7 @@ import { Statues } from '../statues/statues';
 import { Accesories } from '../accesories/accesories';
 import { Textiles } from '../textiles/textiles';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Itemlist } from '../itemlist/itemlist';
 
 
 // $IMPORTSTATEMENT
@@ -100,5 +101,8 @@ export class Equipment {
   {
     this.navCtrl.push(Textiles)
 
+  }
+  itemlist(){
+    this.navCtrl.push( Itemlist);
   }
 }
