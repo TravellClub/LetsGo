@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import {Observable} from "rxjs/Observable";
 
 /**
  * Generated class for the Hotels page.
@@ -13,6 +15,8 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 })
 export class Hotels {
+  hotelreviews:  Observable<any>;
+  hotelreviewList:  AngularFireList<any>;
   // Calling the added reviews to the page
   public buttonClicked: boolean = false;
 
@@ -24,8 +28,12 @@ export class Hotels {
   defaultColor = "light";
   likedColor = "secondary";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public afDatabase: AngularFireDatabase) {
     this.ratings = [this.defaultColor,this.defaultColor,this.defaultColor,this.defaultColor,this.defaultColor]
+    this.hotelreviewList = afDatabase.list('/hotelreviews');
+    this.hotelreviews = this.hotelreviewList.valueChanges();
+
+    console.log("Hotelreviews : ",this.hotelreviews);
     
   }
 
@@ -33,15 +41,25 @@ export class Hotels {
     console.log('ionViewDidLoad Hotels');
   }
   // Adding reveiws using a prompt box
-  showPrompt() {
+  sendClick(){
+    
     let prompt = this.alertCtrl.create({
-      title: 'Add Reviews',
-      //message: "Add a Review",
+      title: 'Add Review',
+     // message: "Enter a name for this new song you're so keen on adding",
       inputs: [
         {
-          name: 'text',
-          placeholder: 'Text'
+          name: 'name',
+          placeholder: 'Name'
         },
+        {
+          name: 'email',
+          placeholder:'Email'
+        },
+        {
+          name: 'hotelreviews',
+          placeholder:'Review'
+        },
+
       ],
       buttons: [
         {
@@ -53,14 +71,22 @@ export class Hotels {
         {
           text: 'Save',
           handler: data => {
-            console.log('Saved clicked');
+            const newhotelReviewRef = this.hotelreviewList.push({});
+            console.log("More data add : " + newhotelReviewRef.key + " data : " + data);
+
+            newhotelReviewRef.set({
+              id: newhotelReviewRef.key,
+              name : data.name,
+              email : data.email,
+              hotelreviews : data.hotelreviews
+            });
           }
         }
       ]
     });
-    prompt.present()
+    prompt.present();
+  
   }
-
   showReviews() {
 
 

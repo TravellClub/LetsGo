@@ -42,13 +42,7 @@
         </ion-card-content>
         
             
-          <button ion-button color = "Dark"  (click)="onButtonClick()">
-              <ion-icon name="star">Reviews</ion-icon> 
-            </button>
-              
-          
-            
-      </ion-card>
+         </ion-card>
       
         <ion-list>
             <ion-item>
@@ -61,38 +55,31 @@
               </ion-item>
           </ion-list>
 
-        <ion-card *ngIf="buttonClicked" value="">
-
-            <ion-item>
-              <ion-avatar item-start>
-               <!-- <img src="img/marty-avatar.png">-->
-              </ion-avatar>
-              <h2>Dileepan</h2>
-              <p>sun,21 Apr</p>
-            </ion-item>
-          
-            <!--<img src="img/advance-card-bttf.png">-->
-          
-            <ion-card-content>
-              <p>It  was an unforgettable experience. we stopped foe lunch with a good feeling.
-                The menu was outstanding, as it also has a gluten free menu.The food was delicious and flavorful.
-                presentation outstanding.Staff is fabulous,The design is wonderful. Yes, i'll  be back...
-              </p>
-                
-                 <button ion-button outline item-end color="Dark" icon-left round clear ion-icon only>
-                    <ion-icon name="trash"></ion-icon>
-                  </button>
-
-              <button ion-button outline item-end color="Dark" icon-left round clear (click)="onButtonClick1()">
-                  <ion-icon name="add"></ion-icon>
-                  Add Reviews
+          <ion-card>
+              <button ion-button color = "Dark"  (click)="onButtonClick()">
+                  <ion-icon name="star">Reviews</ion-icon> 
                 </button>
-                    <ion-input *ngIf="buttonClicked1" type="text" value=""></ion-input>
 
-                    <button ion-button *ngIf="buttonClicked1" outline item-end color="Dark" round clear>
-                    Send 
-                      </button>
-            </ion-card-content>
-          </ion-card>
+              <ion-card-content *ngFor="let hotelreview of hotelreviews | async">
+          
+                 <ion-item >
+                        <ion-avatar item-start>
+                            <img src="\\assets\\img\\images (3).jpg" />
+                        </ion-avatar>
+                        <h2><p> {{hotelreview.name}}</p></h2>
+                        <p>{{hotelreview.email}}</p>
+                      </ion-item>
+          
+               <!-- <h2>
+                  <p> {{review.name}}</p>
+                </h2>
+                <p>{{review.email}}</p>-->
+                <p>{{hotelreview.hostelreviews}}</p>
+               </ion-card-content>
+            </ion-card>
+            <button ion-button outline item-end color="Dark" icon-left round clear (click)="sendClick()">
+              <ion-icon name="add"></ion-icon>
+              Add Reviews
+            </button>
 
 </ion-content>
