@@ -27,6 +27,7 @@ import {EquipmentGallery} from "../pages/equipmentgallery/equipmentgallery";
 // Import the AF2 Module
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import { Business } from '../pages/business/business';
 
 
 // Initialize Firebase
@@ -54,7 +55,8 @@ let pageArr = [MyApp,
   Signup,
   Hotels,
   MorePage,
-  EquipmentGallery
+  EquipmentGallery,
+  Business
 ];
 
 @NgModule({

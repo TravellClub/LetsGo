@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RouteFinder } from '../route-finder/route-finder';
+import { Signup } from '../signup/signup';
 // $IMPORTSTATEMENT
 
 /**
@@ -25,6 +26,9 @@ export class Login {
 
   onLoginClicked(){
     this.navCtrl.push(RouteFinder);
+  }
+  openSignup(){
+    this.navCtrl.push(Signup);
   }
 
 }
