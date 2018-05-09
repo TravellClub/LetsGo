@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header>
-      Login
+      <h1>Login</h1>
     </ion-card-header>
     <ion-card-content>
       <!-- <ion-list no-line> -->
@@ -26,15 +26,17 @@
         <!-- <ion-item> -->
           <ion-input type="password" placeholder="Password" ng-model="password"></ion-input>
         <!-- </ion-item>       -->
-        <a>Forgot your passowrd?</a>
+        <!-- <a>Forgot your passowrd?</a> -->
         <button ion-button block outline color="dark">Login</button>
-        <p>OR</p>
-        <button>
+        <p>Don't have an Account?</p>
+        <button ion-button clear full color="dark" (click)="openSignup()">Signup now</button>
+        <!-- <p>OR</p> -->
+        <!-- <button>
           <ion-icon name="logo-facbook"></ion-icon> Login with facebook
-        </button>
+        </button> -->
     <!-- </ion-list> -->
     </ion-card-content>
   </ion-card>
-  <button ion-button clear full color="light">Sign up now</button>
+  <!-- <button ion-button clear full color="light" >Signup now</button> -->
 
 </ion-content>
