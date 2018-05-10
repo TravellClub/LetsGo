@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AlertController, NavController, NavParams} from 'ionic-angular';
 import {Observable} from "rxjs/Observable";
 import {AngularFireDatabase, AngularFireList} from "angularfire2/database";
+import { Directions } from '../directions/directions';
 
 @Component({
   selector: 'page-equipmentgallery',
@@ -31,6 +32,16 @@ export class EquipmentGallery {
   openMoreDetails() {
     this.navCtrl.push(EquipmentGallery)
   }
+  
+  openDirections() {
+    this.navCtrl.push(Directions,
+      {
+        destination: { lat: 6.879127, lng: 79.859740 }
+      });
+  }
+  opencall() {
+    console.log("calling number");
+  }
 
   addEquipment() {
     let prompt = this.alertCtrl.create({
@@ -38,13 +49,25 @@ export class EquipmentGallery {
       message: "Enter the details of the equipment to add",
       inputs: [
         {
-          name: 'title',
-          placeholder: 'Title'
+          name: 'itemname',
+          placeholder: 'Item Name'
         },
         {
-          name: 'description',
-          placeholder: ' Description'
-        }
+          name: 'price',
+          placeholder: ' Price'
+        },
+
+      {
+
+        name: 'quantity',
+        placeholder: 'Quantity '
+      },
+      {
+
+        name: 'image',
+        placeholder: 'Image '
+      },
+
       ],
       buttons: [
         {
@@ -60,8 +83,9 @@ export class EquipmentGallery {
 
             newEquipmentRef.set({
               id: newEquipmentRef.key,
-              title: data.title,
-              description: data.description,
+              itemname: data.itemname,
+              price: data.price,
+              quantity: data.quantity,
               image: "\\assets\\img\\images (1).jpg"
             });
           }
