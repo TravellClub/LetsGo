@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import {Observable} from "rxjs/Observable";
+import { Booking } from '../booking/booking';
 
 /**
  * Generated class for the Hotels page.
@@ -23,6 +24,7 @@ export class Hotels {
   public ratings: any[];
 
   public buttonClicked1: boolean = false;
+  public hotel;
 
   // colors
   defaultColor = "light";
@@ -34,7 +36,8 @@ export class Hotels {
     this.hotelreviews = this.hotelreviewList.valueChanges();
 
     console.log("Hotelreviews : ",this.hotelreviews);
-    
+   this.hotel = navParams.get("hotel");
+   console.log("hotel page : " , this.hotel);
   }
 
   ionViewDidLoad() {
@@ -139,4 +142,11 @@ export class Hotels {
     // console.log("star color changed : " + starNumber + " color : "+ this.ratings[starNumber]);
     return this.ratings[starNumber];
   }
-}
+
+   openBooking(){
+    this.navCtrl.push(Booking)
+   }
+  
+  }
+
+  
