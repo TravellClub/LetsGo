@@ -7,6 +7,8 @@ import { AccomodationPage } from '../accomodation/accomodation';
 import { Guide } from '../guide/guide';
 import { Equipment } from '../equipment/equipment';
 import { Directions } from '../directions/directions';
+import { Signup } from '../signup/signup';
+import { Login } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -18,6 +20,14 @@ export class HomePage {
 
     
 
+  }
+
+  openSignup(){
+    this.navCtrl.push(Signup);
+  }
+
+  openLogin(){
+    this.navCtrl.push(Login);
   }
 
   openPlaces(){
@@ -41,5 +51,6 @@ export class HomePage {
   openEquipment(){
     this.navCtrl.push(Equipment);
   }
+
 
 }
