@@ -4,48 +4,52 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header >
+<ion-header  >
 
   <ion-navbar >
-    <ion-title >hotels</ion-title>
+    <ion-title class="home" >hotels</ion-title>
   </ion-navbar>
 
 
 </ion-header>
 
 
-<ion-content  padding  class="home">
+<ion-content  padding  class="bodyt">
     <ion-card class="home">
-        <img src="\\assets\\img\\download.jpg"/>
+        <img [src]=hotel.image/>
         <ion-card-content >
           <ion-card-title>
-              Cinnamon Grand Colombo
+              {{hotel.name}}
             </ion-card-title>
-            <button  ion-button color="secondary" clear (click)="openwebside()" >
-                
-               website
-              </button>
-              <ion-icon name="clock">open Time:8.am - 11pm</ion-icon>
+           
+              <button ion-button color="dark">Website</button>
+              <ion-icon name="clock">Open-Closetime {{hotel.time}}</ion-icon>
+              <p>{{hotel.address}}</p>
+              <p>Contact:{{hotel.contact}}</p>
 
               <button ion-button color="danger" clear>
                   <ion-icon name="heart"></ion-icon>
                   favourite</button>
 
                  
+                 
 
           <p>
-              Hotel details
-              Set 1 km from both the Slave Island Railway Station and Galle Face Green, a seaside urban park, this grand resort hotel is also 2 km from Gangaramaya Buddhist Temple. 
+            
+              {{hotel.details}}
+                
           </p>
           
     
         </ion-card-content>
+        <ion-card class="home"> <button ion-button color="dark" round (click)="openBooking()">Booking</button></ion-card>
+       
         
             
          </ion-card>
       
         <ion-list>
-            <ion-item>
+            <ion-item class="home">
               Rating 
               <ion-icon name="star" [color]="getStarColor(0)" (click)="ratingStarClicked(0)"></ion-icon>
               <ion-icon name="star" [color]="getStarColor(1)" (click)="ratingStarClicked(1)"></ion-icon>
@@ -55,12 +59,12 @@
               </ion-item>
           </ion-list>
 
-          <ion-card>
+          <ion-card class="home">
               <button ion-button color = "Dark"  (click)="onButtonClick()">
                   <ion-icon name="star">Reviews</ion-icon> 
                 </button>
 
-              <ion-card-content *ngFor="let hotelreview of hotelreviews | async">
+              <ion-card-content *ngFor="let hotelreview of hotelreviews | async" class="home">
           
                  <ion-item >
                         <ion-avatar item-start>
@@ -68,13 +72,14 @@
                         </ion-avatar>
                         <h2><p> {{hotelreview.name}}</p></h2>
                         <p>{{hotelreview.email}}</p>
+                       
                       </ion-item>
           
                <!-- <h2>
                   <p> {{review.name}}</p>
                 </h2>
                 <p>{{review.email}}</p>-->
-                <p>{{hotelreview.hostelreviews}}</p>
+                <p>{{hotelreview.hotelreviews}}</p>
                </ion-card-content>
             </ion-card>
             <button ion-button outline item-end color="Dark" icon-left round clear (click)="sendClick()">

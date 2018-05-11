@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import {AlertController, NavController} from 'ionic-angular';
-import{ Hotels } from'../hotels/hotels';
+import { AlertController, NavController } from 'ionic-angular';
+import { Hotels } from '../hotels/hotels';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import {Observable} from "rxjs/Observable";
-import {Directions} from "../directions/directions";
+import { Observable } from "rxjs/Observable";
+import { Directions } from "../directions/directions";
+import firebase from 'firebase';
+import { Reference } from '@firebase/database';
 
 @Component({
   selector: 'page-accomodation',
@@ -12,31 +14,53 @@ import {Directions} from "../directions/directions";
 })
 export class AccomodationPage {
 
-  items:  Observable<any>;
-  itemList:  AngularFireList<any>;
+  items: Observable<any>;
+  accommodations: AngularFireList<any>;
+  itemList: Array<any>;
+  loadedItemList: Array<any>;
 
-  constructor(public navCtrl: NavController,public afDatabase: AngularFireDatabase, public alertCtrl : AlertController) {
-    this.itemList = afDatabase.list('/accommodations');
-    this.items = this.itemList.valueChanges();
+  constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController) {
+    this.accommodations = afDatabase.list('/accommodations');
+    this.items = this.accommodations.valueChanges();
+    let accommodatio = [];
+    this.items.forEach(element => {
+      element.forEach(accommo => {
+        accommodatio.push(accommo);
+        console.log("Accomo ", accommo);
+      })
+    });
+
+    this.itemList = accommodatio;
+    this.loadedItemList = accommodatio;
   }
 
 
-  openhotel(){
-    this.navCtrl.push(Hotels);
+
+  initializeitems() {
+    this.itemList = this.loadedItemList;
   }
 
-  openDirections(){
+  openhotel(item) {
+    console.log("pass hotel : ", item);
+    this.navCtrl.push(Hotels, {
+      "hotel": item
+    });
+  }
+
+
+
+  openDirections() {
     this.navCtrl.push(Directions,
       {
-        destination : {lat: 6.879127, lng: 79.859740}
+        destination: { lat: 6.879127, lng: 79.859740 }
       });
   }
 
-  opencall(){
+  opencall() {
     console.log("calling number");
-  //   this.callNumber.callNumber("0775817987", true)
-  //   .then(res => console.log('Launched dialer!', res))
-  // .catch(err => console.log('Error launching dialer', err));
+    //   this.callNumber.callNumber("0775817987", true)
+    //   .then(res => console.log('Launched dialer!', res))
+    // .catch(err => console.log('Error launching dialer', err));
   }
 
   // loadData(){
@@ -59,12 +83,12 @@ export class AccomodationPage {
   //     console.log("items : " + this.items);
   // }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     console.log("Accommodation view did load");
     // this.loadData();
   }
 
-  addHotel(){
+  addHotel() {
     let prompt = this.alertCtrl.create({
       title: 'Hotels Name',
       message: "Enter a name for this new hotels you're so keen on adding",
@@ -75,25 +99,25 @@ export class AccomodationPage {
         },
         {
           name: 'address',
-          placeholder:' Address'
+          placeholder: ' Address'
         },
         {
-          
+
           name: 'phonenumber',
-          placeholder:' Contact '
+          placeholder: ' Contact '
         },
         {
-          
+
           name: 'rating',
-          placeholder:'Rating '
+          placeholder: 'Rating '
         },
         {
-          
+
           name: 'image',
-          placeholder:'Image '
+          placeholder: 'Image '
         },
-        
-        
+
+
       ],
       buttons: [
         {
@@ -105,15 +129,15 @@ export class AccomodationPage {
         {
           text: 'Save',
           handler: data => {
-            const newHotelRef = this.itemList.push({});
+            const newHotelRef = this.accommodations.push({});
 
             newHotelRef.set({
               id: newHotelRef.key,
-              name : data.title,
-              address : data.address,
-              contact : data.phonenumber,
-              rating : data.rating,
-              image : "\\assets\\img\\1446529061Buffet_Restaurant.jpg"
+              name: data.title,
+              address: data.address,
+              contact: data.phonenumber,
+              rating: data.rating,
+              image: "\\assets\\img\\1446529061Buffet_Restaurant.jpg"
             });
           }
         }
@@ -121,4 +145,30 @@ export class AccomodationPage {
     });
     prompt.present();
   }
+
+  getTopics(searchbar){
+    this.initializeitems();
+
+    // set q to the value of the searchbar
+    var q = searchbar.srcElement.value;
+  
+  
+    // if the value is an empty string don't filter the items
+    if (!q) {
+      return;
+    }
+  
+    this.itemList = this.itemList.filter((v) => {
+      if(v.address && q) {
+        if (v.address.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+  
+    console.log(q, this.itemList.length);
+  
+  }
+  
 }

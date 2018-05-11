@@ -40,16 +40,18 @@
     <ion-card *ngFor="let item of items | async"  >
 
       <img [src]="item.image" (click)="openMoreDetails()"/>
-      <ion-card-content (click)="openhotel()">
-
-        <p> {{item.title}}</p>
-        <p>{{item.description}}</p>
+      <ion-card-content (click)="openMoreDetails()">
+        
+        <p> {{item.itemname}}</p>
+        <p>{{item.price}}</p>
+        <p>{{item.quantity}}</p>
+        <p>{{item.quantity}}</p>
       </ion-card-content>
-      <button ion-button outline item-end icon-left >
+      <button ion-button outline item-end icon-left (click)="opencall()" >
         <ion-icon name="call"></ion-icon>
         Call
       </button>
-      <button ion-button outline item-end icon-left (click)="openMoreDetails()">
+      <button ion-button outline item-end icon-left (click)="openDirections()">
         <ion-icon name="compass"></ion-icon>
         Direction
       </button>
