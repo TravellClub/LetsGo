@@ -15,22 +15,13 @@
 
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngFor="let place of places | async">
     <img src="\\assets\\img\\Ruwanweli_Saya_1.jpg" />
     <ion-card-content>
       <ion-card-title>
-        Ruwanwelisaya
+          <p>{{place.placename}} </p>
       </ion-card-title>
-      <p>
-        * The Ruwanwelisaya is a stupa, a hemispherical structure containing relics, in Sri Lanka, considered sacred to many Buddhists
-        all over the world.
-        <br>
-        <br> * It was built by King Dutugemunu.
-        <br>
-        <br> * 140 B.C., who became lord of all Sri Lanka after a war in which the Chola King Ellalan, was defeated.
-        <br>
-        <br> * It is also known as "Mahathupa", "Swarnamali Chaitya", "Suvarnamali Mahaceti" (in Pali) and "Rathnamali Dagaba".
-      </p>
+      <p>{{place.description}} </p>
     </ion-card-content>
   </ion-card>
 
