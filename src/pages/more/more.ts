@@ -20,6 +20,7 @@ import {Observable} from "rxjs/Observable";
 
 export class MorePage {
 
+  hreviewList: any;
   reviews:  Observable<any>;
   reviewList:  AngularFireList<any>;
 

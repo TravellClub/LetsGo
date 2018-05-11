@@ -23,16 +23,16 @@
 
         <ion-card-content>
           First Name
-              <ion-input type="text" placeholder="First Name" ></ion-input>
+              <ion-input type="text" placeholder="First Name" name="first_name" [(ngModel)]="user.firstname"></ion-input>
           Last Name
-              <ion-input type="text" placeholder="Last Name" ></ion-input>
+              <ion-input type="text" placeholder="Last Name" name="last_name" [(ngModel)]="user.lastname"></ion-input>
               
-          E-mail
-              <ion-input type="text" placeholder="Email"></ion-input>
+          Email
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="user.email"></ion-input>
           Password
-              <ion-input type="password" placeholder="password" ng-model="password"></ion-input>
+              <ion-input type="password" placeholder="password" name="password" [(ngModel)]="user.password"></ion-input>
           Role
-          <ion-list radio-group fromControlName="role">
+          <ion-list radio-group fromControlName="role" name="role" [(ngModel)]="user.role">
             <ion-item>
               <ion-label>Traveller</ion-label>
               <ion-radio value="traveller" checked="true"></ion-radio>
@@ -43,37 +43,17 @@
               <ion-radio value="business"></ion-radio>
             </ion-item>
           </ion-list>
-          <!-- what are the services you provide?
-            
-            <ion-item>
-              <ion-label>Accomadation</ion-label>
-              <ion-checkbox color="dark" checked="false"></ion-checkbox>
-            </ion-item>
 
-            <ion-item>
-              <ion-label>Vehicle</ion-label>
-              <ion-checkbox color="dark" checked="false"></ion-checkbox>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>Guide</ion-label>
-              <ion-checkbox color="dark" checked="false"></ion-checkbox>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>Traveling Equipment</ion-label>
-              <ion-checkbox color="dark" checked="false"></ion-checkbox>
-            </ion-item> -->
 
           Contact number
-            <ion-input type="text" placeholder="Enter contact number" ></ion-input>
+            <ion-input type="text" placeholder="Enter contact number" name="contact_number" [(ngModel)]="user.contact_number"></ion-input>
 
           Address
-          <ion-input type="textarea" placeholder=" Enter address"></ion-input>
+          <ion-input type="textarea" placeholder=" Enter address" name="address" [(ngModel)]="user.address"></ion-input>
 
  
 
-          <button ion-button block outline color="dark" type="submit">Sign me up</button>
+          <button ion-button block outline color="dark" type="submit" (click)="onSubmit(user)">Sign me up</button>
   
           
 

@@ -11,7 +11,7 @@
 
     <!--ion-searchbar (ionInput)="getItems($event)"></ion-searchbar-->
     <ion-searchbar (ionInput)="getTopics($event)" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
- 
+    
   <ion-list>
     <ion-item *ngFor="let topic of topics">
       {{ topic }}
@@ -22,15 +22,17 @@
 </ion-header>
 
 
-<ion-content padding class="home">
+<ion-content padding class="bodyt">
   <button ion-button (click)="addHotel()" >Add Hotel</button>
   <ion-list>
-    <ion-card *ngFor="let item of items | async"  >
+    <ion-card *ngFor="let item of itemList">
 
-      <img [src]="item.image"(click)="openhotel()"/>
-      <ion-card-content (click)="openhotel()">
-
-        <p> {{item.name}}</p>
+      <img [src]="item.image"(click)="openhotel(item)"/>
+      <ion-card-content (click)="openhotel(item)" >.
+        <ion-card-title>
+          {{item.name}}
+        </ion-card-title>
+        
         <p>Address : {{item.address}}</p>
         <p>Contact No : {{item.contact}}</p>
         <p>Rating : {{item.rating}}</p>
