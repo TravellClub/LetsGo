@@ -7,7 +7,7 @@
 <ion-header  >
 
   <ion-navbar >
-    <ion-title class="home" >hotels</ion-title>
+    <ion-title>hotels</ion-title>
   </ion-navbar>
 
 
@@ -15,14 +15,14 @@
 
 
 <ion-content  padding  class="bodyt">
-    <ion-card class="home">
+    <ion-card >
         <img [src]=hotel.image/>
         <ion-card-content >
           <ion-card-title>
               {{hotel.name}}
             </ion-card-title>
            
-              <button ion-button color="dark">Website</button>
+             
               <ion-icon name="clock">Open-Closetime {{hotel.time}}</ion-icon>
               <p>{{hotel.address}}</p>
               <p>Contact:{{hotel.contact}}</p>
@@ -31,22 +31,25 @@
                   <ion-icon name="heart"></ion-icon>
                   favourite</button>
 
-                 
-                 
-
-          <p>
+          
+              <p>
             
-              {{hotel.details}}
-                
-          </p>
+                  {{hotel.details}}
+                    
+              </p>
+               
+          
           
     
         </ion-card-content>
-        <ion-card class="home"> <button ion-button color="dark" round (click)="openBooking()">Booking</button></ion-card>
+        
        
         
             
          </ion-card>
+         <button ion-button color="dark" round (click)="openUrl()">Website {{hotel.Website}}</button>
+          <button ion-button color="dark" round (click)="openBooking()">Booking</button>
+
       
         <ion-list>
             <ion-item class="home">
@@ -59,14 +62,14 @@
               </ion-item>
           </ion-list>
 
-          <ion-card class="home">
-              <button ion-button color = "Dark"  (click)="onButtonClick()">
+          
+              <button ion-button color = "dark" round (click)="Click()"  >
                   <ion-icon name="star">Reviews</ion-icon> 
                 </button>
-
-              <ion-card-content *ngFor="let hotelreview of hotelreviews | async" class="home">
+                <ion-card class="h"  *ngIf="buttonClick">
+              <ion-card-content *ngFor="let hotelreview of hotelreviews | async" class="h"  >
           
-                 <ion-item >
+                 <ion-item  >
                         <ion-avatar item-start>
                             <img src="\\assets\\img\\images (3).jpg" />
                         </ion-avatar>
@@ -82,9 +85,10 @@
                 <p>{{hotelreview.hotelreviews}}</p>
                </ion-card-content>
             </ion-card>
-            <button ion-button outline item-end color="Dark" icon-left round clear (click)="sendClick()">
+            <button ion-button  color="dark" round icon-left round  (click)="sendClick()">
               <ion-icon name="add"></ion-icon>
               Add Reviews
             </button>
+              
 
 </ion-content>

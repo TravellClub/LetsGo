@@ -16,6 +16,7 @@ import { Booking } from '../booking/booking';
 
 })
 export class Hotels {
+  toggoleShowHide: string;
   hotelreviews:  Observable<any>;
   hotelreviewList:  AngularFireList<any>;
   // Calling the added reviews to the page
@@ -25,6 +26,13 @@ export class Hotels {
 
   public buttonClicked1: boolean = false;
   public hotel;
+ 
+  public buttonClick: boolean = false; //Whatever you want to initialise it as
+
+    public Click() {
+
+        this.buttonClick = !this.buttonClick;
+    }
 
   // colors
   defaultColor = "light";
@@ -95,6 +103,8 @@ export class Hotels {
 
 
   }
+  openUrl(){window.open('http://www.cinnamonhotels.com/en/cinnamongrandcolombo/?gclid=Cj0KCQjwodrXBRCzARIsAIU59TJ7u8aVTwPpcMROrv42QUDb7fuI-4ZyoVIpBNOAu_RLIkCjwMY_VukaAk44EALw_wcB');  }
+
 
   public onButtonClick() {
 
@@ -106,7 +116,8 @@ export class Hotels {
     this.buttonClicked1 = !this.buttonClicked1;
 
   }
-
+ 
+  
   ratingClick() {
     // const alert = this.alertCtrl.create({
     //   title: 'Rate your speech:',

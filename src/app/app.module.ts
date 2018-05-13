@@ -25,10 +25,13 @@ import {MorePage} from '../pages/more/more';
 import {EquipmentGallery} from "../pages/equipmentgallery/equipmentgallery";
 
 // Import the AF2 Module
+import { HttpModule } from '@angular/http';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { Business } from '../pages/business/business';
 import { Booking } from '../pages/booking/booking';
+//import { FirebaseService} from './../../providers/firebase-service';
+import { Services } from '@angular/core/src/view';
 
 
 
@@ -61,6 +64,8 @@ let pageArr = [MyApp,
   EquipmentGallery,
   Business,
   Booking
+
+  
   
 
   
@@ -72,16 +77,20 @@ let pageArr = [MyApp,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
-  ],
+    AngularFireDatabaseModule,
+    HttpModule
+  ], 
   bootstrap: [IonicApp],
   entryComponents: pageArr,
   providers: [
     StatusBar,
+   // FirebaseService,
     SplashScreen,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
+    
   ]
 })
+
 export class AppModule {
 }
