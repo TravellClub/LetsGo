@@ -1,5 +1,5 @@
 
- 
+
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, Note } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
@@ -7,7 +7,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 //import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
- 
+
 /**
  * Generated class for the Booking page.
  *
@@ -20,28 +20,30 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
   templateUrl: 'booking.html',
 })
 export class Booking {
+
+  alertCtrl: any;
   
-  id:any;
+  id: any;
   childrens: any;
   Adults: any;
   checkou: any;
   checkin: any;
-  
+
   items: any;
   public bookForm;
 
-  public book={};
+  public book = {};
   langs;
   langform;
- Booking:AngularFireList<any>;
+  Booking: AngularFireList<any>;
 
- 
 
-  
-  
+
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase, _form: FormBuilder
-    ,public alerCtrl: AlertController) {
-    this.Booking= afDatabase.list('/book');
+    , public alerCtrl: AlertController) {
+    this.Booking = afDatabase.list('/booking');
     this.items = this.Booking.valueChanges();
   }
 
@@ -49,32 +51,64 @@ export class Booking {
     console.log('ionViewDidLoad Booking');
   }
 
-  
 
- booking()
- {
-   console.log('ionViewDidLoad Booking');
-   console.log('book:',this.book);
-   let newbookRef=this.Booking.push({});
 
-   newbookRef.set({
+  booking(book) {
+    console.log('ionViewDidLoad Booking');
+    console.log('book:', this.book);
+    let newbookRef = this.Booking.push({});
 
-     id: newbookRef.key,
-     checkin: this.checkin,
-     checkou:this.checkou,
-     Adults:this.Adults,
-     childrens:this.childrens,
-   });
-   let alert = this.alerCtrl.create({
-    title: 'Congratulations!',
-    message: 'You have signed up successfully',
-    buttons: ['Ok']
-  });
-  alert.present()
+    newbookRef.set({
 
- }
- 
+      id: newbookRef.key,
+      checking: book.checking,
+      checkout: book.checkout,
+      adults: book.adults,
+      children: book.children,
+    });
+    let alert = this.alerCtrl.create({
+      title: 'Congratulations!',
+      message: ' successfully',
+      buttons: ['Ok']
+    });
+    alert.present()
 
- 
+  }
+
+  Submit(value){
+    for(let i=0 ; i< this.Submit.length; i++)
+    {
+        if (this.Submit[i].checking === value.checking && this.Submit[i].checkout === value.checkou)
+        {
+            console.log("not available" , this.Submit[i]);
+        }
+    }   
+    
+   
+    
+
+}
+/*showConfirmAlert(book) {
+  let alert = this.alertCtrll.create({
+      title: 'Confirm delete user',
+      message: 'Are you sure you want to permanently delete this user?',
+      buttons: [
+          {
+              text: 'No',
+              handler: () => {
+                  console.log('Cancel clicked');
+              }
+          },
+          {
+              text: 'Yes',
+              handler: () => {
+                 this.items.splice(book,1);
+              }
+          }
+      ]
+  })
+}*/
+
+
 }
 

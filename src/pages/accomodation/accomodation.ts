@@ -15,6 +15,7 @@ import { key } from 'localforage';
 })
 export class AccomodationPage {
 
+  alertctrl: any;
   items: Observable<any>;
   accommodations: AngularFireList<any>;
   itemList: Array<any>;
@@ -23,7 +24,11 @@ export class AccomodationPage {
   constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController) {
     this.accommodations = afDatabase.list('/accommodations');
     this.items = this.accommodations.valueChanges();
-    let accommodatio = [];
+    this.setupItems()
+  }
+
+setupItems(){
+  let accommodatio = [];
     this.items.forEach(element => {
       element.forEach(accommo => {
         accommodatio.push(accommo);
@@ -33,9 +38,7 @@ export class AccomodationPage {
 
     this.itemList = accommodatio;
     this.loadedItemList = accommodatio;
-  }
-
-
+}
 
   initializeitems() {
     this.itemList = this.loadedItemList;
@@ -133,14 +136,110 @@ export class AccomodationPage {
               name: data.title,
               address: data.address,
               contact: data.phonenumber,
-              image: "\\assets\\img\\1446529061Buffet_Restaurant.jpg"
+             // image: "\\assets\\img\\1446529061Buffet_Restaurant.jpg"
+             image:"assets/img/"+ data.image
             });
+            this.setupItems()
           }
         }
       ]
     });
     prompt.present();
   }
+
+  
+
+ edit(accommodations):void {
+    
+    let prompt=this.alertctrl.create({
+      title:'Edit hotels',
+      message:"Edit a name for this new hotels you're so keen on adding",
+    
+    inputs:[
+       
+       {
+          name:'title',
+          placeholder:accommodations.title
+
+       },
+
+        {
+          name:'address',
+          placeholder:accommodations.address
+
+       },
+       
+       {
+        name:'phonenumber',
+        placeholder:accommodations.phonenumber
+
+     },
+     {
+      name:'image',
+      placeholder:accommodations.image
+
+   },
+   
+
+    ],
+
+    buttons:[
+         {
+             text:"Cancel",
+             handler:data => {
+                 console.log("cancel clicked"); }
+
+         },
+
+         {
+           text:"Save Hotels",
+             handler:data => {
+                 let newtitle  : String =  data.title;
+                 let newaddress : String =  data.address;
+                 let newphone  : String =  data.phonenumber;
+                 let newimage : String =  data.image;
+
+                   if(data.title != ''){
+
+                       newtitle = data.title;
+
+                   }
+                      if(data.address != ''){
+
+                       newaddress = data.address;
+
+                   }
+                   
+                   if(data.phonenumber != ''){
+
+                    newphone = data.phonenumber;
+
+                }
+                   if(data.image != ''){
+
+                    newimage = data.image;
+
+                }
+
+                    this.accommodations.update(accommodations.$key, {
+                       title:data.title,
+                       address:data.address,
+                       phonenumber:data.phonenumber,
+                       image:data.image
+
+                  });
+
+            }
+         }
+    ]
+       
+   });
+    
+prompt.present();
+
+}
+
+
 
   getTopics(searchbar){
     this.initializeitems();

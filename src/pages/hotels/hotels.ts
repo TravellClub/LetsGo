@@ -157,6 +157,10 @@ export class Hotels {
    openBooking(){
     this.navCtrl.push(Booking)
    }
+
+
+
+   
   
   }
 

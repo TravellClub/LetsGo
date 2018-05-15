@@ -33,14 +33,23 @@
     
  
   
-  <button ion-button  full color="dark" (click)="addHotel()" >
-      <ion-icon name="heart"></ion-icon>Add Hotel
+  <button ion-button  color="dark" (click)="addHotel()" >
+      <ion-icon name="md-add"></ion-icon>Add Hotel
     </button>
 
-  <button ion-button  full color="dark" (click)="Click()" >
-    <ion-icon name="eye"></ion-icon>view Hotel</button>
+    <button ion-button left color="dark" (click)="edit()">
+      <ion-icon name="md-create">Edit Hotel</ion-icon>
+</button>
+
+
+  <button ion-button full  color="dark" (click)="Click()" >
+    <ion-icon name="md-eye"></ion-icon>View Hotel</button>
+
+    
+      
+    
 </ion-card>
-  <ion-list  *ngIf="Clicked">
+  <ion-list>
   
     <ion-card *ngFor="let item of itemList" >
       <img [src]="item.image"(click)="openhotel(item)"/>
@@ -51,7 +60,6 @@
         <!--p>Rating : {{item.rating}}</p-->
         
         </ion-card-content >
-
         
         <button ion-button  outline item-end icon-left (click)="opencall()">
           <ion-icon color="secondary" name="call"></ion-icon>
