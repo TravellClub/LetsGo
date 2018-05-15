@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Observable";
 import { Directions } from "../directions/directions";
 import firebase from 'firebase';
 import { Reference } from '@firebase/database';
+import { key } from 'localforage';
 
 @Component({
   selector: 'page-accomodation',
@@ -106,11 +107,7 @@ export class AccomodationPage {
           name: 'phonenumber',
           placeholder: ' Contact '
         },
-        {
-
-          name: 'rating',
-          placeholder: 'Rating '
-        },
+        
         {
 
           name: 'image',
@@ -136,7 +133,6 @@ export class AccomodationPage {
               name: data.title,
               address: data.address,
               contact: data.phonenumber,
-              rating: data.rating,
               image: "\\assets\\img\\1446529061Buffet_Restaurant.jpg"
             });
           }
@@ -169,6 +165,12 @@ export class AccomodationPage {
   
     console.log(q, this.itemList.length);
   
+  }
+  public Clicked: boolean = false; //Whatever you want to initialise it as
+
+  public Click() {
+
+      this.Clicked = !this.Clicked;
   }
   
 }

@@ -14,58 +14,50 @@
     
   </ion-navbar>
 
-  <ion-navbar color="primary" >
-    <ion-title>
-          Search Location
-         </ion-title>
-  </ion-navbar>
-
-  <ion-toolbar>
-    <ion-searchbar (input)="getItems($event)"></ion-searchbar>  
-
-    <ion-list>
-        <ion-item *ngFor="let item of items">
-          {{ item }}
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-searchbar (ioninput)="getPlace($event)"[showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
+    </ion-toolbar>
+  
+   <!-- <ion-list>
+      <ion-item *ngFor="let place of itemsList">
+        {{place}}
         </ion-item>
-      </ion-list>
+        </ion-list>-->
 
-     <!-- <ion-item>
-          <ion-label>Category</ion-label>
-          <ion-select [(ngModel)]="category">
-            <ion-option value="wild">Wild Life</ion-option>
-            <ion-option value="beach">Beaches</ion-option>
-            <ion-option value="waterfall">Waterfalls</ion-option>
-            <ion-option value="ancient">Ancient</ion-option>
-            
-          </ion-select>
-        </ion-item>-->
-
-  </ion-toolbar>
-
+  </ion-navbar>
 
 </ion-header>
 
 <ion-content>
 <ion-card>
-    <button ion-button outline item-end small icon-left round clear block (click)= "openmore()">
-        <ion-icon name="more"></ion-icon>
-        More Details
-       </button>
+  <ion-card-content *ngFor="let place of itemsList">
+    <ion-list>
+      <ion-item >
+        <ion-thumbnail item-start>
+          <img src="[{{place.image}}]">
+          <p>{{place.placename}} </p>
+        </ion-thumbnail>
+        <!--<p>{{place.description}}</p>-->
+        <button ion-button outline item-end small icon-left round clear block (click)= "openmore()">View</button>
 
-  <img src="\\assets\\img\\Ruwanweli_Saya_1.jpg"/>
-  <ion-card-content>
-    <ion-card-title>Ruwanwelisaya </ion-card-title>
-      <p>
-The Ruwanwelisaya is a stupa, a hemispherical structure containing relics, in Sri Lanka, considered sacred to many Buddhists all over the world.
-      </p>
-     
+        <button ion-button outline item-end color = "danger" icon-left round clear>
 
-     <button ion-button outline item-end color = "danger" icon-left round clear>
-      <ion-icon name="heart" isActive="false"></ion-icon>
-      
-    </button>
+          <ion-icon name="heart" isActive="true"></ion-icon>
+    
+         <!-- <ion-icon name="heart" isActive="false"></ion-icon>-->
+        </button>
+      </ion-item>
+    </ion-list>
 
   </ion-card-content>
 </ion-card>
 
+<<<<<<< HEAD
+<button ion-button outline item-end color="Dark" icon-left round clear (click)="addplaces()">
+    Add Places
+  </button>
+
+=======
+>>>>>>> 2aebc40a33b9a945675eb34769785934fa32fd8f
 </ion-content>

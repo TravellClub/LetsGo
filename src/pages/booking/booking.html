@@ -18,9 +18,10 @@
 
   
      <ion-card> 
+        
        <ion-item>
-       <ion-label stacked>Check-in-date</ion-label>
-      <ion-input type="date"></ion-input>
+       <ion-label stacked >Check-in-date</ion-label>
+      <ion-input type="date" name="checkin" [(ngModel)]="book.checkin"></ion-input>
     </ion-item>
     </ion-card>
          
@@ -30,13 +31,13 @@
         <ion-card >
           <ion-item>
           <ion-label stacked>Check-out-date</ion-label>
-          <ion-input type="date"></ion-input>
+          <ion-input type="date" name="checkou" [(ngModel)]="book.checkou"></ion-input>
         </ion-item>
         </ion-card>
         <ion-card>
           <ion-item>
             <ion-label>Adults</ion-label>
-            <ion-select [(ngModel)]="Adultes" multiple="true">
+            <ion-select [(ngModel)]="Adultes" multiple="true" name="Adults" [(ngModel)]="book.Adults">
               <ion-option>01</ion-option>
               <ion-option>02</ion-option>
               <ion-option>03</ion-option>
@@ -52,7 +53,7 @@
             <ion-item>
           
               <ion-label>childrens</ion-label>
-              <ion-select [(ngModel)]="childrens" multiple="true">
+              <ion-select [(ngModel)]="childrens" multiple="true" name="childrens" [(ngModel)]="book.childrens">
                   <ion-option>No children</ion-option>
                 <ion-option>01</ion-option>
                 <ion-option>02</ion-option>
@@ -70,7 +71,7 @@
 
             <ion-item>
                 <ion-label>Room</ion-label>
-                <ion-select [(ngModel)]="Room" multiple="true">
+                <ion-select [(ngModel)]="Room" multiple="true" name="room" [(ngModel)]="book.room">
                   <ion-option>01</ion-option>
                   <ion-option>02</ion-option>
                   <ion-option>03</ion-option>
@@ -88,6 +89,6 @@
               
       
   
-     
-    
+             
 </ion-content>
+

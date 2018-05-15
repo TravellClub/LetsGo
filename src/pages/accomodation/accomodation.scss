@@ -1,13 +1,45 @@
 page-accomodation {
     .home {
-        background: linear-gradient(skyblue);
-    }
+        background: linear-gradient(rgb(44, 172, 223));
+   }
     .ho {
-        background: linear-gradient(rgb(49, 223, 86));
+        background: linear-gradient(rgb(15, 15, 15));
     }
     .bodyt {
-        background-image: url("..//assets//img//images (2).jpg");
+        background-image: url("..//assets//img//HD nature wallpaper for iphone.jpg");
     }
+    .ti {
+        background: linear-gradient(rgb(11, 54, 71));
+    }
+    .card-background-page {
+        .home {
+            background: linear-gradient(rgb(187, 65, 167));
+        }
 
-
+       .ion-card {
+          position: relative;
+          text-align: center;
+        }
+      
+        .card-title {
+          position: absolute;
+          top: 36%;
+          font-size: 2.0em;
+          width: 100%;
+          font-weight: bold;
+          color: #fff;
+        }
+      
+        .card-subtitle {
+          font-size: 1.0em;
+          position: absolute;
+          top: 52%;
+          width: 100%;
+          color: #fff;
+        }
+      
+      }
+      .font {
+        font-size: 25px;
+    }
 }

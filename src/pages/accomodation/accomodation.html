@@ -7,12 +7,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Accommodation</ion-title>
+    <ion-title >Accommodation</ion-title>
 
     <!--ion-searchbar (ionInput)="getItems($event)"></ion-searchbar-->
-    <ion-searchbar (ionInput)="getTopics($event)" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
     
-  <ion-list>
+    
+  <ion-list >
     <ion-item *ngFor="let topic of topics">
       {{ topic }}
     </ion-item>
@@ -22,30 +22,44 @@
 </ion-header>
 
 
-<ion-content padding class="bodyt">
-  <button ion-button (click)="addHotel()" >Add Hotel</button>
-  <ion-list>
-    <ion-card *ngFor="let item of itemList">
 
+<ion-content padding  class="bodyt">
+    <ion-searchbar (ionInput)="getTopics($event)" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
+  <ion-card  class="card-background-page"  class="home" >
+      <!--ion-img width="300" height="350" src="\\assets\\img\\19940801071_ebf3e74e4d_b (1).jpg"></ion-img-->
+    <img src="\\assets\\img\\19940801071_ebf3e74e4d_b.jpg">
+
+  
+    
+ 
+  
+  <button ion-button  full color="dark" (click)="addHotel()" >
+      <ion-icon name="heart"></ion-icon>Add Hotel
+    </button>
+
+  <button ion-button  full color="dark" (click)="Click()" >
+    <ion-icon name="eye"></ion-icon>view Hotel</button>
+</ion-card>
+  <ion-list  *ngIf="Clicked">
+  
+    <ion-card *ngFor="let item of itemList" >
       <img [src]="item.image"(click)="openhotel(item)"/>
-      <ion-card-content (click)="openhotel(item)" >.
-        <ion-card-title>
-          {{item.name}}
-        </ion-card-title>
+      <ion-card-content class="font"(click)="openhotel(item)" >
+      {{item.name}} 
+      <!--p>Address : {{item.address}}</p-->
+        <!--p>Contact No : {{item.contact}}</p-->
+        <!--p>Rating : {{item.rating}}</p-->
         
-        <p>Address : {{item.address}}</p>
-        <p>Contact No : {{item.contact}}</p>
-        <p>Rating : {{item.rating}}</p>
-        </ion-card-content>
-        <button ion-button outline item-end icon-left (click)="opencall()">
-          <ion-icon name="call"></ion-icon>
-          Call
-        </button>
+        </ion-card-content >
+
+        
+        <button ion-button  outline item-end icon-left (click)="opencall()">
+          <ion-icon color="secondary" name="call"></ion-icon>
+       </button>
         <button ion-button outline item-end icon-left (click)="openDirections()">
           <ion-icon name="compass"></ion-icon>
-          Direction
         </button>
-        
+    
     </ion-card>
   </ion-list>
 
