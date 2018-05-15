@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+import { Validation } from '../validation/validation';
 
 
 
@@ -18,9 +19,22 @@ export class Signup {
   langs;
   langform;
   itemList: AngularFireList<any>;
+  myControl;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, _form: FormBuilder
+  constructor(public navCtrl: NavController, public navParams: NavParams,public _form: FormBuilder
     , public afDatabase: AngularFireDatabase,public alerCtrl: AlertController) {
+
+
+    this.signupForm = this._form.group({
+      "fistname":["",Validators.required],
+      "lastname":["",Validators.required],
+      "email":["",Validators.required],
+      "password":["",Validators.required],
+      "role":["",Validators.required],
+      "contactnumber":["",Validators.required],
+      "address":["",Validators.required],
+
+    })
 
     this.itemList = afDatabase.list('/user');
     // this.items = this.itemList.valueChanges();
@@ -28,6 +42,7 @@ export class Signup {
     this.langform = new FormGroup({
       "langs": new FormControl({ value: 'business', disabled: false })
     })
+
 
  
 

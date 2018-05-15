@@ -31,20 +31,12 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      // { title: 'list', component: ListPage },
       { title: 'Places', component: Places },
       { title: 'Route Finder', component: RouteFinder },
       { title: 'Transport', component: VehiclePage },
       { title: 'Accommodation', component: AccomodationPage },
       { title: 'Guide', component: Guide },
-      { title: 'Traveling Equipment', component: Equipment },
-
-      // { title: 'Transport', component: VehiclePage },
-      // { title: 'Accomodation', component: AccomodationPage },
-      // { title: 'Guide', component: Guide },
-      // { title: 'Route Finder', component: RouteFinder },
-      // { title: 'Places', component: Places },
-      // { title: 'Traveling Equipment', component: Equipment },
+      { title: 'Traveling Equipment', component: Equipment }
     ];
 
   }

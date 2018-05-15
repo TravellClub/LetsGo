@@ -4,6 +4,8 @@ import { RouteFinder } from '../route-finder/route-finder';
 import { Signup } from '../signup/signup';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+// import { formBuilder } from 
+import { Validators,FormBuilder } from '@angular/forms';
 // $IMPORTSTATEMENT
 
 /**
@@ -22,7 +24,9 @@ export class Login {
   itemList: Observable<any>;
   user = {};
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public afDatabase: AngularFireDatabase,public alerCtrl: AlertController) {
+    public afDatabase: AngularFireDatabase,public alerCtrl: AlertController, public _form:FormBuilder) {
+
+    
 
     this.itemList = afDatabase.list('/user').valueChanges();
   }
