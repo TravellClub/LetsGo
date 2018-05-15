@@ -33,9 +33,10 @@ export class Places {
         plac.push(pla);
         console.log("Pla",pla);
       })
-    })
-this.itemsList = plac;
-this.loaditemsList = plac;
+    });
+
+      this.itemsList = plac;
+      this.loaditemsList = plac;
   }
 
   initializeitems(){
@@ -118,27 +119,27 @@ addplaces(){
 
 
 
-getPlace(searchbar){
+getPlaces(searchbar){
   this.initializeitems();
 
-  // set q to the value of the searchbar
-  var q = searchbar.srcElement.value;
+  // set s to the value of the searchbar
+  var s = searchbar.srcElement.value;
 
   // if the value is an empty string don't filter the items
-  if(!q){
+  if(!s){
     return;
   }
 
   this.itemsList = this.itemsList.filter((a) => {
-    if(a.district && q) {
-      if(a.district.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+    if(a.district && s) {
+      if(a.district.toLowerCase().indexOf(s.toLowerCase()) > -1) {
         return true;
       }
       return false;
     }
   });
 
-  console.log(q.this.itemsList.length);
+  console.log(this.itemsList.length);
 }
 
 

@@ -4,6 +4,7 @@ import { AlertController } from 'ionic-angular';
 import { Directions } from '../directions/directions';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import {Observable} from "rxjs/Observable";
+import { Weather } from '../weather/weather'
 //$IMPORTSTATEMENT
 
 /**
@@ -56,6 +57,10 @@ export class MorePage {
       {
         destination : {lat: 6.879127, lng: 79.859740}
       });
+  }
+
+  openWeather(){
+    this.navCtrl.push(Weather);
   }
 
   sendClick(){

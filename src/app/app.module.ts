@@ -29,6 +29,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { Business } from '../pages/business/business';
 import { Booking } from '../pages/booking/booking';
+import { Weather } from '../pages/weather/weather';
 
 
 
@@ -60,7 +61,8 @@ let pageArr = [MyApp,
   MorePage,
   EquipmentGallery,
   Business,
-  Booking
+  Booking,
+  Weather
   
 
   

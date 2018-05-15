@@ -15,8 +15,8 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor="let place of places | async">
-    <img src="\\assets\\img\\Ruwanweli_Saya_1.jpg" />
+  <ion-card *ngFor="let place of itemsList | async">
+   <!-- <img src="\\assets\\img\\Ruwanweli_Saya_1.jpg" />-->
     <ion-card-content>
       <ion-card-title>
           <p>{{place.placename}} </p>
@@ -30,7 +30,7 @@
   <ion-list>
     <ion-item>
 
-      <button ion-button outline item-end color="secondary" icon-right round clear>
+      <button ion-button outline item-end color="secondary" icon-right round clear (click)="openWeather()">
         <ion-icon name="sunny"></ion-icon>
         Weather
       </button>
@@ -64,10 +64,6 @@
               <p>{{review.email}}</p>
             </ion-item>
 
-     <!-- <h2>
-        <p> {{review.name}}</p>
-      </h2>
-      <p>{{review.email}}</p>-->
       <p>{{review.reviews}}</p>
 
 

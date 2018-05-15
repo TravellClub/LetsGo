@@ -13,26 +13,20 @@
 
   <ion-navbar>
     <ion-toolbar>
-      <ion-searchbar (ioninput)="getPlace($event)"[showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
+      <ion-searchbar (ionInput)="getPlaces($event)" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
     </ion-toolbar>
   
-   <!-- <ion-list>
-      <ion-item *ngFor="let place of itemsList">
-        {{place}}
-        </ion-item>
-        </ion-list>-->
-
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-<ion-card>
-  <ion-card-content *ngFor="let place of itemsList">
+
     <ion-list>
-      <ion-item >
+      <ion-item *ngFor="let place of itemsList">
         <ion-thumbnail item-start>
-          <img src="[{{place.image}}]">
+         <!-- <img src="place.image">-->
+         <img [src]="place.image"/>
           <p>{{place.placename}} </p>
         </ion-thumbnail>
         <!--<p>{{place.description}}</p>-->
@@ -47,14 +41,9 @@
       </ion-item>
     </ion-list>
 
-  </ion-card-content>
-</ion-card>
-
-<<<<<<< HEAD
 <button ion-button outline item-end color="Dark" icon-left round clear (click)="addplaces()">
     Add Places
   </button>
 
-=======
->>>>>>> 2aebc40a33b9a945675eb34769785934fa32fd8f
+
 </ion-content>
