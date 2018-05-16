@@ -32,7 +32,10 @@ export class EquipmentGallery {
   openMoreDetails() {
     this.navCtrl.push(EquipmentGallery)
   }
-  
+  initializeitems() {
+    this.itemList = this.itemList;
+  }
+
   openDirections() {
     this.navCtrl.push(Directions,
       {
@@ -41,6 +44,15 @@ export class EquipmentGallery {
   }
   opencall() {
     console.log("calling number");
+  }
+  addTocart(){
+
+
+
+    
+  }
+  getTopics(searchbar){
+    this.initializeitems();
   }
 
   addEquipment() {
@@ -86,7 +98,7 @@ export class EquipmentGallery {
               itemname: data.itemname,
               price: data.price,
               quantity: data.quantity,
-              image: "\\assets\\img\\images (1).jpg"
+              image: 'assets/img/'+ data.image
             });
           }
         }
