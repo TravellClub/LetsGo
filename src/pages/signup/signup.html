@@ -13,10 +13,12 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content claas="bodyt">
 
-  <form>
-    <ion-card>
+  
+
+  <form >
+    <ion-card class="bodyt">
         <ion-card-header>
           <h1><b>Signup</b></h1>
         </ion-card-header>
@@ -32,13 +34,13 @@
           Password
               <ion-input type="password" placeholder="password" name="password" [(ngModel)]="user.password"></ion-input>
           Role
-          <ion-list radio-group fromControlName="role" name="role" [(ngModel)]="user.role">
-            <ion-item>
+          <ion-list radio-group fromControlName="role" name="role" [(ngModel)]="user.role" >
+            <ion-item class="bodyt">
               <ion-label>Traveller</ion-label>
               <ion-radio value="traveller" checked="true"></ion-radio>
             </ion-item>
 
-            <ion-item>
+            <ion-item class="bodyt">
               <ion-label>Business</ion-label>
               <ion-radio value="business"></ion-radio>
             </ion-item>
@@ -53,7 +55,7 @@
 
  
 
-          <button ion-button block outline color="dark" type="submit" (click)="onSubmit(user)">Sign me up</button>
+          <button ion-button block color="dark" type="submit" (click)="onSubmit(user)">Sign me up</button>
   
           
 

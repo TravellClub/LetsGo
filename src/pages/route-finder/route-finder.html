@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Route Finder</ion-title>
 
   </ion-navbar>
@@ -19,7 +22,7 @@
 
 
 
-<ion-content padding>
+<ion-content padding class="bodyt">
 
 
   <!-- <ion-card show="panelVisible">
@@ -27,42 +30,42 @@
         <div #directionsPanel></div>
       </ion-card-content>
     </ion-card> -->
-    
-<button ion-button icon-only (click)="showCurrentLocation()">
-  <ion-icon name="locate"></ion-icon>
- </button> 
+
+  <button ion-button outline color="light" icon-only (click)="showCurrentLocation()">
+    <ion-icon name="locate"> My Location </ion-icon>
+  </button>
 
 
-<div #map id="map"></div>
+  <div #map id="map"></div>
 
 
 
-<ion-list>
-<button ion-button icon-only (click)="addMarkersOfPlaces('restaurant')">
-  <ion-icon name="restaurant"></ion-icon>
-</button> 
+  <ion-list>
+    <button ion-button outline color="light" icon-only (click)="addMarkersOfPlaces('restaurant')">
+      <ion-icon name="restaurant"></ion-icon>
+    </button>
 
-<button ion-button icon-only (click)="addMarkersOfPlaces('cafes')">
-  <ion-icon name="cafe"></ion-icon>
-</button>
+    <button ion-button outline color="light" icon-only (click)="addMarkersOfPlaces('cafes')">
+      <ion-icon name="cafe"></ion-icon>
+    </button>
 
-<button ion-button icon-only (click)="addMarkersOfPlaces('hospitals')">
-  <ion-icon name="medical"></ion-icon>
-</button>
+    <button ion-button outline color="light" icon-only (click)="addMarkersOfPlaces('hospitals')">
+      <ion-icon name="medical"></ion-icon>
+    </button>
 
-<button ion-button icon-only (click)="addMarkersOfPlaces('repaire')">
-  <ion-icon name="build"></ion-icon>
-</button>
+    <button ion-button outline color="light" icon-only (click)="addMarkersOfPlaces('repaire')">
+      <ion-icon name="build"></ion-icon>
+    </button>
 
-<button ion-button icon-only (click)="addMarkersOfPlaces('atm')">
-  <ion-icon name="cash"></ion-icon>
-</button>
+    <button ion-button outline color="light" icon-only (click)="addMarkersOfPlaces('atm')">
+      <ion-icon name="cash"></ion-icon>
+    </button>
 
-<button ion-button icon-only (click)="addMarkersOfPlaces('shop')">
-  <ion-icon name="cart"></ion-icon>
-</button>
+    <!-- <button ion-button outline color="light" icon-only (click)="addMarkersOfPlaces('shop')">
+      <ion-icon name="cart"></ion-icon>
+    </button> -->
 
-</ion-list>
+  </ion-list>
 
 
 

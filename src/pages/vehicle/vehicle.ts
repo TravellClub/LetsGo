@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Injectable } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 @Component({
@@ -11,4 +11,26 @@ export class VehiclePage {
 
   }
 
+  // addGlobalVar(varName: string, value: any): void {
+  //   this._vars.push({
+  //   name: varName,
+  //   value: value
+  // });
+  // };
+
 }
+
+// export class Globalvars{
+
+//   constructor(){
+//     this.MyGlobalVar="";
+//   }
+
+//   setMyGlobalVar(value){
+//     this.MyGlobalVar=var;
+//   }
+
+//   getMyGlobalVar(){
+//     return this.MyGlobalVar;
+//   }
+// }
