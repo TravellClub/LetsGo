@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-//import {Weather} from '../../providers/weather';
-//$IMPORTSTATEMENT
+//import {Weather1} from '../../providers/weather';
 
-/**
- * Generated class for the Weather page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 //$IONICPAGE
 @Component({
   selector: 'page-weather',
@@ -16,8 +9,32 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class Weather {
 
+ /* weather: any;
+  public cityWeather;
+  public  forecast = [];*/
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+   // this.cityWeather = NavParams.get('cityWeather');
+   // this.getForecast(this.cityWeather.id);
+
   }
+
+ /* getForecast(cityId){
+
+
+    this.weather.forecast(cityId,7)
+    .map(data => data.json())
+    .subscribe(data => {
+      this.forecast = data.list;
+    },
+    err => console.log(err),
+    () => console.log('forecast compelete')
+    )
+      }*/
+    
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Weather');
