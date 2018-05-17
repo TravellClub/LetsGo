@@ -16,6 +16,9 @@ import { NavController, NavParams } from 'ionic-angular';
 export class Business {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+
+
   }
 
   ionViewDidLoad() {

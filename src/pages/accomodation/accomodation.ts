@@ -1,44 +1,41 @@
-import { Component } from '@angular/core';
-import { AlertController, NavController } from 'ionic-angular';
-import { Hotels } from '../hotels/hotels';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Observable } from "rxjs/Observable";
-import { Directions } from "../directions/directions";
-import firebase from 'firebase';
-import { Reference } from '@firebase/database';
-import { key } from 'localforage';
+import {Component} from '@angular/core';
+import {AlertController, NavController} from 'ionic-angular';
+import {Hotels} from '../hotels/hotels';
+import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import {Observable} from "rxjs/Observable";
+import {Directions} from "../directions/directions";
+import {GlobalProvider} from "../../providers/global-provider.service";
 
 @Component({
   selector: 'page-accomodation',
   templateUrl: 'accomodation.html'
-  //templateUrl: 'build/pages/search/search.html',
 })
 export class AccomodationPage {
 
-  alertctrl: any;
   items: Observable<any>;
   accommodations: AngularFireList<any>;
   itemList: Array<any>;
   loadedItemList: Array<any>;
 
-  constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController, public globalProvider: GlobalProvider) {
     this.accommodations = afDatabase.list('/accommodations');
     this.items = this.accommodations.valueChanges();
     this.setupItems()
   }
 
-setupItems(){
-  let accommodatio = [];
+  setupItems() {
+    let accommodatio = [];
     this.items.forEach(element => {
+      console.log("element : ", element);
       element.forEach(accommo => {
         accommodatio.push(accommo);
-        console.log("Accomo ", accommo);
+        console.log("Accomo ", accommo.id);
       })
     });
 
     this.itemList = accommodatio;
     this.loadedItemList = accommodatio;
-}
+  }
 
   initializeitems() {
     this.itemList = this.loadedItemList;
@@ -52,11 +49,10 @@ setupItems(){
   }
 
 
-
   openDirections() {
     this.navCtrl.push(Directions,
       {
-        destination: { lat: 6.879127, lng: 79.859740 }
+        destination: {lat: 6.879127, lng: 79.859740}
       });
   }
 
@@ -87,35 +83,34 @@ setupItems(){
   //     console.log("items : " + this.items);
   // }
 
-  ionViewDidLoad() {
-    console.log("Accommodation view did load");
+  ionViewDidEnter() {
+    console.log("Accommodation view will enter ");
     // this.loadData();
+    this.setupItems();
   }
 
   addHotel() {
     let prompt = this.alertCtrl.create({
-      title: 'Hotels Name',
-      message: "Enter a name for this new hotels you're so keen on adding",
+      title: 'Add New Hotel',
+      message: "Add your hotel to our app.",
       inputs: [
         {
-          name: 'title',
-          placeholder: 'Title'
+          name: 'name',
+          placeholder: 'Name'
         },
         {
           name: 'address',
-          placeholder: ' Address'
+          placeholder: 'Address'
         },
         {
 
-          name: 'phonenumber',
-          placeholder: ' Contact '
+          name: 'contact',
+          placeholder: 'Contact No'
         },
-        
         {
-
           name: 'image',
-          placeholder: 'Image '
-        },
+          placeholder: 'Image'
+        }
 
 
       ],
@@ -133,143 +128,149 @@ setupItems(){
 
             newHotelRef.set({
               id: newHotelRef.key,
-              name: data.title,
+              name: data.name,
               address: data.address,
-              contact: data.phonenumber,
-             // image: "\\assets\\img\\1446529061Buffet_Restaurant.jpg"
-             image:"assets/img/"+ data.image
+              contact: data.contact,
+              image: data.image,
+              user: this.globalProvider.loggedInUser.id
             });
             this.setupItems()
           }
         }
       ]
     });
-    prompt.present();
+    if (this.globalProvider.loggedInUser==null) {
+      if (this.globalProvider.logUserWithDialogue())
+        prompt.present();
+    } else {
+      prompt.present();
+    }
   }
 
-  
 
- edit(accommodations):void {
-    
-    let prompt=this.alertctrl.create({
-      title:'Edit hotels',
-      message:"Edit a name for this new hotels you're so keen on adding",
-    
-    inputs:[
-       
-       {
-          name:'title',
-          placeholder:accommodations.title
+  edit(accommodation) {
 
-       },
+    let prompt = this.alertCtrl.create({
+      title: 'Edit hotel',
+      message: "Edit a name for this new hotels you're so keen on adding",
+
+      inputs: [
 
         {
-          name:'address',
-          placeholder:accommodations.address
+          name: 'name',
+          placeholder: 'Name',
+          value: accommodation.name
 
-       },
-       
-       {
-        name:'phonenumber',
-        placeholder:accommodations.phonenumber
+        },
 
-     },
-     {
-      name:'image',
-      placeholder:accommodations.image
+        {
+          name: 'address',
+          placeholder: 'Address',
+          value: accommodation.address
 
-   },
-   
+        },
 
-    ],
+        {
+          name: 'contact',
+          placeholder: 'Contact No',
+          value: accommodation.contact
 
-    buttons:[
-         {
-             text:"Cancel",
-             handler:data => {
-                 console.log("cancel clicked"); }
+        },
+        {
+          name: 'image',
+          placeholder: 'Image',
+          value: accommodation.image
 
-         },
+        },
 
-         {
-           text:"Save Hotels",
-             handler:data => {
-                 let newtitle  : String =  data.title;
-                 let newaddress : String =  data.address;
-                 let newphone  : String =  data.phonenumber;
-                 let newimage : String =  data.image;
 
-                   if(data.title != ''){
+      ],
 
-                       newtitle = data.title;
+      buttons: [
+        {
+          text: "Cancel",
+          handler: data => {
+            console.log("cancel clicked");
+          }
 
-                   }
-                      if(data.address != ''){
+        },
 
-                       newaddress = data.address;
+        {
+          text: "Save Hotels",
+          handler: data => {
+            let newname: String = data.name;
+            let newaddress: String = data.address;
+            let newcontact: String = data.contact;
+            let newimage: String = data.image;
 
-                   }
-                   
-                   if(data.phonenumber != ''){
+            if (data.name != '') {
 
-                    newphone = data.phonenumber;
-
-                }
-                   if(data.image != ''){
-
-                    newimage = data.image;
-
-                }
-
-                    this.accommodations.update(accommodations.$key, {
-                       title:data.title,
-                       address:data.address,
-                       phonenumber:data.phonenumber,
-                       image:data.image
-
-                  });
+              newname = data.name;
 
             }
-         }
-    ]
-       
-   });
-    
-prompt.present();
+            if (data.address != '') {
 
-}
+              newaddress = data.address;
+
+            }
+
+            if (data.phonenumber != '') {
+
+              newcontact = data.contact;
+
+            }
+            if (data.image != '') {
+
+              newimage = data.image;
+
+            }
+
+            console.log("edit hotel : accommodation key : ", accommodation.id);
+            console.log("edit hotel : accommodation : ", accommodation);
+            this.accommodations.update(accommodation.id, {
+              name: newname,
+              address: newaddress,
+              contact: newcontact,
+              image: newimage,
+              user: this.globalProvider.loggedInUser.id
+
+            });
+            this.setupItems();
+
+          }
+        }
+      ]
+
+    });
+
+    prompt.present();
 
 
+  }
 
-  getTopics(searchbar){
+
+  getTopics(searchbar) {
     this.initializeitems();
 
     // set q to the value of the searchbar
     var q = searchbar.srcElement.value;
-  
-  
+
+
     // if the value is an empty string don't filter the items
     if (!q) {
       return;
     }
-  
+
     this.itemList = this.itemList.filter((v) => {
-      if(v.address && q) {
+      if (v.address && q) {
         if (v.address.toLowerCase().indexOf(q.toLowerCase()) > -1) {
           return true;
         }
         return false;
       }
     });
-  
+
     console.log(q, this.itemList.length);
-  
-  }
-  public Clicked: boolean = false; //Whatever you want to initialise it as
 
-  public Click() {
-
-      this.Clicked = !this.Clicked;
   }
-  
 }
