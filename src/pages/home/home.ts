@@ -9,6 +9,7 @@ import { Equipment } from '../equipment/equipment';
 import { Directions } from '../directions/directions';
 import { Signup } from '../signup/signup';
 import { Login } from '../login/login';
+import { MyProfile } from '../my-profile/my-profile';
 
 @Component({
   selector: 'page-home',
@@ -50,6 +51,9 @@ export class HomePage {
   }
   openEquipment(){
     this.navCtrl.push(Equipment);
+  }
+  openmyProfile(){
+    this.navCtrl.push(MyProfile);
   }
 
 

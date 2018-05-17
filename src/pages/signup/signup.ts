@@ -63,6 +63,7 @@ export class Signup {
       lastname: user.lastname,
       email: user.email,
       password: user.password,
+      role: user.role,
       contact_number: user.contact_number,
       address: user.address,
 

@@ -5,7 +5,7 @@ import { Signup } from '../signup/signup';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 // import { formBuilder } from 
-import { Validators,FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 // $IMPORTSTATEMENT
 
 /**
@@ -23,10 +23,10 @@ export class Login {
 
   itemList: Observable<any>;
   user = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public afDatabase: AngularFireDatabase,public alerCtrl: AlertController, public _form:FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public afDatabase: AngularFireDatabase, public alerCtrl: AlertController, public _form: FormBuilder) {
 
-    
+
 
     this.itemList = afDatabase.list('/user').valueChanges();
   }
@@ -43,25 +43,26 @@ export class Login {
         if (u.email == user.username) {
           if (user.password == u.password) {
             this.navCtrl.push(RouteFinder);
-          }else{
+            return;
+          } else {
             let alert = this.alerCtrl.create({
-              title: 'Ops!',
+              title: 'Oops!',
               message: 'Password that you enterd is incorrect!',
               buttons: ['Ok']
             });
-            alert.present()
-          
+
+            alert.present();
+            return;
           }
-        }else{
-          let alert = this.alerCtrl.create({
-            title: 'Ops!',
-            message: 'Username that you enterd is incorrect!',
-            buttons: ['Ok']
-          });
-          alert.present()
         }
-      })
-    })
+      });
+    });
+    let alert = this.alerCtrl.create({
+      title: 'Oops!',
+      message: 'Username that you enterd is incorrect!',
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 
 

@@ -1,5 +1,6 @@
 import { Component,Injectable } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-vehicle',
@@ -17,6 +18,10 @@ export class VehiclePage {
   //   value: value
   // });
   // };
+
+  openHome(){
+    this.navCtrl.push(HomePage);
+  }
 
 }
 

@@ -32,6 +32,7 @@ import { Business } from '../pages/business/business';
 import { Booking } from '../pages/booking/booking';
 //import { FirebaseService} from './../../providers/firebase-service';
 import { Services } from '@angular/core/src/view';
+import { MyProfile } from '../pages/my-profile/my-profile';
 
 
 
@@ -63,7 +64,8 @@ let pageArr = [MyApp,
   MorePage,
   EquipmentGallery,
   Business,
-  Booking
+  Booking,
+  MyProfile
 
   
   
