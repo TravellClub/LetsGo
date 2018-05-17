@@ -32,15 +32,15 @@
           <b>Password</b>
               <ion-input type="password" placeholder="password" name="password" [(ngModel)]="user.password"></ion-input>
           <b>Role</b>
-          <ion-list radio-group fromControlName="role" name="role" [(ngModel)]="user.role" >
+          <ion-list radio-group fromControlName="role" name="role" [(ngModel)]="user.role">
             <ion-item class="bodyt">
               <ion-label>Traveller</ion-label>
-              <ion-radio value="traveller" checked="true"></ion-radio>
+              <ion-radio value="traveller" checked="true" color="light"></ion-radio>
             </ion-item>
 
             <ion-item class="bodyt">
               <ion-label>Business</ion-label>
-              <ion-radio value="business"></ion-radio>
+              <ion-radio value="business" color="light"></ion-radio>
             </ion-item>
           </ion-list>
 
