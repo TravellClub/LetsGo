@@ -29,17 +29,17 @@
 
 </ion-header>
 
-<ion-content>
-<ion-card>
+<ion-content class="bodyt">
+<ion-card class="bodyt">
   <ion-card-content *ngFor="let place of itemsList">
     <ion-list>
-      <ion-item >
+      <ion-item class="bodyt">
         <ion-thumbnail item-start>
           <img src="[{{place.image}}]">
           <p>{{place.placename}} </p>
         </ion-thumbnail>
         <!--<p>{{place.description}}</p>-->
-        <button ion-button outline item-end small icon-left round clear block (click)= "openmore()">View</button>
+        <button ion-button outline item-end small icon-left round clear block color="light" (click)= "openmore()">View</button>
 
         <button ion-button outline item-end color = "danger" icon-left round clear>
 
@@ -53,11 +53,11 @@
   </ion-card-content>
 </ion-card>
 
-<<<<<<< HEAD
-<button ion-button outline item-end color="Dark" icon-left round clear (click)="addplaces()">
+
+<button ion-button item-end outline color="light" icon-left round (click)="addplaces()">
     Add Places
   </button>
 
-=======
->>>>>>> 2aebc40a33b9a945675eb34769785934fa32fd8f
+
+
 </ion-content>
