@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>More Details</ion-title>
+    <ion-title>{{place.placename}}</ion-title>
   </ion-navbar>
 
 
@@ -15,22 +15,27 @@
 
 
 <ion-content padding>
+<<<<<<< HEAD
   <ion-card *ngFor="let place of places">
    <img [src]="place.image"/>
+=======
+  <ion-card>
+    <!-- <img src="\\assets\\img\\Ruwanweli_Saya_1.jpg" />-->
+>>>>>>> fca4d56c76fe964cb3f563630d73cff27bb0d0c9
     <ion-card-content>
+      <img [src]="place.image"/>
       <ion-card-title>
-          <p>{{place.placename}} </p>
+        <h2>{{place.placename}} </h2>
       </ion-card-title>
       <p>{{place.description}} </p>
     </ion-card-content>
   </ion-card>
 
 
-
   <ion-list>
     <ion-item>
 
-      <button ion-button outline item-end color="secondary" icon-right round clear (click)="openWeather()">
+      <button ion-button outline color="secondary" icon-right (click)="openWeather()">
         <ion-icon name="sunny"></ion-icon>
         Weather
       </button>
@@ -42,29 +47,53 @@
 
     </ion-item>
   </ion-list>
+<<<<<<< HEAD
 
 
   <ion-card >
+=======
+  <!--<button ion-button outline item-end color="Dark" icon-left round clear (click)="sendClick()">-->
+  <!--<ion-icon name="add"></ion-icon>-->
+  <!--Add Review-->
+  <!--</button>-->
+>>>>>>> fca4d56c76fe964cb3f563630d73cff27bb0d0c9
 
-    <ion-card-content *ngFor="let review of reviews | async">
-
-       <ion-item >
-              <ion-avatar item-start>
-                  <img src="\\assets\\img\\profile_icon.png" />
-              </ion-avatar>
-              <h2><p> {{review.name}}</p></h2>
-              <p>{{review.email}}</p>
-            </ion-item>
-
-      <p>{{review.reviews}}</p>
-
-
-
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-input type="text" placeholder="Your Name" [(ngModel)]="reviewer.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Your Review" [(ngModel)]="reviewer.review"></ion-input>
+      </ion-item>
+      <ion-list>
+        <ion-item class="home">
+          Rating
+          <ion-icon [name]="ratingNames[0]" color="star" (click)="ratingStarClicked(0)"></ion-icon>
+          <ion-icon [name]="ratingNames[1]" color="star" (click)="ratingStarClicked(1)"></ion-icon>
+          <ion-icon [name]="ratingNames[2]" color="star" (click)="ratingStarClicked(2)"></ion-icon>
+          <ion-icon [name]="ratingNames[3]" color="star" (click)="ratingStarClicked(3)"></ion-icon>
+          <ion-icon [name]="ratingNames[4]" color="star" (click)="ratingStarClicked(4)"></ion-icon>
+        </ion-item>
+      </ion-list>
+      <ion-item>
+        <button ion-button outline item-end color="Dark" icon-left round clear (click)="sendReview(reviewer)">
+          <ion-icon name="add"></ion-icon>
+          Add Review
+        </button>
+      </ion-item>
     </ion-card-content>
   </ion-card>
-  <button ion-button outline item-end color="Dark" icon-left round clear (click)="sendClick()">
-    <ion-icon name="add"></ion-icon>
-    Add Reviews
-  </button>
-
+  <ion-card>
+    <ion-card-content *ngFor="let review of reviews | async">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="\\assets\\img\\profile_icon.png"/>
+        </ion-avatar>
+        <h2>{{review.name}}</h2>
+        <p>{{review.review}}</p>
+        <p>{{'Rating : ' + review.rating}}</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
