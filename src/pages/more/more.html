@@ -15,8 +15,8 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor="let place of itemsList | async">
-   <!-- <img src="\\assets\\img\\Ruwanweli_Saya_1.jpg" />-->
+  <ion-card *ngFor="let place of places">
+   <img [src]="place.image"/>
     <ion-card-content>
       <ion-card-title>
           <p>{{place.placename}} </p>
@@ -42,15 +42,7 @@
 
     </ion-item>
   </ion-list>
-  <button ion-button outline item-end color="Dark" icon-left round clear (click)="onButtonClick()">
-    Reviews
-  </button>
-  <ion-list>
-    <ion-item>
 
-    </ion-item>
-  </ion-list>
-  <!-- *ngIf="buttonClicked" value=""-->
 
   <ion-card >
 

@@ -33,12 +33,6 @@ export class MorePage {
       this.buttonClicked = !this.buttonClicked;
   }
 
-  /*public buttonClicked1: boolean = false; 
-
-  public onButtonClick1() {
-
-      this.buttonClicked1 = !this.buttonClicked1;
-  }*/
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public afDatabase: AngularFireDatabase) {
     this.reviewList = afDatabase.list('/reviews');
@@ -67,7 +61,7 @@ export class MorePage {
     
       let prompt = this.alertCtrl.create({
         title: 'Add Review',
-       // message: "Enter a name for this new song you're so keen on adding",
+    
         inputs: [
           {
             name: 'name',
