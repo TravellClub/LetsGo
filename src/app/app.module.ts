@@ -30,7 +30,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { Business } from '../pages/business/business';
 import { Booking } from '../pages/booking/booking';
 import { Weather } from '../pages/weather/weather';
-
+import {GlobalProvider} from "../providers/global-provider.service";
 
 
 
@@ -63,9 +63,8 @@ let pageArr = [MyApp,
   Business,
   Booking,
   Weather
-  
 
-  
+
 ];
 
 @NgModule({
@@ -82,6 +81,7 @@ let pageArr = [MyApp,
     StatusBar,
     SplashScreen,
     Geolocation,
+    GlobalProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

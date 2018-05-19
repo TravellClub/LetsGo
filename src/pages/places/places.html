@@ -7,43 +7,37 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Places</ion-title>
-    
-  </ion-navbar>
-
-  <ion-navbar>
-    <ion-toolbar>
-      <ion-searchbar (ionInput)="getPlaces($event)" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
-    </ion-toolbar>
-  
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addplace()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-
-    <ion-list>
-      <ion-item *ngFor="let place of itemsList">
-        <ion-thumbnail item-start>
-         <!-- <img src="place.image">-->
-         <img [src]="place.image"/>
-          <p>{{place.placename}} </p>
+  <ion-searchbar (ionInput)="getPlaces($event)" [showCancelButton]="shouldShowCancel"
+                 (ionCancel)="onCancel($event)"></ion-searchbar>
+  <ion-list>
+    <ion-card *ngFor="let place of itemsList" >
+      <ion-item >
+        <ion-thumbnail item-start (click)="openmore(place)">
+          <!-- <img src="place.image">-->
+          <img [src]="place.image"/>
         </ion-thumbnail>
-        <!--<p>{{place.description}}</p>-->
-        <button ion-button outline item-end small icon-left round clear block (click)= "openmore()">View</button>
-
-        <button ion-button outline item-end color = "danger" icon-left round clear>
-
-          <ion-icon name="heart" isActive="true"></ion-icon>
-    
-         <!-- <ion-icon name="heart" isActive="false"></ion-icon>-->
+        <p (click)="openmore(place)">{{place.placename}} </p>
+        <button ion-button item-end color="danger" icon-only clear (click)="addToFavorite(place.id)">
+          <ion-icon name="heart"></ion-icon>
         </button>
       </ion-item>
-    </ion-list>
+    </ion-card>
+  </ion-list>
 
-<button ion-button outline item-end color="Dark" icon-left round clear (click)="addplaces()">
-    Add Places
-  </button>
 
 
 </ion-content>
