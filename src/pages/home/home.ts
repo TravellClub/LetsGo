@@ -10,6 +10,7 @@ import { Directions } from '../directions/directions';
 import { Signup } from '../signup/signup';
 import { Login } from '../login/login';
 import { MyProfile } from '../my-profile/my-profile';
+import { Mycategories } from '../mycategories/mycategories';
 
 @Component({
   selector: 'page-home',
@@ -54,6 +55,9 @@ export class HomePage {
   }
   openmyProfile(){
     this.navCtrl.push(MyProfile);
+  }
+  openMycatrgories(){
+    this.navCtrl.push(Mycategories);
   }
 
 

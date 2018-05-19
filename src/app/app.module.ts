@@ -33,6 +33,7 @@ import { Booking } from '../pages/booking/booking';
 //import { FirebaseService} from './../../providers/firebase-service';
 import { Services } from '@angular/core/src/view';
 import { MyProfile } from '../pages/my-profile/my-profile';
+import { Mycategories } from '../pages/mycategories/mycategories';
 
 
 
@@ -65,7 +66,8 @@ let pageArr = [MyApp,
   EquipmentGallery,
   Business,
   Booking,
-  MyProfile
+  MyProfile,
+  Mycategories
 
   
   
