@@ -22,7 +22,7 @@
       <ion-card-title>
         <h2>{{place.placename}} </h2>
       </ion-card-title>
-      <h3>{{'Rating : ' + ratingSum}}</h3>
+      <h3>Rating : {{ratingSum | number:'.1'}}</h3>
       <p>{{place.description}} </p>
     </ion-card-content>
   </ion-card>
@@ -76,7 +76,7 @@
   </ion-card>
   <ion-list>
     <ion-card *ngFor="let review of reviews | async">
-      <ion-item-sliding >
+      <ion-item-sliding>
         <!--<ion-item  no-padding="">-->
         <!--<ion-card>-->
         <!--<ion-card-content>-->
@@ -86,11 +86,11 @@
           </ion-avatar>
           <h2>{{review.name}}</h2>
           <p>{{review.review}}</p>
-          <p>{{'Rating : ' + review.rating}}</p>
+          <p>{{'Ratings : ' + review.rating}}</p>
         </ion-item>
-        <ion-item-options side="right">
-          <button ion-button color="danger" (click)="deleteItem(item.$key)">
-            <ion-icon name="md-trash">DELETE</ion-icon>
+        <ion-item-options side="right" *ngIf="globalProvider.loggedInUser?.id == review.user">
+          <button ion-button color="danger" (click)="deleteItem(review.id)">
+            <ion-icon name="trash"> DELETE</ion-icon>
           </button>
         </ion-item-options>
         <!--</ion-card-content>-->
