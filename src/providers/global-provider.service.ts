@@ -21,6 +21,7 @@ export class GlobalProvider {
   }
 
   setLoggedInUser(user) {
+    console.log("GLOBAL USER : ",user);
     this.loggedInUser = user;
   }
 
@@ -56,7 +57,7 @@ export class GlobalProvider {
     return false;
   }
 
-  logUserWithDialogue(functionAfter) {
+  logUserWithDialogue(nextPromptAlert) {
     let prompt = this.alertCtrl.create({
       title: 'Login',
       inputs: [
@@ -85,14 +86,12 @@ export class GlobalProvider {
             let password = data.password;
             this.userList.forEach(element => {
               element.forEach(u => {
-                console.log("check email : ", u.email);
-                console.log("check username : ", username);
+                console.log("check email : " + u.email + " : " + username);
+                console.log("check password : ", u.password + " : " + password);
                 if (u.email == username) {
                   if (password == u.password) {
-                    functionAfter();
-
                     this.setLoggedInUser(u);
-                    return true;
+                    return nextPromptAlert.present();
                   } else {
                     let alert = this.alertCtrl.create({
                       title: 'Oops!',
@@ -106,13 +105,6 @@ export class GlobalProvider {
                 }
               });
             });
-            let alert = this.alertCtrl.create({
-              title: 'Oops!',
-              message: 'User is incorrect!',
-              buttons: ['Ok']
-            });
-            alert.present();
-            return false;
           }
         }
       ]
@@ -121,15 +113,47 @@ export class GlobalProvider {
   }
 
 
-  public addToFavorite(category, objectId) {
+  public addToFavorite(category, objectId, name) {
     console.log("Favorite cat : " + category + " id : " + objectId);
-    if (this.loggedInUser == null) {
-      this.logUserWithDialogue(this.addToFavoriteDB(category, objectId));
+    let confirm = this.alertCtrl.create({
+      title: 'Add to favorite',
+      message: 'Do you want to add ' + name + ' to favorites ?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('No clicked');
+            confirm.dismiss();
+            return false;
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Yes clicked');
+            const favoriteRef = this.afDatabase.list('/user/' + this.loggedInUser.id + '/favorite/' + category).push({});
+            favoriteRef.set({
+              id: favoriteRef.key,
+              contentId: objectId
+            }).then(() => {
+                console.log("added to favorite");
+                confirm.dismiss();
+                return true;
+              }
+            );
 
-    } else {
-      this.addToFavoriteDB(category, objectId);
-    }
+          }
+        }
+      ]
+    });
+    // if (this.loggedInUser == null) {
+    //   return this.logUserWithDialogue(confirm);
+    // } else {
+    return confirm.present();
+    // }
   }
+
 
   addToFavoriteDB(category, objectId) {
     const favoriteRef = this.afDatabase.list('/user/' + this.loggedInUser.id + '/favorite').push({});

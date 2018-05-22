@@ -31,7 +31,7 @@
           <img [src]="place.image"/>
         </ion-thumbnail>
         <p (click)="openmore(place)">{{place.placename}} </p>
-        <button ion-button item-end color="danger" icon-only clear (click)="addToFavorite(place.id)">
+        <button ion-button item-end color="danger" icon-only clear (click)="addToFavorite(place)">
           <ion-icon name="heart"></ion-icon>
         </button>
       </ion-item>

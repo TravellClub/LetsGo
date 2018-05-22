@@ -15,18 +15,14 @@
 
 
 <ion-content padding>
-<<<<<<< HEAD
-  <ion-card *ngFor="let place of places">
-   <img [src]="place.image"/>
-=======
   <ion-card>
     <!-- <img src="\\assets\\img\\Ruwanweli_Saya_1.jpg" />-->
->>>>>>> fca4d56c76fe964cb3f563630d73cff27bb0d0c9
     <ion-card-content>
       <img [src]="place.image"/>
       <ion-card-title>
         <h2>{{place.placename}} </h2>
       </ion-card-title>
+      <h3>{{'Rating : ' + ratingSum}}</h3>
       <p>{{place.description}} </p>
     </ion-card-content>
   </ion-card>
@@ -35,28 +31,22 @@
   <ion-list>
     <ion-item>
 
-      <button ion-button outline color="secondary" icon-right (click)="openWeather()">
+      <button ion-button outline color="secondary" icon-right (click)="openWeather(place.district)">
         <ion-icon name="sunny"></ion-icon>
         Weather
       </button>
 
-      <button ion-button outline item-end icon-left (click)="openDirections()">
+      <button ion-button outline item-end icon-left (click)="openDirections(place.latitiude,place.longitude)">
         <ion-icon name="compass"></ion-icon>
         Direction
       </button>
 
     </ion-item>
   </ion-list>
-<<<<<<< HEAD
-
-
-  <ion-card >
-=======
   <!--<button ion-button outline item-end color="Dark" icon-left round clear (click)="sendClick()">-->
   <!--<ion-icon name="add"></ion-icon>-->
   <!--Add Review-->
   <!--</button>-->
->>>>>>> fca4d56c76fe964cb3f563630d73cff27bb0d0c9
 
   <ion-card>
     <ion-card-content>
@@ -84,16 +74,29 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
-  <ion-card>
-    <ion-card-content *ngFor="let review of reviews | async">
-      <ion-item>
-        <ion-avatar item-start>
-          <img src="\\assets\\img\\profile_icon.png"/>
-        </ion-avatar>
-        <h2>{{review.name}}</h2>
-        <p>{{review.review}}</p>
-        <p>{{'Rating : ' + review.rating}}</p>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
+  <ion-list>
+    <ion-card *ngFor="let review of reviews | async">
+      <ion-item-sliding >
+        <!--<ion-item  no-padding="">-->
+        <!--<ion-card>-->
+        <!--<ion-card-content>-->
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="\\assets\\img\\profile_icon.png"/>
+          </ion-avatar>
+          <h2>{{review.name}}</h2>
+          <p>{{review.review}}</p>
+          <p>{{'Rating : ' + review.rating}}</p>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="deleteItem(item.$key)">
+            <ion-icon name="md-trash">DELETE</ion-icon>
+          </button>
+        </ion-item-options>
+        <!--</ion-card-content>-->
+        <!--</ion-card>-->
+        <!--</ion-item>-->
+      </ion-item-sliding>
+    </ion-card>
+  </ion-list>
 </ion-content>

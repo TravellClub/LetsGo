@@ -31,6 +31,9 @@ import { Business } from '../pages/business/business';
 import { Booking } from '../pages/booking/booking';
 import { Weather } from '../pages/weather/weather';
 import {GlobalProvider} from "../providers/global-provider.service";
+import {WeatherData} from "../providers/weather-data";
+import {WeatherforecastPage} from "../pages/weatherforecast/weatherforecast";
+import {HttpModule} from "@angular/http";
 
 
 
@@ -62,7 +65,8 @@ let pageArr = [MyApp,
   EquipmentGallery,
   Business,
   Booking,
-  Weather
+  Weather,
+  WeatherforecastPage
 
 
 ];
@@ -73,7 +77,8 @@ let pageArr = [MyApp,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: pageArr,
@@ -82,6 +87,7 @@ let pageArr = [MyApp,
     SplashScreen,
     Geolocation,
     GlobalProvider,
+    WeatherData,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
