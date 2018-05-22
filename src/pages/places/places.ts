@@ -67,10 +67,12 @@ addplaces(){
       },
       {
         name: 'latitiude',
+        type: 'number',
         placeholder:'Latitude'
       },
       {
         name: 'longitude',
+        type: 'number',
         placeholder:'Longitude'
       },
       {

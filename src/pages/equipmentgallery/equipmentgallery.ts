@@ -66,12 +66,14 @@ export class EquipmentGallery {
         },
         {
           name: 'price',
+          type: 'number',
           placeholder: ' Price'
         },
 
       {
 
         name: 'quantity',
+        type: 'number',
         placeholder: 'Quantity '
       },
       {

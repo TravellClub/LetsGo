@@ -105,6 +105,7 @@ export class AccomodationPage {
         {
 
           name: 'phonenumber',
+          type: 'number',
           placeholder: ' Contact '
         },
         
