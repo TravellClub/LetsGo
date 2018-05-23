@@ -7,9 +7,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>hotels</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{hotel.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="dark" (click)="openmyProfile()">
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 
 </ion-header>
 
@@ -22,47 +29,20 @@
         {{hotel.name}}
       </ion-card-title>
       <h3>Rating : {{ratingSum | number:'.1'}}</h3>
-
       <ion-icon name="clock">Open-Close time {{hotel.time}}</ion-icon>
       <p>{{hotel.address}}</p>
       <p>Contact:{{hotel.contact}}</p>
-
-      <button ion-button color="danger" clear (click)="addToFavorite(hotel)">
+      <button ion-button color="danger" clear>
         <ion-icon name="heart"></ion-icon>
         Favourite
       </button>
-
-
       <p>
-
         {{hotel.details}}
-
       </p>
-
-
     </ion-card-content>
-
-
   </ion-card>
-  <button ion-button color="dark" round (click)="openUrl()">Website {{hotel.Website}}</button>
+  <button ion-button color="dark" round (click)="openUrl()">Website</button>
   <button ion-button color="dark" round (click)="openBooking()">Booking</button>
-
-
-  <!--<ion-list>-->
-  <!--<ion-item class="home">-->
-  <!--Rating-->
-  <!--<ion-icon [name]="ratingNames[0]" color="star" (click)="ratingStarClicked(0)"></ion-icon>-->
-  <!--<ion-icon [name]="ratingNames[1]" color="star" (click)="ratingStarClicked(1)"></ion-icon>-->
-  <!--<ion-icon [name]="ratingNames[2]" color="star" (click)="ratingStarClicked(2)"></ion-icon>-->
-  <!--<ion-icon [name]="ratingNames[3]" color="star" (click)="ratingStarClicked(3)"></ion-icon>-->
-  <!--<ion-icon [name]="ratingNames[4]" color="star" (click)="ratingStarClicked(4)"></ion-icon>-->
-  <!--</ion-item>-->
-  <!--</ion-list>-->
-
-
-  <!--<button ion-button color="dark" round (click)="Click()">-->
-  <!--<ion-icon name="star">Reviews</ion-icon>-->
-  <!--</button>-->
   <ion-card>
     <ion-card-content>
       <ion-item>
@@ -90,24 +70,22 @@
     </ion-card-content>
   </ion-card>
   <ion-list>
-    <ion-card *ngFor="let hotelreview of hotelreviews | async">
+    <ion-card *ngFor="let review of hotelreviews | async">
       <ion-item-sliding>
-
         <ion-item>
           <ion-avatar item-start>
-            <img [src]="'assets/img/profile_icon.png'"/>
+            <img src="\\assets\\img\\profile_icon.png"/>
           </ion-avatar>
-          <h2>{{hotelreview.name}}</h2>
-          <p>{{hotelreview.review}}</p>
-          <p>{{'Rating : ' + hotelreview.rating}}</p>
+          <h2>{{review.name}}</h2>
+          <p>{{review.review}}</p>
+          <p>{{'Ratings : ' + review.rating}}</p>
         </ion-item>
-        <ion-item-options side="right" *ngIf="globalProvider.loggedInUser?.id == hotelreview.user">
-          <button ion-button color="danger" (click)="deleteItem(hotelreview.id)">
+        <ion-item-options side="right" *ngIf="globalProvider.loggedInUser?.id == review.user">
+          <button ion-button color="danger" (click)="deleteItem(review.id)">
             <ion-icon name="trash"> DELETE</ion-icon>
           </button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-card>
   </ion-list>
-
 </ion-content>

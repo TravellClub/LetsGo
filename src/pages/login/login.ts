@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, AlertController} from 'ionic-angular';
+import {NavController, NavParams, AlertController, LoadingController} from 'ionic-angular';
 import {RouteFinder} from '../route-finder/route-finder';
 import {Signup} from '../signup/signup';
 import {AngularFireList, AngularFireDatabase} from 'angularfire2/database';
@@ -27,7 +27,8 @@ export class Login {
   nextAction: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public afDatabase: AngularFireDatabase, public alerCtrl: AlertController, public globalProvider: GlobalProvider) {
+              public afDatabase: AngularFireDatabase, public alerCtrl: AlertController,
+              public globalProvider: GlobalProvider, public loadingCtrl:LoadingController) {
 
     this.itemList = afDatabase.list('/user').valueChanges();
 
@@ -43,6 +44,11 @@ export class Login {
   }
 
   onLoginClicked(user) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
     console.log("User login : ", user);
     let items = this.afDatabase.list('/user', ref => ref.orderByChild('email').equalTo(user.username)).valueChanges();
 
@@ -51,6 +57,7 @@ export class Login {
         console.log("LOGIN FOR USE : ", u);
         if (u.password == user.password) {
           this.globalProvider.setLoggedInUser(u);
+          loading.dismiss();
           this.navCtrl.setRoot(this.nextAction);
         } else {
           let alert = this.alerCtrl.create({
@@ -78,5 +85,7 @@ export class Login {
       nextAction: this.nextAction
     });
   }
+
+
 
 }
