@@ -118,6 +118,8 @@ export class AccomodationPage {
                 address: data.address,
                 contact: data.contact,
                 image: data.image,
+                website:data.website,
+
                 latitiude: position.coords.latitude,
                 longitude: position.coords.longitude,
                 user: this.globalProvider.loggedInUser.id

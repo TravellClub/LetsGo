@@ -20,10 +20,11 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
   templateUrl: 'booking.html',
 })
 export class Booking {
-  
+  alertCtrl: any;
+
   id:any;
-  childrens: any;
-  Adults: any;
+  children: any;
+  adults: any;
   checkou: any;
   checkin: any;
   
@@ -41,7 +42,7 @@ export class Booking {
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDatabase: AngularFireDatabase, _form: FormBuilder
     ,public alerCtrl: AlertController) {
-    this.Booking= afDatabase.list('/book');
+    this.Booking= afDatabase.list('/booking');
     this.items = this.Booking.valueChanges();
   }
 
@@ -51,7 +52,7 @@ export class Booking {
 
   
 
- booking()
+ booking(book)
  {
    console.log('ionViewDidLoad Booking');
    console.log('book:',this.book);
@@ -60,10 +61,10 @@ export class Booking {
    newbookRef.set({
 
      id: newbookRef.key,
-     checkin: this.checkin,
-     checkou:this.checkou,
-     Adults:this.Adults,
-     childrens:this.childrens,
+     checking: book.checking,
+     checkout:book.checkout,
+     adults:book.adults,
+     children:book.children,
    });
    let alert = this.alerCtrl.create({
     title: 'Congratulations!',
