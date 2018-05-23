@@ -7,29 +7,24 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Directions
-        <div align="right">
-            <button  ion-button outline clear icon-only color="dark" >
-              <ion-icon name="home" (click)="openHome()"></ion-icon>
-            </button>
-        </div>
-    </ion-title>
+    <ion-title>Directions</ion-title>
+    <ion-buttons end>
+      <button ion-button outline clear icon-only color="dark">
+        <ion-icon name="home" (click)="openHome()"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="bodyt">
-  <!--<button ion-button (click)="addMarker()">Add</button>-->
-  <button ion-button icon-only outline color="light" >
-    <ion-icon name="information"></ion-icon>
-  </button>
   <ion-card show="panelVisible">
     <ion-card-content>
       <div #directionsPanel></div>
     </ion-card-content>
   </ion-card>
 
-   <div #map id="map"></div>
+  <div #map id="map"></div>
 
 </ion-content>

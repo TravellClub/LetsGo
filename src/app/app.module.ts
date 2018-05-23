@@ -37,6 +37,7 @@ import { Mycategories } from '../pages/mycategories/mycategories';
 import {GlobalProvider} from "../providers/global-provider.service";
 import {WeatherData} from "../providers/weather-data";
 import {WeatherforecastPage} from "../pages/weatherforecast/weatherforecast";
+import {CartService} from "../providers/cart-service";
 
 
 
@@ -94,6 +95,7 @@ let pageArr = [MyApp,
     Geolocation,
     GlobalProvider,
     WeatherData,
+    CartService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
 
   ]

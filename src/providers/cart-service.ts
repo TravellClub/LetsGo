@@ -9,8 +9,16 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CartService {
 
+  cartItems : any[];
+
   constructor() {
     console.log('Hello CartService Provider');
   }
+
+  addToCart(item){
+    this.cartItems.push(item);
+  }
+
+
 
 }

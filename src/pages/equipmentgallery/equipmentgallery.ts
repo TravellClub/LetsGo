@@ -7,6 +7,8 @@ import {GlobalProvider} from "../../providers/global-provider.service";
 import {CartService} from "../../providers/cart-service";
 import {Login} from "../login/login";
 import {Equipment} from "../equipment/equipment";
+import {Places} from "../places/places";
+import {MyProfile} from "../my-profile/my-profile";
 
 @Component({
   selector: 'page-equipmentgallery',
@@ -50,10 +52,7 @@ export class EquipmentGallery {
   opencall() {
     console.log("calling number");
   }
-  addTocart(){
-
-
-
+  addTocart(item){
 
   }
   getTopics(searchbar){
@@ -119,6 +118,25 @@ export class EquipmentGallery {
       });
       prompt.present();
     }
+  }
+
+  addToFavorite(item) {
+    if (this.globalProvider.loggedInUser == null) {
+      this.navCtrl.push(Login, {
+        nextAction: Equipment
+      });
+    } else {
+      this.globalProvider.addToFavorite("Items", item.id, item.itemname);
+    }
+  }
+
+  openmyProfile() {
+    if (this.globalProvider.loggedInUser == null) {
+      this.navCtrl.push(Login, {
+        nextAction: MyProfile
+      });
+    } else
+      this.navCtrl.push(MyProfile);
   }
 
 }
