@@ -67,26 +67,6 @@ export class AccomodationPage {
     // .catch(err => console.log('Error launching dialer', err));
   }
 
-  // loadData(){
-  //   console.log("Loading accommodation data");
-  //     items = [{
-  //       name : "Hotel Name",
-  //       address : "Address of the hotel",
-  //       contact : "0711225544",
-  //       rating : 5.0,
-  //       image : "\\assets\\img\\1446529061Buffet_Restaurant.jpg"
-  //     },
-  // {
-  //       name : "Hotel 2",
-  //       address : "Address of the hotel 2",
-  //       contact : "0777445555",
-  //       rating : 4.0,
-  //       image : "\\assets\\img\\home1.jpg"
-  //     }
-  //     ];
-  //     console.log("items : " + this.items);
-  // }
-
   ionViewDidEnter() {
     console.log("Accommodation view will enter ");
     // this.loadData();
@@ -117,8 +97,6 @@ export class AccomodationPage {
           name: 'image',
           placeholder: 'Image'
         }
-
-
       ],
       buttons: [
         {
