@@ -48,17 +48,16 @@ export class Login {
     items.forEach(element => {
       element.forEach(u => {
         console.log("LOGIN FOR USE : ", u);
-        if (u.password == user.password) {
+        if (u.password.equals(user.password)) {
           this.globalProvider.setLoggedInUser(u);
-          this.navCtrl.push(this.nextAction);
+          this.navCtrl.setRoot(this.nextAction);
         } else {
           let alert = this.alerCtrl.create({
             title: 'Ops!',
             message: 'Password that you entered is incorrect!',
             buttons: ['Ok']
           });
-          alert.present()
-
+          alert.present();
         }
       });
 

@@ -105,9 +105,11 @@ export class AccomodationPage {
           placeholder: 'Address'
         },
         {
-
           name: 'contact',
           placeholder: 'Contact No'
+        },{
+          name: 'website',
+          placeholder: 'Website Link'
         },
         {
           name: 'image',

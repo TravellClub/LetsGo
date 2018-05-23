@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {EquipmentGallery} from '../equipmentgallery/equipmentgallery';
+import {Login} from "../login/login";
+import {MyProfile} from "../my-profile/my-profile";
+import {GlobalProvider} from "../../providers/global-provider.service";
 
 @Component({
   selector: 'page-equipment',
@@ -8,7 +11,7 @@ import {EquipmentGallery} from '../equipmentgallery/equipmentgallery';
 })
 export class Equipment {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public globalProvider:GlobalProvider) {
   }
 
   ionViewDidLoad() {
@@ -45,5 +48,13 @@ export class Equipment {
     })
 
   }
-  
+
+  openmyProfile() {
+    if (this.globalProvider.loggedInUser == null) {
+      this.navCtrl.push(Login, {
+        nextAction: MyProfile
+      });
+    } else
+      this.navCtrl.push(MyProfile);
   }
+}
