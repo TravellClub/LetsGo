@@ -26,18 +26,24 @@ export class EquipmentCart {
 
     console.log('CART Total calc');
     this.itemList.forEach(item => {
-        console.log('CART element item : ',item);
-        let cost = item.buyingQty * item.price;
-        this.totalCost += cost;
-        console.log('CART Total calc : ' + this.totalCost);
-      })
+      console.log('CART element item : ', item);
+      let cost = item.buyingQty * item.price;
+      this.totalCost += cost;
+      console.log('CART Total calc : ' + this.totalCost);
+    })
   }
 
   checkout() {
     let alert = this.alertCtrl.create({
       title: 'Order Successful',
       message: 'Your order has been placed successfully.\nThank You!!!',
-      buttons: ['Ok']
+      buttons: [{
+        text: 'Ok',
+        handler: () => {
+          console.log('Ok clicked');
+          this.navCtrl.pop();
+        }
+      }]
     });
     alert.present();
   }
