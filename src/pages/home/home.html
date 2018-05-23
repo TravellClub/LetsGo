@@ -1,13 +1,13 @@
 <ion-header>
   <ion-navbar>
 
-    <button ion-button menuToggle>
+    <button ion-button menuToggle color="light">
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only color="dark" (click)="openmyProfile()">
+      <button ion-button icon-only color="light" (click)="openmyProfile()">
         <ion-icon name="contact"></ion-icon>
       </button>
     </ion-buttons>
@@ -26,13 +26,22 @@
 
   <!--<button ion-button block (click)="openSignup()">Signup</button>-->
   <!--<button ion-button block (click)="openLogin()">Login</button>-->
-  <button ion-button block outline color="light" (click)="openPlaces()">Places</button>
-  <button ion-button block outline color="light" (click)="openRouteFinder()">Route Finder</button>
+  <button class="btn" ion-button block  color="light" (click)="openPlaces()">
+    <h4>Places</h4>
+  </button>
+
+  <button class="btn" ion-button block  color="light" (click)="openRouteFinder()">
+    <h4>Route Finder</h4>
+  </button>
   <!--<button ion-button block (click)="openDirections()">Directions</button>-->
   <!--<button ion-button block outline color="light" (click)="openTransport()">Transport</button>-->
-  <button ion-button block outline color="light" (click)="openAccommodation()">Accommodation</button>
+  <button class="btn" ion-button block  color="light" (click)="openAccommodation()">
+    <h4>Accommodation</h4>
+  </button>
   <!--<button ion-button block outline color="light" (click)="openGuide()">Need a Guide</button>-->
-  <button ion-button block outline color="light" (click)="openEquipment()">Traveling Equipment</button>
+  <button class="btn" ion-button block  color="light" (click)="openEquipment()">
+    <h4>Traveling Equipment</h4>
+  </button>
   <!--<button ion-button block (click)="openLogin()">Business</button>-->
   <!--<button ion-button block (click)="openmyProfile()">My Profile</button>-->
   <!--<button ion-button block (click)="openMycatrgories()">My Categories</button>-->

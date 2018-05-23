@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import { MyProfile } from '../my-profile/my-profile';
+import { Login } from '../login/login';
 
 
 
@@ -123,6 +125,14 @@ export class RouteFinder {
     },(status)=>console.log("serach places addMarkers status ",status));
     
   }
+  // openmyProfile() {
+  //   if (this.globalProvider.loggedInUser == null) {
+  //     this.navCtrl.push(Login, {
+  //       nextAction: MyProfile
+  //     });
+  //   } else
+  //     this.navCtrl.push(MyProfile);
+  // }
 
 
 

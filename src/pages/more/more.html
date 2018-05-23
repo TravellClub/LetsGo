@@ -12,7 +12,7 @@
     </button>
     <ion-title>{{place.placename}}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="dark" (click)="openmyProfile()">
+      <button ion-button icon-only color="light" (click)="openmyProfile()">
         <ion-icon name="contact"></ion-icon>
       </button>
     </ion-buttons>
@@ -38,12 +38,12 @@
   <ion-list class="transparent">
     <ion-item class="transparent">
 
-      <button ion-button outline color="secondary" icon-right (click)="openWeather(place.district)">
+      <button ion-button outline color="secondary" class="btn" icon-right (click)="openWeather(place.district)">
         <ion-icon name="sunny"></ion-icon>
         Weather
       </button>
 
-      <button ion-button outline item-end icon-left (click)="openDirections(place.latitiude,place.longitude)">
+      <button ion-button outline color="dark" class="btn" item-end icon-left (click)="openDirections(place.latitiude,place.longitude)">
         <ion-icon name="compass"></ion-icon>
         Direction
       </button>

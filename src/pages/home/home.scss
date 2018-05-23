@@ -2,7 +2,24 @@ page-home {
     
     .bodyt {
         background-image: url("..//assets//img//loginback.jpg");
-        // background-size: cover;
+        background-size: cover;
+    }
+
+    .btn{
+        
+        height: 30mm;        
+        background-color: rgb(253, 241, 227);
+        opacity: 0.75;
+
+    }
+
+    .h1{
+        color: black
+
+    }
+
+    .nav{
+        background: transparent;
     }
 
 }
