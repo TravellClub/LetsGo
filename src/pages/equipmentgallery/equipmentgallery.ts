@@ -9,6 +9,7 @@ import {Login} from "../login/login";
 import {Equipment} from "../equipment/equipment";
 import {Places} from "../places/places";
 import {MyProfile} from "../my-profile/my-profile";
+import {EquipmentCart} from "../equipment-cart/equipment-cart";
 
 @Component({
   selector: 'page-equipmentgallery',
@@ -18,8 +19,10 @@ export class EquipmentGallery {
 
   category: any;
   items: Observable<any>;
-  itemList: AngularFireList<any>;
+  equipments: AngularFireList<any>;
   public pageTitle: string;
+  itemsList: Array<any>;
+  loaditemsList: Array<any>;
 
   constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController,
               public navParams: NavParams, public  globalProvider: GlobalProvider, public cartService: CartService) {
@@ -28,20 +31,38 @@ export class EquipmentGallery {
     this.category = this.category.toLowerCase();
     let path = '/equipments/' + this.category;
     console.log("Equipment path : " + path);
-    this.itemList = afDatabase.list(path);
-    this.items = this.itemList.valueChanges();
+    this.equipments = afDatabase.list(path);
+    this.items = this.equipments.valueChanges();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Equipment Gallery');
   }
 
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter Equipment Gallery');
+    this.setupItems();
+  }
+
   openMoreDetails() {
     this.navCtrl.push(EquipmentGallery)
   }
 
+  setupItems() {
+    let equip = [];
+    this.items.forEach(element => {
+      element.forEach(eq => {
+        equip.push(eq);
+        console.log("Eq", eq);
+      })
+    });
+
+    this.itemsList = equip;
+    this.loaditemsList = equip;
+  }
+
   initializeitems() {
-    this.itemList = this.itemList;
+    this.itemsList = this.loaditemsList;
   }
 
   openDirections() {
@@ -55,12 +76,27 @@ export class EquipmentGallery {
     console.log("calling number");
   }
 
-  addTocart(item) {
-    this.cartService.addToCart(item);
-  }
 
   getTopics(searchbar) {
     this.initializeitems();
+    // set s to the value of the searchbar
+    var s = searchbar.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (!s) {
+      return;
+    }
+
+    this.itemsList = this.itemsList.filter((a) => {
+      if (a.itemname && s) {
+        if (a.itemname.toLowerCase().indexOf(s.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+
+    console.log(this.itemsList.length);
   }
 
   addEquipment() {
@@ -107,7 +143,7 @@ export class EquipmentGallery {
           {
             text: 'Save',
             handler: data => {
-              const newEquipmentRef = this.itemList.push({});
+              const newEquipmentRef = this.equipments.push({});
 
               newEquipmentRef.set({
                 id: newEquipmentRef.key,
@@ -141,6 +177,26 @@ export class EquipmentGallery {
       });
     } else
       this.navCtrl.push(MyProfile);
+  }
+
+  addTocart(item) {
+    if (item.buyingQty > 0) {
+      this.cartService.addToCart(item);
+    }
+  }
+
+  checkoutCart() {
+    if (this.globalProvider.loggedInUser == null) {
+      this.navCtrl.push(Login, {
+        nextAction: EquipmentCart,
+        mode: "push"
+      });
+    } else
+      this.navCtrl.push(EquipmentCart);
+  }
+
+  checkCart() {
+    return (this.cartService.getCartCount() > 0);
   }
 
 }

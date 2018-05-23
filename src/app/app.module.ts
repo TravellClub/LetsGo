@@ -75,8 +75,6 @@ let pageArr = [MyApp,
   Mycategories,
   WeatherforecastPage,
   EquipmentCart
-
-
 ];
 
 @NgModule({

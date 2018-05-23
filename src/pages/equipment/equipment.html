@@ -28,8 +28,8 @@
     <ion-card-header>
       <ion-item no-padding class="transparent-full">
         <h1><b>Categories</b></h1>
-        <button item-end ion-button icon-only color="dark" (click)="openmyProfile()">
-          <ion-icon name="contact"></ion-icon>
+        <button item-end ion-button icon-only color="dark" *ngIf="checkCart()" (click)="checkoutCart()">
+          <ion-icon name="cart"></ion-icon>
         </button>
       </ion-item>
     </ion-card-header>

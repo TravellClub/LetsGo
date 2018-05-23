@@ -104,7 +104,7 @@ export class Places {
               this.geolocation.getCurrentPosition().then((position) => {
                 const newPlacesRef = this.places.push({});
                 console.log("More data add : " + newPlacesRef.key + " data : " + data);
-                newPlacesRef.set({
+                let newplace = {
                   id: newPlacesRef.key,
                   placename: data.placename,
                   description: data.description,
@@ -113,7 +113,9 @@ export class Places {
                   district: data.district,
                   image: data.image,
                   user: this.globalProvider.loggedInUser.id,
-                });
+                };
+                console.log(newplace);
+                newPlacesRef.set(newplace);
               });
 
 

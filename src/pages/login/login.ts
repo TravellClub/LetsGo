@@ -58,8 +58,13 @@ export class Login {
         if (u.password == user.password) {
           this.globalProvider.setLoggedInUser(u);
           loading.dismiss();
-          this.navCtrl.setRoot(this.nextAction);
+          if(this.navParams.get('mode')=="push"){
+            this.navCtrl.push(this.nextAction);
+          }else{
+            this.navCtrl.setRoot(this.nextAction);
+          }
         } else {
+          loading.dismiss();
           let alert = this.alerCtrl.create({
             title: 'Ops!',
             message: 'Password that you entered is incorrect!',
@@ -69,7 +74,8 @@ export class Login {
         }
       });
 
-    }).catch(onerror => {
+    }).then(onsuccess => {
+      loading.dismiss();
       let alert = this.alerCtrl.create({
         title: 'Ops!',
         message: 'Username that you entered is not found!',
@@ -81,9 +87,17 @@ export class Login {
 
 
   openSignup() {
-    this.navCtrl.push(Signup, {
-      nextAction: this.nextAction
-    });
+
+    if(this.navParams.get('mode')=="push"){
+      this.navCtrl.push(Signup, {
+        nextAction: this.nextAction,
+        mode:"push"
+      });
+    }else{
+      this.navCtrl.push(Signup, {
+        nextAction: this.nextAction
+      });
+    }
   }
 
 

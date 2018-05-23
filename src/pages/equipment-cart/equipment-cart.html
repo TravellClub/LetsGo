@@ -7,12 +7,43 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>EquipmentCart</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Equipment Cart</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bodyt">
 
+  <ion-list>
+    <ion-card *ngFor="let item of itemList">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="item.image"/>
+          </ion-avatar>
+          <ion-card-content>
+
+            <p>{{item.itemname}}</p>
+            <p>{{item.buyingQty}} ---- Rs {{item.price | number:'.2'}}</p>
+            <p>Sub Total : Rs {{item.buyingQty * item.price | number:'.2'}}</p>
+          </ion-card-content>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="deleteItem(item)">
+            <ion-icon name="trash"> DELETE</ion-icon>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-card>
+  </ion-list>
+  <ion-card>
+    <ion-card-content>
+      <p>Total : Rs {{totalCost | number:'.2'}}</p>
+      <button ion-button full (click)="checkout()">Checkout</button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

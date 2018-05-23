@@ -29,34 +29,18 @@
 
 
 <ion-content padding class="bodyt">
-
-  <ion-card *ngFor="let item of items | async">
+  <button ion-button full *ngIf="checkCart()" (click)="checkoutCart()">Checkout Cart</button>
+  <ion-card *ngFor="let item of itemsList">
 
     <img [src]="item.image" (click)="openMoreDetails()"/>
     <ion-card-content (click)="openMoreDetails()">
-
       <p> {{item.itemname}}</p>
       <p>{{item.price}}</p>
       <p>{{item.quantity}}</p>
-
       <button ion-button color="danger" clear (click)="addToFavorite(item)">
         <ion-icon name="heart"></ion-icon>
         favourite
       </button>
-
-      <!--<ion-list>
-
-        <ion-item-sliding>
-      <ion-item>
-        Swipe me to the left
-        </ion-item>
-
-        <ion-item-options>
-          <button danger (click)="removeItem()"><icon trash></icon> Delete</button>
-        </ion-item-options>
-      </ion-item-sliding>
-      </ion-list>
-    -->
     </ion-card-content>
     <button ion-button outline item-start icon-left (click)="opencall()">
       <ion-icon name="call"></ion-icon>
@@ -66,8 +50,11 @@
       <ion-icon name="compass"></ion-icon>
       Direction
     </button>
+    <ion-item>
+      <ion-input type="number" min="0" [max]="item.quantity" placeholder="Qty" [(ngModel)]="item.buyingQty"></ion-input>
 
-    <button ion-button full (click)="addTocart(item)">Add to Cart</button>
+      <button ion-button item-end (click)="addTocart(item)">Add to Cart</button>
+    </ion-item>
 
   </ion-card>
 </ion-content>

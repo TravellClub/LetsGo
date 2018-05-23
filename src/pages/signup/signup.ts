@@ -40,7 +40,7 @@ export class Signup {
     })
 
     this.itemList = afDatabase.list('/user');
-    // this.items = this.itemList.valueChanges();
+    // this.items = this.equipments.valueChanges();
 
     this.langform = new FormGroup({
       "langs": new FormControl({ value: 'business', disabled: false })
@@ -81,7 +81,11 @@ export class Signup {
       buttons: [{
         text: 'Ok',
         handler: () => {
-          this.navCtrl.setRoot(this.nextAction);
+          if(this.navParams.get('mode')=="push"){
+            this.navCtrl.push(this.nextAction);
+          }else{
+            this.navCtrl.setRoot(this.nextAction);
+          }
         }
       }]
     });

@@ -4,6 +4,8 @@ import {EquipmentGallery} from '../equipmentgallery/equipmentgallery';
 import {Login} from "../login/login";
 import {MyProfile} from "../my-profile/my-profile";
 import {GlobalProvider} from "../../providers/global-provider.service";
+import {EquipmentCart} from "../equipment-cart/equipment-cart";
+import {CartService} from "../../providers/cart-service";
 
 @Component({
   selector: 'page-equipment',
@@ -11,7 +13,8 @@ import {GlobalProvider} from "../../providers/global-provider.service";
 })
 export class Equipment {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public globalProvider:GlobalProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public globalProvider: GlobalProvider, public cartService: CartService) {
   }
 
   ionViewDidLoad() {
@@ -58,7 +61,16 @@ export class Equipment {
       this.navCtrl.push(MyProfile);
   }
 
-  openCart(){
+  checkoutCart() {
+    if (this.globalProvider.loggedInUser == null) {
+      this.navCtrl.push(Login, {
+        nextAction: EquipmentCart
+      });
+    } else
+      this.navCtrl.push(EquipmentCart);
+  }
 
+  checkCart() {
+    return (this.cartService.getCartCount() > 0);
   }
 }

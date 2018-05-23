@@ -1,18 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {Component, ViewChild} from '@angular/core';
+import {Nav, Platform} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+import {HomePage} from '../pages/home/home';
 // import { ListPage } from '../pages/list/list';
-import { VehiclePage } from '../pages/vehicle/vehicle';
-import { AccomodationPage } from '../pages/accomodation/accomodation';
-import { Guide } from '../pages/guide/guide';
-import { RouteFinder } from '../pages/route-finder/route-finder';
-import { Places } from '../pages/places/places';
-import { Equipment } from '../pages/equipment/equipment';
-import { Login } from '../pages/login/login';
-import { Signup } from '../pages/signup/signup';
+import {AccomodationPage} from '../pages/accomodation/accomodation';
+import {RouteFinder} from '../pages/route-finder/route-finder';
+import {Places} from '../pages/places/places';
+import {Equipment} from '../pages/equipment/equipment';
+import {Login} from '../pages/login/login';
 import {GlobalProvider} from "../providers/global-provider.service";
 
 
