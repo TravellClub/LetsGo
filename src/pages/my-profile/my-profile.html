@@ -18,32 +18,44 @@
 
 <ion-content padding class="bodyt">
 
-    <ion-card>
+  <ion-card>
 
-        <ion-item>
-          <ion-avatar item-start>
-              <img src="\\assets\\img\\profile_icon.png" />
-          </ion-avatar>
-          <h2>{{user.firstname + ' ' + user.lastname}}</h2>
-          <!-- <p>November 5, 1955</p> -->
-        </ion-item>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="\\assets\\img\\profile_icon.png"/>
+      </ion-avatar>
+      <h2>{{user.firstname + ' ' + user.lastname}}</h2>
+      <!-- <p>November 5, 1955</p> -->
+    </ion-item>
 
-        <ion-row>
-          <ion-col>
-            <button ion-button icon-left clear small>
-              <ion-icon name="heart" color="danger"></ion-icon>
-              <div>Favorites</div>
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button icon-left clear small>
-              <ion-icon name="add"></ion-icon>
-              <div>Addings</div>
-            </button>
-          </ion-col>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small (click)="favClick()">
+          <ion-icon name="heart" color="danger"></ion-icon>
+          <div>Favorites</div>
+        </button>
+      </ion-col>
+      <!--<ion-col>-->
+      <!--<button ion-button icon-left clear small>-->
+      <!--<ion-icon name="add"></ion-icon>-->
+      <!--<div>Addings</div>-->
+      <!--</button>-->
+      <!--</ion-col>-->
 
-        </ion-row>
+    </ion-row>
 
-      </ion-card>
+  </ion-card>
+
+  <ion-card *ngIf="favClicked">
+    <button ion-button clear (click)="placeClick()">
+      Places
+    </button>
+    <button ion-button clear (click)="hotelClick()">
+      Hotels
+    </button>
+    <button ion-button clear (click)="itemClick()">
+      Equipments
+    </button>
+  </ion-card>
 
 </ion-content>

@@ -12,7 +12,9 @@ export class GlobalProvider {
   public loggedInUser: any = null;
 
   userList: Observable<any>;
-  dbUser: AngularFireList<any>
+  dbUser: AngularFireList<any>;
+
+  itemCat:any;
 
   constructor(public afDatabase: AngularFireDatabase, public alertCtrl: AlertController) {
     console.log('Hello GlobalProvider Provider');
@@ -21,7 +23,7 @@ export class GlobalProvider {
   }
 
   setLoggedInUser(user) {
-    console.log("GLOBAL USER : ",user);
+    console.log("GLOBAL USER : ", user);
     this.loggedInUser = user;
   }
 
@@ -113,11 +115,11 @@ export class GlobalProvider {
   }
 
 
-  public addToFavorite(category, objectId, name) {
-    console.log("Favorite cat : " + category + " id : " + objectId);
+  public addToFavorite(category, object) {
+    console.log("Favorite cat : " + category + " id : " ,object);
     let confirm = this.alertCtrl.create({
       title: 'Add to favorite',
-      message: 'Do you want to add ' + name + ' to favorites ?',
+      message: 'Do you want to add this to favorites ?',
       buttons: [
         {
           text: 'No',
@@ -125,21 +127,18 @@ export class GlobalProvider {
           handler: () => {
             console.log('No clicked');
             confirm.dismiss();
-            return false;
+            // return false;
           }
         },
         {
           text: 'Yes',
           handler: () => {
             console.log('Yes clicked');
-            const favoriteRef = this.afDatabase.list('/user/' + this.loggedInUser.id + '/favorite/' + category).push({});
-            favoriteRef.set({
-              id: favoriteRef.key,
-              contentId: objectId
-            }).then(() => {
+            this.afDatabase.list('/user/' + this.loggedInUser.id + '/favorite/' + category)
+              .push(object).then(() => {
                 console.log("added to favorite");
                 confirm.dismiss();
-                return true;
+                // return true;
               }
             );
 
@@ -150,7 +149,7 @@ export class GlobalProvider {
     // if (this.loggedInUser == null) {
     //   return this.logUserWithDialogue(confirm);
     // } else {
-    return confirm.present();
+    confirm.present();
     // }
   }
 

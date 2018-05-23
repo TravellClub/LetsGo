@@ -3,6 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import {GlobalProvider} from "../../providers/global-provider.service";
 import {Login} from "../login/login";
 import {Places} from "../places/places";
+import {AccomodationPage} from "../accomodation/accomodation";
+import {EquipmentGallery} from "../equipmentgallery/equipmentgallery";
+import {Equipment} from "../equipment/equipment";
 
 
 /**
@@ -19,6 +22,7 @@ import {Places} from "../places/places";
 export class MyProfile {
 
   user:any;
+  favClicked = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public globalProvider:GlobalProvider) {
 
@@ -29,6 +33,28 @@ export class MyProfile {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyProfile');
 
+  }
+
+  favClick(){
+    this.favClicked= !this.favClicked;
+  }
+
+  placeClick(){
+    this.navCtrl.push(Places,{
+      mode:'fav'
+    })
+  }
+
+  hotelClick(){
+    this.navCtrl.push(AccomodationPage,{
+      mode:'fav'
+    })
+  }
+
+  itemClick(){
+    this.navCtrl.push(Equipment,{
+      mode:'fav'
+    })
   }
 
 

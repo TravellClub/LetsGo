@@ -42,8 +42,8 @@ export class Hotels {
 
     this.hotel = navParams.get("hotel");
     console.log("hotel page : ", this.hotel);
-    let rating = parseInt(this.hotel.rating) - 1;
-    this.ratingStarClicked(rating);
+    // let rating = parseInt(this.hotel.rating) - 1;
+    // this.ratingStarClicked(rating);
 
     this.hotelreviewList = afDatabase.list('/accommodations/' + this.hotel.id + '/reviews');
     this.hotelreviews = this.hotelreviewList.valueChanges();
@@ -211,6 +211,19 @@ export class Hotels {
       });
     } else
       this.navCtrl.push(MyProfile);
+  }
+
+  addToFavorite() {
+    console.log("Favorite click : ", this.hotel.name);
+    console.log("Favorite click user : ", this.globalProvider.loggedInUser);
+
+    if (this.globalProvider.loggedInUser == null) {
+      this.navCtrl.push(Login, {
+        nextAction: AccomodationPage
+      });
+    } else {
+      this.globalProvider.addToFavorite("accommodations", this.hotel);
+    }
   }
 
 }

@@ -27,21 +27,27 @@ export class EquipmentGallery {
   constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController,
               public navParams: NavParams, public  globalProvider: GlobalProvider, public cartService: CartService) {
     this.category = navParams.get("category");
-    this.pageTitle = this.category;
-    this.category = this.category.toLowerCase();
+    console.log("Equipment cat : " + this.category);
+    if(this.category != undefined) {
+      this.pageTitle = this.category;
+      this.category = this.category.toLowerCase();
+    }else{
+      this.navCtrl.setRoot(Equipment);
+    }
     let path = '/equipments/' + this.category;
     console.log("Equipment path : " + path);
+    let mode = this.navParams.get('mode');
+    if (mode == 'fav') {
+      path = '/user/' + this.globalProvider.loggedInUser.id + '/favorite/equipments/' + this.category;
+    }
     this.equipments = afDatabase.list(path);
     this.items = this.equipments.valueChanges();
+
+    this.setupItems();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Equipment Gallery');
-  }
-
-  ionViewWillEnter() {
-    console.log('ionViewWillEnter Equipment Gallery');
-    this.setupItems();
   }
 
   openMoreDetails() {
@@ -119,9 +125,7 @@ export class EquipmentGallery {
             type: 'number',
             placeholder: ' Price'
           },
-
           {
-
             name: 'quantity',
             type: 'number',
             placeholder: 'Quantity '
@@ -166,7 +170,7 @@ export class EquipmentGallery {
         nextAction: Equipment
       });
     } else {
-      this.globalProvider.addToFavorite("Items", item.id, item.itemname);
+      this.globalProvider.addToFavorite("equipments/" + this.category, item);
     }
   }
 

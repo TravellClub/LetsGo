@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, NavController} from 'ionic-angular';
+import {AlertController, NavController, NavParams} from 'ionic-angular';
 import {Hotels} from '../hotels/hotels';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {Observable} from "rxjs/Observable";
@@ -9,6 +9,7 @@ import {Login} from "../login/login";
 import {MyProfile} from "../my-profile/my-profile";
 import {CallNumber} from "@ionic-native/call-number";
 import {Geolocation} from "@ionic-native/geolocation";
+import {Places} from "../places/places";
 
 @Component({
   selector: 'page-accomodation',
@@ -22,10 +23,14 @@ export class AccomodationPage {
   loadedItemList: Array<any>;
 
   constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController,
-              public globalProvider: GlobalProvider, public geolocation: Geolocation) {
-    this.accommodations = afDatabase.list('/accommodations');
+              public globalProvider: GlobalProvider, public geolocation: Geolocation, public navParams:NavParams) {
+    let mode = this.navParams.get('mode');
+    console.log("MODE : ", mode);
+    if (mode == 'fav') {
+      this.accommodations = afDatabase.list('/user/' + this.globalProvider.loggedInUser.id + '/favorite/accommodations');
+    } else
+      this.accommodations = afDatabase.list('/accommodations');
     this.items = this.accommodations.valueChanges();
-    this.setupItems()
   }
 
   setupItems() {
@@ -40,6 +45,11 @@ export class AccomodationPage {
 
     this.itemList = accommodatio;
     this.loadedItemList = accommodatio;
+  }
+
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter Places');
+    this.setupItems();
   }
 
   initializeitems() {
@@ -66,12 +76,6 @@ export class AccomodationPage {
     //   this.callNumber.callNumber("0775817987", true)
     //   .then(res => console.log('Launched dialer!', res))
     // .catch(err => console.log('Error launching dialer', err));
-  }
-
-  ionViewDidEnter() {
-    console.log("Accommodation view will enter ");
-    // this.loadData();
-    this.setupItems();
   }
 
   addHotel() {
@@ -264,6 +268,19 @@ export class AccomodationPage {
 
     console.log(q, this.itemList.length);
 
+  }
+
+  addToFavorite(hotel) {
+    console.log("Favorite click : ", hotel.name);
+    console.log("Favorite click user : ", this.globalProvider.loggedInUser);
+
+    if (this.globalProvider.loggedInUser == null) {
+      this.navCtrl.push(Login, {
+        nextAction: AccomodationPage
+      });
+    } else {
+      this.globalProvider.addToFavorite("accommodations", hotel);
+    }
   }
 
   openmyProfile() {

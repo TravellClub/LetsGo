@@ -13,8 +13,13 @@ import {CartService} from "../../providers/cart-service";
 })
 export class Equipment {
 
+  mode: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public globalProvider: GlobalProvider, public cartService: CartService) {
+    this.mode = this.navParams.get('mode');
+    console.log("MODE : ", this.mode);
+
   }
 
   ionViewDidLoad() {
@@ -22,33 +27,69 @@ export class Equipment {
   }
 
   tool() {
-    this.navCtrl.push(EquipmentGallery, {
-      "category": "Tools"
-    })
+    if (this.mode == 'fav') {
+      this.navCtrl.push(EquipmentGallery, {
+        category: "Tools",
+        mode: 'fav'
+      })
+    } else {
+      this.navCtrl.push(EquipmentGallery, {
+        category: "Tools"
+      })
+    }
+
   }
 
   books() {
-    this.navCtrl.push(EquipmentGallery, {
-      "category": "Books"
-    })
+    if (this.mode == 'fav') {
+      this.navCtrl.push(EquipmentGallery, {
+        category: "Books",
+        mode: 'fav'
+      })
+    } else {
+      this.navCtrl.push(EquipmentGallery, {
+        category: "Books"
+      })
+    }
   }
 
   statue() {
-    this.navCtrl.push(EquipmentGallery, {
-      "category": "Statues"
-    })
+    if (this.mode == 'fav') {
+      this.navCtrl.push(EquipmentGallery, {
+        category: "Statues",
+        mode: 'fav'
+      })
+    } else {
+      this.navCtrl.push(EquipmentGallery, {
+        category: "Statues"
+      })
+    }
   }
 
   accessories() {
-    this.navCtrl.push(EquipmentGallery, {
-      "category": "Accessories"
-    })
+    if (this.mode == 'fav') {
+      this.navCtrl.push(EquipmentGallery, {
+        category: "Accessories",
+        mode: 'fav'
+      })
+    } else {
+      this.navCtrl.push(EquipmentGallery, {
+        category: "Accessories"
+      })
+    }
   }
 
   textile() {
-    this.navCtrl.push(EquipmentGallery, {
-      "category": "Textiles"
-    })
+    if (this.mode == 'fav') {
+      this.navCtrl.push(EquipmentGallery, {
+        category: "Textiles",
+        mode: 'fav'
+      })
+    } else {
+      this.navCtrl.push(EquipmentGallery, {
+        category: "Textiles"
+      })
+    }
 
   }
 

@@ -27,9 +27,13 @@ export class Places {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public geolocation: Geolocation, public afDatabase: AngularFireDatabase, public globalProvider
     : GlobalProvider) {//public _myservice: myService) {
-    this.places = afDatabase.list('/places');
-    this.items = this.places.valueChanges();
     // this.setupItems();
+    let mode = this.navParams.get('mode');
+    if (mode == 'fav') {
+      this.places = afDatabase.list('/user/' + this.globalProvider.loggedInUser.id + '/favorite/Places');
+    } else
+      this.places = afDatabase.list('/places');
+    this.items = this.places.valueChanges();
   }
 
   initializeitems() {
@@ -148,7 +152,7 @@ export class Places {
         nextAction: Places
       });
     } else {
-      this.globalProvider.addToFavorite("Places", place.id, place.placename);
+      this.globalProvider.addToFavorite("Places", place);
     }
   }
 
