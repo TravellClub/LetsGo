@@ -42,11 +42,11 @@
 <ion-card class="transparent" *ngFor="let place of itemsList">
   <ion-card-content >
     <ion-list>
-      <ion-item class="transparent">
+      <ion-item class="trans">
         <ion-thumbnail item-start (click)="openmore(place)">
           <img [src]="place.image"/>
         </ion-thumbnail>
-        <p (click)="openmore(place)">{{place.placename}} </p>
+        <p (click)="openmore(place)" color="white">{{place.placename}} </p>
         <button ion-button item-end color="danger" icon-only clear (click)="addToFavorite(place)">
           <ion-icon name="heart"></ion-icon>
         </button>
