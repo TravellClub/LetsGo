@@ -45,10 +45,11 @@ export class Login {
   onLoginClicked(user) {
     console.log("User login : ", user);
     let items = this.afDatabase.list('/user', ref => ref.orderByChild('email').equalTo(user.username)).valueChanges();
+
     items.forEach(element => {
-      element.forEach(u => {
+      element.forEach((u:{password}) => {
         console.log("LOGIN FOR USE : ", u);
-        if (u.password.equals(user.password)) {
+        if (u.password == user.password) {
           this.globalProvider.setLoggedInUser(u);
           this.navCtrl.setRoot(this.nextAction);
         } else {

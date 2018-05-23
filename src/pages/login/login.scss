@@ -1,9 +1,10 @@
 page-login {
 
-    .bodyt {
-        background-image: url("..//assets//img//loginback.jpg");
-    }
-  h1{
+  .bodyt {
+    background-image: url("..//assets//img//loginback.jpg");
+  }
+
+  h1, ion-input, p {
     color: #f4f4f4 !important;
   }
 
