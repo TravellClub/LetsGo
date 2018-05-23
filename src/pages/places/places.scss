@@ -1,10 +1,16 @@
 page-places {
 
-    .bodyt {
-        background-image: url("..//assets//img//routeback.jpg");
-    }
-    .compass {
-        background-image: url("..//assets//img//compass1.png");
-    }
+  .bodyt {
+    background-image: url("..//assets//img//routeback.jpg");
+  }
+  .compass {
+    background-image: url("..//assets//img//compass1.png");
+  }
+  p {
+    color: #f4f4f4 !important;
+  }
+  .transparent{
+    background-color: transparent !important;
+  }
 
 }

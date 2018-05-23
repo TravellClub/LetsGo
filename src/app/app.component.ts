@@ -33,9 +33,9 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Places', component: Places },
       { title: 'Route Finder', component: RouteFinder },
-      { title: 'Transport', component: VehiclePage },
+      // { title: 'Transport', component: VehiclePage },
       { title: 'Accommodation', component: AccomodationPage },
-      { title: 'Guide', component: Guide },
+      // { title: 'Guide', component: Guide },
       { title: 'Traveling Equipment', component: Equipment }
     ];
 

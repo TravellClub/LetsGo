@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Places } from '../places/places';
-import { RouteFinder } from '../route-finder/route-finder';
-import { VehiclePage } from '../vehicle/vehicle';
-import { AccomodationPage } from '../accomodation/accomodation';
-import { Guide } from '../guide/guide';
-import { Equipment } from '../equipment/equipment';
-import { Directions } from '../directions/directions';
-import { Signup } from '../signup/signup';
-import { Login } from '../login/login';
-import { MyProfile } from '../my-profile/my-profile';
-import { Mycategories } from '../mycategories/mycategories';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
+import {Places} from '../places/places';
+import {RouteFinder} from '../route-finder/route-finder';
+import {VehiclePage} from '../vehicle/vehicle';
+import {AccomodationPage} from '../accomodation/accomodation';
+import {Guide} from '../guide/guide';
+import {Equipment} from '../equipment/equipment';
+import {Directions} from '../directions/directions';
+import {Signup} from '../signup/signup';
+import {Login} from '../login/login';
+import {MyProfile} from '../my-profile/my-profile';
+import {Mycategories} from '../mycategories/mycategories';
+import {GlobalProvider} from "../../providers/global-provider.service";
 
 @Component({
   selector: 'page-home',
@@ -18,45 +19,57 @@ import { Mycategories } from '../mycategories/mycategories';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public globalProvider: GlobalProvider) {
 
-    
 
   }
 
-  openSignup(){
+  openSignup() {
     this.navCtrl.push(Signup);
   }
 
-  openLogin(){
+  openLogin() {
     this.navCtrl.push(Login);
   }
 
-  openPlaces(){
+  openPlaces() {
     this.navCtrl.push(Places);
   }
-  openRouteFinder(){
+
+  openRouteFinder() {
     this.navCtrl.push(RouteFinder);
   }
-  openDirections(){
+
+  openDirections() {
     this.navCtrl.push(Directions);
   }
-  openTransport(){
+
+  openTransport() {
     this.navCtrl.push(VehiclePage);
   }
-  openAccommodation(){
+
+  openAccommodation() {
     this.navCtrl.push(AccomodationPage);
   }
-  openGuide(){
+
+  openGuide() {
     this.navCtrl.push(Guide);
   }
-  openEquipment(){
+
+  openEquipment() {
     this.navCtrl.push(Equipment);
   }
-  openmyProfile(){
-    this.navCtrl.push(MyProfile);
+
+  openmyProfile() {
+    if (this.globalProvider.loggedInUser == null) {
+      this.navCtrl.push(Login, {
+        nextAction: MyProfile
+      });
+    } else
+      this.navCtrl.push(MyProfile);
   }
-  openMycatrgories(){
+
+  openMycatrgories() {
     this.navCtrl.push(Mycategories);
   }
 

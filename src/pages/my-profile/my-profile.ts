@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {GlobalProvider} from "../../providers/global-provider.service";
+import {Login} from "../login/login";
+import {Places} from "../places/places";
 
 
 /**
@@ -15,11 +18,18 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class MyProfile {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public globalProvider:GlobalProvider) {
+
+    this.user = this.globalProvider.loggedInUser;
+    console.log('constructor MyProfile');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyProfile');
+
   }
+
 
 }

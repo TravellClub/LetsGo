@@ -34,6 +34,9 @@ import { Booking } from '../pages/booking/booking';
 import { Services } from '@angular/core/src/view';
 import { MyProfile } from '../pages/my-profile/my-profile';
 import { Mycategories } from '../pages/mycategories/mycategories';
+import {GlobalProvider} from "../providers/global-provider.service";
+import {WeatherData} from "../providers/weather-data";
+import {WeatherforecastPage} from "../pages/weatherforecast/weatherforecast";
 
 
 
@@ -67,12 +70,10 @@ let pageArr = [MyApp,
   Business,
   Booking,
   MyProfile,
-  Mycategories
+  Mycategories,
+  WeatherforecastPage
 
-  
-  
 
-  
 ];
 
 @NgModule({
@@ -83,7 +84,7 @@ let pageArr = [MyApp,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     HttpModule
-  ], 
+  ],
   bootstrap: [IonicApp],
   entryComponents: pageArr,
   providers: [
@@ -91,8 +92,10 @@ let pageArr = [MyApp,
    // FirebaseService,
     SplashScreen,
     Geolocation,
+    GlobalProvider,
+    WeatherData,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
-    
+
   ]
 })
 

@@ -3,6 +3,10 @@ import {AlertController, NavController, NavParams} from 'ionic-angular';
 import {Observable} from "rxjs/Observable";
 import {AngularFireDatabase, AngularFireList} from "angularfire2/database";
 import { Directions } from '../directions/directions';
+import {GlobalProvider} from "../../providers/global-provider.service";
+import {CartService} from "../../providers/cart-service";
+import {Login} from "../login/login";
+import {Equipment} from "../equipment/equipment";
 
 @Component({
   selector: 'page-equipmentgallery',
@@ -15,7 +19,8 @@ export class EquipmentGallery {
   itemList: AngularFireList<any>;
   public pageTitle:string;
 
-  constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController,
+              public navParams: NavParams,public  globalProvider:GlobalProvider, public cartService:CartService) {
     this.category = navParams.get("category");
     this.pageTitle = this.category;
     this.category = this.category.toLowerCase();
@@ -49,64 +54,71 @@ export class EquipmentGallery {
 
 
 
-    
+
   }
   getTopics(searchbar){
     this.initializeitems();
   }
 
   addEquipment() {
-    let prompt = this.alertCtrl.create({
-      title: 'New ' + this.pageTitle,
-      message: "Enter the details of the equipment to add",
-      inputs: [
-        {
-          name: 'itemname',
-          placeholder: 'Item Name'
-        },
-        {
-          name: 'price',
-          type: 'number',
-          placeholder: ' Price'
-        },
+    if (this.globalProvider.loggedInUser == null) {
+      this.navCtrl.push(Login, {
+        nextAction: Equipment
+      });
+    }
+    else{
+      let prompt = this.alertCtrl.create({
+        title: 'New ' + this.pageTitle,
+        message: "Enter the details of the equipment to add",
+        inputs: [
+          {
+            name: 'itemname',
+            placeholder: 'Item Name'
+          },
+          {
+            name: 'price',
+            type: 'number',
+            placeholder: ' Price'
+          },
 
-      {
+          {
 
-        name: 'quantity',
-        type: 'number',
-        placeholder: 'Quantity '
-      },
-      {
+            name: 'quantity',
+            type: 'number',
+            placeholder: 'Quantity '
+          },
+          {
 
-        name: 'image',
-        placeholder: 'Image '
-      },
+            name: 'image',
+            placeholder: 'Image '
+          },
 
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: data => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Save',
+            handler: data => {
+              const newEquipmentRef = this.itemList.push({});
+
+              newEquipmentRef.set({
+                id: newEquipmentRef.key,
+                itemname: data.itemname,
+                price: data.price,
+                quantity: data.quantity,
+                image: 'assets/img/'+ data.image
+              });
+            }
           }
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            const newEquipmentRef = this.itemList.push({});
-
-            newEquipmentRef.set({
-              id: newEquipmentRef.key,
-              itemname: data.itemname,
-              price: data.price,
-              quantity: data.quantity,
-              image: 'assets/img/'+ data.image
-            });
-          }
-        }
-      ]
-    });
-    prompt.present();
+        ]
+      });
+      prompt.present();
+    }
   }
 
 }

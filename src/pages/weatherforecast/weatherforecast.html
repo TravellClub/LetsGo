@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      5 Day Weather Forecast
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding="true">
+  <h2>{{ city }}</h2>
+  <br>
+  <ion-list>
+    <ion-card *ngFor="let data of weatherService.dailyData">
+      <ion-card-content>
+        <p><b> Date: </b>{{data.dt_txt}}</p>
+        <br>
+        <p><b> Current Temperature:</b> {{ data.main.temp }} Celsius</p>
+        <br>
+        <p><b>Sky Details: </b>{{ data.weather[0].description }}</p>
+        <br>
+        <p><b>Humidity: </b>{{ data.main.humidity }} hpa</p>
+        <br>
+        <p><b>Pressure: </b>{{ data.main.pressure }}</p>
+        <br>
+        <!--<p><b>Wind speed: </b>{{ data.wind.speed }}</p>
+        <br>-->
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>
