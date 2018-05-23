@@ -6,8 +6,16 @@ page-weatherforecast {
         background-size: cover;
     }
     .transparent{
-        background-color: transparent !important;
+        background-color: #ffffff55 !important;
         
+      }
+      h2{
+        color: #fcfcfc !important;
+      }
+
+
+      p {
+        color: #080808 !important;
       }
 
 }
