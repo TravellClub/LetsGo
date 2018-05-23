@@ -27,7 +27,7 @@
         
        <ion-item>
        <ion-label stacked >Check-in-date</ion-label>
-      <ion-input type="date" name="checkin" [(ngModel)]="book.checkin"></ion-input>
+      <ion-input type="date" name="checking" [(ngModel)]="book.checking"></ion-input>
     </ion-item>
     </ion-card>
          
@@ -37,13 +37,13 @@
         <ion-card >
           <ion-item>
           <ion-label stacked>Check-out-date</ion-label>
-          <ion-input type="date" name="checkou" [(ngModel)]="book.checkou"></ion-input>
+          <ion-input type="date" name="checkout" [(ngModel)]="book.checkout"></ion-input>
         </ion-item>
         </ion-card>
         <ion-card>
           <ion-item>
             <ion-label>Adults</ion-label>
-            <ion-select [(ngModel)]="Adultes" multiple="true" name="Adults" [(ngModel)]="book.Adults">
+            <ion-select  multiple="true" name="adults" [(ngModel)]="book.adults">
               <ion-option>01</ion-option>
               <ion-option>02</ion-option>
               <ion-option>03</ion-option>
@@ -59,7 +59,7 @@
             <ion-item>
           
               <ion-label>childrens</ion-label>
-              <ion-select [(ngModel)]="childrens" multiple="true" name="childrens" [(ngModel)]="book.childrens">
+              <ion-select multiple="true" name="children" [(ngModel)]="book.children">
                   <ion-option>No children</ion-option>
                 <ion-option>01</ion-option>
                 <ion-option>02</ion-option>
@@ -77,7 +77,7 @@
 
             <ion-item>
                 <ion-label>Room</ion-label>
-                <ion-select [(ngModel)]="Room" multiple="true" name="room" [(ngModel)]="book.room">
+                <ion-select multiple="true" name="room" [(ngModel)]="book.room">
                   <ion-option>01</ion-option>
                   <ion-option>02</ion-option>
                   <ion-option>03</ion-option>
@@ -90,7 +90,7 @@
                   <ion-option>10</ion-option>
                 </ion-select>
               </ion-item>
-                <button ion-button block (click)="booking()">Check Availability</button>
+                <button ion-button block (click)="booking(book)">Check Availability</button>
               </ion-card>
               
       
