@@ -21,7 +21,7 @@ export class AccomodationPage {
   loadedItemList: Array<any>;
 
   constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController,
-              public globalProvider: GlobalProvider, public callNumber:CallNumber) {
+              public globalProvider: GlobalProvider) {
     this.accommodations = afDatabase.list('/accommodations');
     this.items = this.accommodations.valueChanges();
     this.setupItems()
@@ -62,9 +62,9 @@ export class AccomodationPage {
 
   opencall() {
     console.log("calling number");
-      this.callNumber.callNumber("0775817987", true)
-      .then(res => console.log('Launched dialer!', res))
-    .catch(err => console.log('Error launching dialer', err));
+    //   this.callNumber.callNumber("0775817987", true)
+    //   .then(res => console.log('Launched dialer!', res))
+    // .catch(err => console.log('Error launching dialer', err));
   }
 
   // loadData(){
