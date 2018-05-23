@@ -25,7 +25,8 @@
 
   <ion-navbar>
     <ion-toolbar>
-      <ion-searchbar (ioninput)="getPlace($event)"[showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
+      <ion-searchbar (ionInput)="getPlaces($event)" [showCancelButton]="shouldShowCancel"
+                     (ionCancel)="onCancel($event)"></ion-searchbar>
     </ion-toolbar>
 
    <!-- <ion-list>
