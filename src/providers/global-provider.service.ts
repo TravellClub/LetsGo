@@ -134,8 +134,9 @@ export class GlobalProvider {
           text: 'Yes',
           handler: () => {
             console.log('Yes clicked');
+            let key = object.id;
             this.afDatabase.list('/user/' + this.loggedInUser.id + '/favorite/' + category)
-              .push(object).then(() => {
+              .set(key,object).then(() => {
                 console.log("added to favorite");
                 confirm.dismiss();
                 // return true;

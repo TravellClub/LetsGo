@@ -51,6 +51,10 @@
         <button ion-button item-end color="danger" icon-only clear (click)="addToFavorite(place)">
           <ion-icon name="heart"></ion-icon>
         </button>
+        <button ion-button outline item-end icon-left (click)="delete(place.id)"
+                *ngIf="globalProvider.loggedInUser?.id==item.user">
+          <ion-icon name="trash" color="danger"></ion-icon>
+        </button>
       </ion-item>
     </ion-list>
 

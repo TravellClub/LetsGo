@@ -23,6 +23,7 @@ export class MyProfile {
 
   user:any;
   favClicked = false;
+  addClicked = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public globalProvider:GlobalProvider) {
 
@@ -39,21 +40,25 @@ export class MyProfile {
     this.favClicked= !this.favClicked;
   }
 
-  placeClick(){
+  addingClick(){
+    this.addClicked= !this.addClicked;
+  }
+
+  placeClick(mode){
     this.navCtrl.push(Places,{
-      mode:'fav'
+      mode:mode
     })
   }
 
-  hotelClick(){
+  hotelClick(mode){
     this.navCtrl.push(AccomodationPage,{
-      mode:'fav'
+      mode:mode
     })
   }
 
-  itemClick(){
+  itemClick(mode){
     this.navCtrl.push(Equipment,{
-      mode:'fav'
+      mode:mode
     })
   }
 

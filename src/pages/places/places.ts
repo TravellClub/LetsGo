@@ -31,6 +31,8 @@ export class Places {
     let mode = this.navParams.get('mode');
     if (mode == 'fav') {
       this.places = afDatabase.list('/user/' + this.globalProvider.loggedInUser.id + '/favorite/Places');
+    }else if (mode == 'add') {
+      this.places = afDatabase.list('/user/' + this.globalProvider.loggedInUser.id + '/contributions/Places');
     } else
       this.places = afDatabase.list('/places');
     this.items = this.places.valueChanges();
@@ -120,6 +122,9 @@ export class Places {
                 };
                 console.log(newplace);
                 newPlacesRef.set(newplace);
+                this.afDatabase.list('/user/' + this.globalProvider.loggedInUser.id + '/contributions/Places')
+                  .set(newPlacesRef.key,newplace);
+
               });
 
 
@@ -197,6 +202,29 @@ export class Places {
       });
     } else
       this.navCtrl.push(MyProfile);
+  }
+
+  delete(itemID){
+    let prompt = this.alertCtrl.create({
+      title: 'Delete Place',
+
+      buttons: [{
+        text: "Cancel",
+        handler: data => {
+          console.log("Cancel Clicked");
+        }
+      },
+        {
+          text: "Delete",
+          handler: data => {
+            this.places.remove(itemID);
+            this.setupItems();
+          }
+
+        }
+      ]
+    });
+    prompt.present();
   }
 
 }

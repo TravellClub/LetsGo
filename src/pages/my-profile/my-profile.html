@@ -36,25 +36,39 @@
           <div>Favorites</div>
         </button>
       </ion-col>
-      <!--<ion-col>-->
-      <!--<button ion-button icon-left clear small>-->
-      <!--<ion-icon name="add"></ion-icon>-->
-      <!--<div>Addings</div>-->
-      <!--</button>-->
-      <!--</ion-col>-->
+      <ion-col>
+      <button ion-button icon-left clear small (click)="addingClick()">
+      <ion-icon name="add"></ion-icon>
+      <div>Contributions</div>
+      </button>
+      </ion-col>
 
     </ion-row>
 
   </ion-card>
 
   <ion-card *ngIf="favClicked">
-    <button ion-button clear (click)="placeClick()">
+    <ion-card-header>Favorites</ion-card-header>
+    <button ion-button clear (click)="placeClick('fav')">
       Places
     </button>
-    <button ion-button clear (click)="hotelClick()">
+    <button ion-button clear (click)="hotelClick('fav')">
       Hotels
     </button>
-    <button ion-button clear (click)="itemClick()">
+    <button ion-button clear (click)="itemClick('fav')">
+      Equipments
+    </button>
+  </ion-card>
+
+  <ion-card *ngIf="addClicked">
+    <ion-card-header>Contributions</ion-card-header>
+    <button ion-button clear (click)="placeClick('add')">
+      Places
+    </button>
+    <button ion-button clear (click)="hotelClick('add')">
+      Hotels
+    </button>
+    <button ion-button clear (click)="itemClick('add')">
       Equipments
     </button>
   </ion-card>

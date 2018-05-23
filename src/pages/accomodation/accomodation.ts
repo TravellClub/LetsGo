@@ -23,11 +23,13 @@ export class AccomodationPage {
   loadedItemList: Array<any>;
 
   constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController,
-              public globalProvider: GlobalProvider, public geolocation: Geolocation, public navParams:NavParams) {
+              public globalProvider: GlobalProvider, public geolocation: Geolocation, public navParams: NavParams) {
     let mode = this.navParams.get('mode');
     console.log("MODE : ", mode);
     if (mode == 'fav') {
       this.accommodations = afDatabase.list('/user/' + this.globalProvider.loggedInUser.id + '/favorite/accommodations');
+    } else if (mode == 'add') {
+      this.accommodations = afDatabase.list('/user/' + this.globalProvider.loggedInUser.id + '/contributions/accommodations');
     } else
       this.accommodations = afDatabase.list('/accommodations');
     this.items = this.accommodations.valueChanges();
@@ -115,19 +117,21 @@ export class AccomodationPage {
           handler: data => {
             this.geolocation.getCurrentPosition().then((position) => {
               const newHotelRef = this.accommodations.push({});
-
-              newHotelRef.set({
+              let newhotel = {
                 id: newHotelRef.key,
                 name: data.name,
                 address: data.address,
                 contact: data.contact,
                 image: data.image,
-                website:data.website,
+                website: data.website,
 
                 latitiude: position.coords.latitude,
                 longitude: position.coords.longitude,
                 user: this.globalProvider.loggedInUser.id
-              });
+              };
+              newHotelRef.set(newhotel);
+
+              this.afDatabase.list('/user/' + this.globalProvider.loggedInUser.id + '/contributions/accommodations').set(newHotelRef.key,newhotel);
               this.setupItems()
             });
           }
@@ -290,5 +294,28 @@ export class AccomodationPage {
       });
     } else
       this.navCtrl.push(MyProfile);
+  }
+
+  delete(itemID){
+    let prompt = this.alertCtrl.create({
+      title: 'Delete Accommodation',
+
+      buttons: [{
+        text: "Cancel",
+        handler: data => {
+          console.log("Cancel Clicked");
+        }
+      },
+        {
+          text: "Delete",
+          handler: data => {
+            this.accommodations.remove(itemID);
+            this.setupItems();
+          }
+
+        }
+      ]
+    });
+    prompt.present();
   }
 }

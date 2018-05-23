@@ -55,6 +55,10 @@
               *ngIf="globalProvider.loggedInUser?.id==item.user">
         <ion-icon name="create"></ion-icon>
       </button>
+      <button ion-button outline item-end icon-left (click)="delete(item.id)"
+              *ngIf="globalProvider.loggedInUser?.id==item.user">
+        <ion-icon name="trash" color="danger"></ion-icon>
+      </button>
 
     </ion-card>
   </ion-list>
