@@ -58,6 +58,7 @@ export class Login {
         if (u.password == user.password) {
           this.globalProvider.setLoggedInUser(u);
           loading.dismiss();
+          console.log("LOGIN MODE : " + this.navParams.get('mode'));
           if(this.navParams.get('mode')=="push"){
             this.navCtrl.push(this.nextAction);
           }else{

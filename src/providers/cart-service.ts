@@ -37,5 +37,9 @@ export class CartService {
     return this.cartItems;
   }
 
+  checkoutCart(){
+    this.cartItems = [];
+  }
+
 
 }

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AlertController, NavController, NavParams} from "ionic-angular";
 import {CartService} from "../../providers/cart-service";
+import {Equipment} from "../equipment/equipment";
 
 @Component({
   selector: 'page-equipment-cart',
@@ -41,7 +42,8 @@ export class EquipmentCart {
         text: 'Ok',
         handler: () => {
           console.log('Ok clicked');
-          this.navCtrl.pop();
+          this.cartService.checkoutCart();
+          this.navCtrl.setRoot(Equipment);
         }
       }]
     });
