@@ -4,7 +4,7 @@ import {AlertController} from 'ionic-angular';
 import {Directions} from '../directions/directions';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {Observable} from "rxjs/Observable";
-import {Weather} from '../weather/weather'
+//import {Weather} from '../weather/weather'
 import {GlobalProvider} from "../../providers/global-provider.service";
 import {WeatherforecastPage} from "../weatherforecast/weatherforecast";
 import {Places} from "../places/places";

@@ -13,7 +13,7 @@ import { Places } from '../pages/places/places';
 import { Equipment } from '../pages/equipment/equipment';
 import { Login } from '../pages/login/login';
 import { Signup } from '../pages/signup/signup';
-import {Weather} from '../pages/weather/weather';
+//import {Weather} from '../pages/weather/weather';
 
 
 @Component({

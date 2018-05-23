@@ -19,6 +19,7 @@ export class WeatherforecastPage {
     //Map city list
     this.cityList.set('Ampara',1251459);
     this.cityList.set('Anuradhapura',1251081);
+    
 
     //get weather data
     let cityId = this.cityList.get(this.city);

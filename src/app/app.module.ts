@@ -29,7 +29,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { Business } from '../pages/business/business';
 import { Booking } from '../pages/booking/booking';
-import { Weather } from '../pages/weather/weather';
+//import { Weather } from '../pages/weather/weather';
 import {GlobalProvider} from "../providers/global-provider.service";
 import {WeatherData} from "../providers/weather-data";
 import {WeatherforecastPage} from "../pages/weatherforecast/weatherforecast";
@@ -65,7 +65,6 @@ let pageArr = [MyApp,
   EquipmentGallery,
   Business,
   Booking,
-  Weather,
   WeatherforecastPage
 
 

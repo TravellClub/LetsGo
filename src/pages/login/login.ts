@@ -25,6 +25,7 @@ export class Login {
   itemList: Observable<any>;
   user = {};
   nextAction: any;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public afDatabase: AngularFireDatabase, public alerCtrl: AlertController, public globalProvider: GlobalProvider) {
