@@ -19,8 +19,6 @@ export class WeatherforecastPage {
     //Map city list
     this.cityList.set('Ampara',1251459);
     this.cityList.set('Anuradhapura',1251081);
-    this.cityList.set('Ampara', 1251459);
-    this.cityList.set('Anuradhapura', 1251081);
     this.cityList.set('Beruwala',1249931);
     this.cityList.set('Colombo', 1248991);
     this.cityList.set('Dambulla', 1248749);
