@@ -111,7 +111,8 @@ export class Places {
                   latitiude: position.coords.latitude,
                   longitude: position.coords.longitude,
                   district: data.district,
-                  image: data.image
+                  image: data.image,
+                  user: this.globalProvider.loggedInUser.id,
                 });
               });
 

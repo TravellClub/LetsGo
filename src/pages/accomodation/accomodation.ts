@@ -8,6 +8,7 @@ import {GlobalProvider} from "../../providers/global-provider.service";
 import {Login} from "../login/login";
 import {MyProfile} from "../my-profile/my-profile";
 import {CallNumber} from "@ionic-native/call-number";
+import {Geolocation} from "@ionic-native/geolocation";
 
 @Component({
   selector: 'page-accomodation',
@@ -21,7 +22,7 @@ export class AccomodationPage {
   loadedItemList: Array<any>;
 
   constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController,
-              public globalProvider: GlobalProvider) {
+              public globalProvider: GlobalProvider, public geolocation: Geolocation) {
     this.accommodations = afDatabase.list('/accommodations');
     this.items = this.accommodations.valueChanges();
     this.setupItems()
@@ -89,7 +90,7 @@ export class AccomodationPage {
         {
           name: 'contact',
           placeholder: 'Contact No'
-        },{
+        }, {
           name: 'website',
           placeholder: 'Website Link'
         },
@@ -108,17 +109,21 @@ export class AccomodationPage {
         {
           text: 'Save',
           handler: data => {
-            const newHotelRef = this.accommodations.push({});
+            this.geolocation.getCurrentPosition().then((position) => {
+              const newHotelRef = this.accommodations.push({});
 
-            newHotelRef.set({
-              id: newHotelRef.key,
-              name: data.name,
-              address: data.address,
-              contact: data.contact,
-              image: data.image,
-              user: this.globalProvider.loggedInUser.id
+              newHotelRef.set({
+                id: newHotelRef.key,
+                name: data.name,
+                address: data.address,
+                contact: data.contact,
+                image: data.image,
+                latitiude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                user: this.globalProvider.loggedInUser.id
+              });
+              this.setupItems()
             });
-            this.setupItems()
           }
         }
       ]

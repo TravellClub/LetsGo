@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {AlertController, NavController, NavParams} from 'ionic-angular';
 import {Observable} from "rxjs/Observable";
 import {AngularFireDatabase, AngularFireList} from "angularfire2/database";
-import { Directions } from '../directions/directions';
+import {Directions} from '../directions/directions';
 import {GlobalProvider} from "../../providers/global-provider.service";
 import {CartService} from "../../providers/cart-service";
 import {Login} from "../login/login";
@@ -19,10 +19,10 @@ export class EquipmentGallery {
   category: any;
   items: Observable<any>;
   itemList: AngularFireList<any>;
-  public pageTitle:string;
+  public pageTitle: string;
 
   constructor(public navCtrl: NavController, public afDatabase: AngularFireDatabase, public alertCtrl: AlertController,
-              public navParams: NavParams,public  globalProvider:GlobalProvider, public cartService:CartService) {
+              public navParams: NavParams, public  globalProvider: GlobalProvider, public cartService: CartService) {
     this.category = navParams.get("category");
     this.pageTitle = this.category;
     this.category = this.category.toLowerCase();
@@ -39,6 +39,7 @@ export class EquipmentGallery {
   openMoreDetails() {
     this.navCtrl.push(EquipmentGallery)
   }
+
   initializeitems() {
     this.itemList = this.itemList;
   }
@@ -46,16 +47,19 @@ export class EquipmentGallery {
   openDirections() {
     this.navCtrl.push(Directions,
       {
-        destination: { lat: 6.879127, lng: 79.859740 }
+        destination: {lat: 6.879127, lng: 79.859740}
       });
   }
+
   opencall() {
     console.log("calling number");
   }
-  addTocart(item){
 
+  addTocart(item) {
+    this.cartService.addToCart(item);
   }
-  getTopics(searchbar){
+
+  getTopics(searchbar) {
     this.initializeitems();
   }
 
@@ -65,7 +69,7 @@ export class EquipmentGallery {
         nextAction: Equipment
       });
     }
-    else{
+    else {
       let prompt = this.alertCtrl.create({
         title: 'New ' + this.pageTitle,
         message: "Enter the details of the equipment to add",
@@ -110,7 +114,7 @@ export class EquipmentGallery {
                 itemname: data.itemname,
                 price: data.price,
                 quantity: data.quantity,
-                image: 'assets/img/'+ data.image
+                image: 'assets/img/' + data.image
               });
             }
           }
