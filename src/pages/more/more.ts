@@ -176,7 +176,7 @@ export class MorePage {
   deleteItem(itemID): void {
     console.log("PLACES DELETE item ID : ", itemID);
     let prompt = this.alertCtrl.create({
-      title: 'Delete Item',
+      title: 'Delete Review',
 
       buttons: [{
         text: "Cancel",
@@ -185,7 +185,7 @@ export class MorePage {
         }
       },
         {
-          text: "Delete Item",
+          text: "Delete",
           handler: data => {
             this.reviewList.remove(itemID);
           }

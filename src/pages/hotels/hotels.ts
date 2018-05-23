@@ -6,6 +6,8 @@ import {Booking} from '../booking/booking';
 import {Login} from "../login/login";
 import {MyProfile} from "../my-profile/my-profile";
 import {GlobalProvider} from "../../providers/global-provider.service";
+import {Places} from "../places/places";
+import {AccomodationPage} from "../accomodation/accomodation";
 
 /**
  * Generated class for the Hotels page.
@@ -22,26 +24,17 @@ export class Hotels {
   toggoleShowHide: string;
   hotelreviews: Observable<any>;
   hotelreviewList: AngularFireList<any>;
-  // Calling the added reviews to the page
-  public buttonClicked: boolean = false;
 
-  public ratings: any[];
+  public hotel:any;
 
-  public buttonClicked1: boolean = false;
-  public hotel;
-
-  public buttonClick: boolean = false; //Whatever you want to initialise it as
-
-  public Click() {
-
-    this.buttonClick = !this.buttonClick;
-  }
-
+  public rate: any;
+  public reviewer: any = {};
 
   public ratingNames: any[];
   // colors
   defaultStar = "star-outline";
   clickedStar = "star";
+  public ratingSum = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               public afDatabase: AngularFireDatabase, public  globalProvider: GlobalProvider) {
@@ -56,10 +49,28 @@ export class Hotels {
     this.hotelreviews = this.hotelreviewList.valueChanges();
 
     console.log("Hotelreviews : ", this.hotelreviews);
+    this.calcRating();
+    this.resetReview();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Hotels');
+  }
+
+  calcRating() {
+    let sum = 0;
+    let count = 0;
+    this.hotelreviews.forEach(element => {
+      element.forEach(review => {
+        console.log("HOTEL calculating review : ", review);
+        sum += review.rating;
+        count++;
+        console.log("HOTEL calculating review count : ", count);
+        console.log("HOTEL calculating review sum : ", sum);
+        this.ratingSum = sum / count;
+        console.log("HOTEL calculating review rating : ", this.ratingSum);
+      });
+    });
   }
 
   // Adding reveiws using a prompt box
@@ -123,27 +134,52 @@ export class Hotels {
   }
 
 
-  ratingClick() {
-    // const alert = this.alertCtrl.create({
-    //   title: 'Rate your speech:',
-    //   subTitle: 'bleu',
-    //   cssClass: 'alertstar',
-    //   enableBackdropDismiss: false,
-    //   buttons: [
-    //     { text: '1', handler: data => { this.resolveRec(1); } },
-    //     { text: '2', handler: data => { this.resolveRec(2); } },
-    //     { text: '3', handler: data => { this.resolveRec(3); } },
-    //     { text: '4', handler: data => { this.resolveRec(4); } },
-    //     { text: '5', handler: data => { this.resolveRec(5); } }
-    //   ]
-    // });
-    // alert.present();
+  deleteItem(itemID): void {
+    console.log("HOTEL DELETE item ID : ", itemID);
+    let prompt = this.alertCtrl.create({
+      title: 'Delete Review',
 
+      buttons: [{
+        text: "Cancel",
+        handler: data => {
+          console.log("Cancel Clicked");
+        }
+      },
+        {
+          text: "Delete",
+          handler: data => {
+            this.hotelreviewList.remove(itemID);
+          }
 
+        }
+      ]
+    })
+
+    prompt.present();
+  }
+
+  sendReview() {
+    if (this.globalProvider.loggedInUser == null) {
+      this.navCtrl.push(Login, {
+        nextAction: AccomodationPage
+      });
+    } else {
+      const newReviewRef = this.hotelreviewList.push({});
+      console.log("More data add : " + newReviewRef.key + " data : " + this.reviewer);
+
+      newReviewRef.set({
+        id: newReviewRef.key,
+        name: this.reviewer.name,
+        review: this.reviewer.review,
+        rating: this.reviewer.rating,
+        user: this.globalProvider.loggedInUser.id
+      });
+      this.resetReview();
+    }
   }
 
   ratingStarClicked(starNumber) {
-    console.log("start clicked : " + starNumber);
+    console.log("star clicked : " + starNumber);
     for (let i = 0; i <= starNumber; i++) {
       this.ratingNames[i] = this.clickedStar;
     }
@@ -151,11 +187,17 @@ export class Hotels {
       this.ratingNames[j] = this.defaultStar;
     }
     let rating = starNumber + 1;
-    let hotelRef = this.afDatabase.list('/accommodations/')
-    hotelRef.update(this.hotel.id, {
-      rating: rating.toString()
-    });
+    this.reviewer.rating = rating;
 
+  }
+
+  resetReview() {
+    if (this.globalProvider.loggedInUser != null) {
+      this.reviewer.name = this.globalProvider.loggedInUser.firstname;
+    } else
+      this.reviewer.name = "";
+    this.reviewer.review = "";
+    this.ratingNames = [this.defaultStar, this.defaultStar, this.defaultStar, this.defaultStar, this.defaultStar];
   }
 
   openBooking() {

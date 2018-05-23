@@ -8,76 +8,66 @@
 
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>{{ pageTitle }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addEquipment()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+      <button ion-button icon-only color="dark" (click)="openmyProfile()">
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-    <ion-searchbar (ionInput)="getTopics($event)" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)"></ion-searchbar>
+  <ion-searchbar (ionInput)="getTopics($event)" [showCancelButton]="shouldShowCancel"
+                 (ionCancel)="onCancel($event)"></ion-searchbar>
 
 </ion-header>
 
 
 <ion-content padding class="bodyt">
-  <button ion-button (click)="addEquipment()">Add New</button>
-   
-  
-    <!--<ion-card>-->
-        <!--<img src="\\assets\\img\\images (1).jpg"/>-->
-        <!--<ion-card-content>-->
-          <!--<ion-card-title>-->
-            <!--Nine Inch Nails Live-->
-            <!--</ion-card-title>-->
-          <!--<p>-->
-            <!--The most popular industrial group ever, and largely-->
-            <!--responsible for bringing the music to a mass audience.-->
-          <!--</p>-->
-        <!--</ion-card-content>-->
-      <!--</ion-card>-->
-      <!--<ion-list>-->
-          <!--<ion-item>-->
-            <!--Left Icon Button-->
-            <!--<button ion-button outline item-end icon-left>-->
-              <!--<ion-icon name="star"></ion-icon>-->
-              <!--Left Icon-->
-            <!--</button>-->
-          <!--</ion-item>-->
-        <!--</ion-list>-->
 
-    <ion-card *ngFor="let item of items | async"  >
+  <ion-card *ngFor="let item of items | async">
 
-      <img [src]="item.image" (click)="openMoreDetails()"/>
-      <ion-card-content (click)="openMoreDetails()">
-        
-        <p> {{item.itemname}}</p>
-        <p>{{item.price}}</p>
-        <p>{{item.quantity}}</p>
+    <img [src]="item.image" (click)="openMoreDetails()"/>
+    <ion-card-content (click)="openMoreDetails()">
 
-        <button ion-button color="danger" clear>
-          <ion-icon name="heart"></ion-icon>
-          favourite</button>
+      <p> {{item.itemname}}</p>
+      <p>{{item.price}}</p>
+      <p>{{item.quantity}}</p>
 
-          <!--<ion-list>
- 
-            <ion-item-sliding>
-          <ion-item>
-            Swipe me to the left
-            </ion-item>
-         
-            <ion-item-options>
-              <button danger (click)="removeItem()"><icon trash></icon> Delete</button>
-            </ion-item-options>
-          </ion-item-sliding>
-          </ion-list>
-        -->
-      </ion-card-content>
-       <button ion-button outline item-end icon-left (click)="opencall()" >
-        <ion-icon name="call"></ion-icon>
-        Call
-      </button>
-      <button ion-button outline item-end icon-left (click)="openDirections()">
-        <ion-icon name="compass"></ion-icon>
-        Direction
+      <button ion-button color="danger" clear (click)="addToFavorite(item)">
+        <ion-icon name="heart"></ion-icon>
+        favourite
       </button>
 
-      <button ion-button full>Add to Cart</button>
+      <!--<ion-list>
 
-    </ion-card>
+        <ion-item-sliding>
+      <ion-item>
+        Swipe me to the left
+        </ion-item>
+
+        <ion-item-options>
+          <button danger (click)="removeItem()"><icon trash></icon> Delete</button>
+        </ion-item-options>
+      </ion-item-sliding>
+      </ion-list>
+    -->
+    </ion-card-content>
+    <button ion-button outline item-end icon-left (click)="opencall()">
+      <ion-icon name="call"></ion-icon>
+      Call
+    </button>
+    <button ion-button outline item-end icon-left (click)="openDirections()">
+      <ion-icon name="compass"></ion-icon>
+      Direction
+    </button>
+
+    <button ion-button full (click)="addTocart(item)">Add to Cart</button>
+
+  </ion-card>
 </ion-content>

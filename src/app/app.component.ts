@@ -61,4 +61,10 @@ export class MyApp {
     this.globalProvider.setLoggedInUser(null);
     this.nav.setRoot(HomePage);
   }
+
+  login(){
+    this.nav.push(Login,{
+      nextAction:HomePage
+    })
+  }
 }
