@@ -40,10 +40,10 @@
 </ion-header>
 
 <ion-content class="bodyt">
-<ion-card class="transparent" *ngFor="let place of itemsList">
+<ion-card class="trans" *ngFor="let place of itemsList">
   <ion-card-content >
     <ion-list>
-      <ion-item class="trans">
+      <ion-item class="transparent">
         <ion-thumbnail item-start (click)="openmore(place)">
           <img [src]="place.image"/>
         </ion-thumbnail>
