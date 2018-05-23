@@ -146,7 +146,9 @@ export class AccomodationPage {
       ]
     });
     if (this.globalProvider.loggedInUser == null) {
-      this.globalProvider.logUserWithDialogue(prompt);
+      this.navCtrl.push(Login, {
+        nextAction: AccomodationPage
+      });
     } else {
       prompt.present();
     }
