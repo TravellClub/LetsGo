@@ -57,4 +57,8 @@ export class Equipment {
     } else
       this.navCtrl.push(MyProfile);
   }
+
+  openCart(){
+
+  }
 }

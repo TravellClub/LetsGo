@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar >
+  <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -19,23 +19,27 @@
   </ion-navbar>
 
 
-
 </ion-header>
 
 <ion-content padding class="bodyt">
   <ion-card class="transparent">
     <ion-card-header>
-      <h1><b>Categories</b></h1>
+      <ion-item no-padding class="transparent-full">
+        <h1><b>Categories</b></h1>
+        <button item-end ion-button icon-only color="dark" (click)="openmyProfile()">
+          <ion-icon name="contact"></ion-icon>
+        </button>
+      </ion-item>
     </ion-card-header>
 
     <ion-list>
       <ion-item class="transparent" (click)="textile()">
-       <ion-thumbnail item-start>
+        <ion-thumbnail item-start>
           <img src="\\assets\\img\\textile.png">
         </ion-thumbnail>
         <h2>Textile</h2>
       </ion-item>
-      <ion-item class="transparent" (click)="tool()" >
+      <ion-item class="transparent" (click)="tool()">
         <ion-thumbnail item-start>
           <img src="\\assets\\img\\camping.jpg">
         </ion-thumbnail>
@@ -47,7 +51,7 @@
         </ion-thumbnail>
         <h2>Books</h2>
       </ion-item>
-      <ion-item class="transparent" (click)="statue()" >
+      <ion-item class="transparent" (click)="statue()">
         <ion-thumbnail item-start>
           <img src="\\assets\\img\\wood elephant.jpg">
         </ion-thumbnail>

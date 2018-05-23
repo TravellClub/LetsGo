@@ -16,6 +16,7 @@ export class CartService {
   }
 
   addToCart(item){
+    console.log("CART Add : ",item);
     this.cartItems.push(item);
   }
 

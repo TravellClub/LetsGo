@@ -38,6 +38,7 @@ import {GlobalProvider} from "../providers/global-provider.service";
 import {WeatherData} from "../providers/weather-data";
 import {WeatherforecastPage} from "../pages/weatherforecast/weatherforecast";
 import {CartService} from "../providers/cart-service";
+import {EquipmentCart} from "../pages/equipment-cart/equipment-cart";
 
 
 
@@ -72,7 +73,8 @@ let pageArr = [MyApp,
   Booking,
   MyProfile,
   Mycategories,
-  WeatherforecastPage
+  WeatherforecastPage,
+  EquipmentCart
 
 
 ];
