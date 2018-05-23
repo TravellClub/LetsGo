@@ -9,11 +9,11 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding="true">
+<ion-content padding="true" class="bodyt">
   <h2>{{ city }}</h2>
   <br>
   <ion-list>
-    <ion-card *ngFor="let data of weatherService.dailyData">
+    <ion-card *ngFor="let data of weatherService.dailyData" class="transparent">
       <ion-card-content>
         <p><b> Date: </b>{{data.dt_txt}}</p>
         <br>
