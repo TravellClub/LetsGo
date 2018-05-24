@@ -122,14 +122,12 @@ export class Hotels {
   }
 
   showReviews() {
-
-
-  }
+    }
 
   openUrl() {
     // window.open('http://www.cinnamonhotels.com/en/cinnamongrandcolombo/?gclid=Cj0KCQjwodrXBRCzARIsAIU59TJ7u8aVTwPpcMROrv42QUDb7fuI-4ZyoVIpBNOAu_RLIkCjwMY_VukaAk44EALw_wcB');
-    // if (this.hotel.website.startWith('http'))
-    //   this.hotel.website = 'http://' + this.hotel.website;
+    if (!this.hotel.website.startsWith('http'))
+      this.hotel.website = 'http://' + this.hotel.website;
     window.open(this.hotel.website);
   }
 
