@@ -45,7 +45,7 @@
     <ion-list>
       <ion-item class="transparent">
         <ion-thumbnail item-start (click)="openmore(place)">
-          <img [src]="place.image"/>
+          <img [src]="'/assets/img/' + place.image"/>
         </ion-thumbnail>
         <p (click)="openmore(place)" color="white">{{place.placename}} </p>
         <button ion-button item-end color="danger" icon-only clear (click)="addToFavorite(place)">
