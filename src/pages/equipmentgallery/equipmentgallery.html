@@ -42,13 +42,16 @@
         favourite
       </button>
     </ion-card-content>
-    <button ion-button outline item-start icon-left (click)="opencall()">
+    <button ion-button outline item-start icon-only (click)="opencall()">
       <ion-icon name="call"></ion-icon>
-      Call
     </button>
     <button ion-button outline item-end icon-left (click)="openDirections()">
       <ion-icon name="compass"></ion-icon>
       Direction
+    </button>
+    <button ion-button outline item-end icon-only (click)="delete(item.id)"
+            *ngIf="globalProvider.loggedInUser?.id==item.user">
+      <ion-icon name="trash" color="danger"></ion-icon>
     </button>
     <ion-item>
       <ion-input type="number" min="0" [max]="item.quantity" placeholder="Qty" [(ngModel)]="item.buyingQty"></ion-input>

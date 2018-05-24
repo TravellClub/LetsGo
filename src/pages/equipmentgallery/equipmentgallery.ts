@@ -154,7 +154,8 @@ export class EquipmentGallery {
                 itemname: data.itemname,
                 price: data.price,
                 quantity: data.quantity,
-                image: 'assets/img/' + data.image
+                image: 'assets/img/' + data.image,
+                user: this.globalProvider.loggedInUser.id
               });
             }
           }
@@ -201,6 +202,29 @@ export class EquipmentGallery {
 
   checkCart() {
     return (this.cartService.getCartCount() > 0);
+  }
+
+  delete(itemID){
+    let prompt = this.alertCtrl.create({
+      title: 'Delete Item',
+
+      buttons: [{
+        text: "Cancel",
+        handler: data => {
+          console.log("Cancel Clicked");
+        }
+      },
+        {
+          text: "Delete",
+          handler: data => {
+            this.equipments.remove(itemID);
+            this.setupItems();
+          }
+
+        }
+      ]
+    });
+    prompt.present();
   }
 
 }
