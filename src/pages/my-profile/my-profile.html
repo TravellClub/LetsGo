@@ -47,29 +47,29 @@
 
   </ion-card>
 
-  <ion-card *ngIf="favClicked">
-    <ion-card-header>Favorites</ion-card-header>
-    <button ion-button clear (click)="placeClick('fav')">
-      Places
+  <ion-card *ngIf="favClicked" >
+    <ion-card-header class="h1"><b>Favorites</b></ion-card-header>
+    <button block outline ion-button clear (click)="placeClick('fav')">
+      <p>Places</p>
     </button>
-    <button ion-button clear (click)="hotelClick('fav')">
-      Hotels
+    <button block outline ion-button clear (click)="hotelClick('fav')">
+      <p>Hotels</p>
     </button>
-    <button ion-button clear (click)="itemClick('fav')">
-      Equipments
+    <button block outline ion-button clear (click)="itemClick('fav')">
+      <p>Equipments</p>
     </button>
   </ion-card>
 
-  <ion-card *ngIf="addClicked">
-    <ion-card-header>Contributions</ion-card-header>
-    <button ion-button clear (click)="placeClick('add')">
-      Places
+  <ion-card *ngIf="addClicked" >
+    <ion-card-header><b>Contributions</b></ion-card-header>
+    <button block outline ion-button clear (click)="placeClick('add')">
+      <p>Places</p>
     </button>
-    <button ion-button clear (click)="hotelClick('add')">
-      Hotels
+    <button block outline ion-button clear (click)="hotelClick('add')">
+      <p>Hotels</p>
     </button>
-    <button ion-button clear (click)="itemClick('add')">
-      Equipments
+    <button block outline ion-button clear (click)="itemClick('add')">
+      <p>Equipments</p>
     </button>
   </ion-card>
 
