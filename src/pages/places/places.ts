@@ -108,7 +108,7 @@ export class Places {
             text: 'Save',
             handler: data => {
               this.geolocation.getCurrentPosition().then((position) => {
-                const newPlacesRef = this.places.push({});
+                const newPlacesRef = this.afDatabase.list('/places').push({});
                 console.log("More data add : " + newPlacesRef.key + " data : " + data);
                 let newplace = {
                   id: newPlacesRef.key,

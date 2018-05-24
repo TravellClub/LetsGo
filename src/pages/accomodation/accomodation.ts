@@ -116,7 +116,7 @@ export class AccomodationPage {
           text: 'Save',
           handler: data => {
             this.geolocation.getCurrentPosition().then((position) => {
-              const newHotelRef = this.accommodations.push({});
+              const newHotelRef = this.afDatabase.list('/accommodations').push({});
               let newhotel = {
                 id: newHotelRef.key,
                 name: data.name,
