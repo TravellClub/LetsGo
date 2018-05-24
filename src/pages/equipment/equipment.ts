@@ -13,12 +13,12 @@ import {CartService} from "../../providers/cart-service";
 })
 export class Equipment {
 
-  mode: any;
+  mod: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public globalProvider: GlobalProvider, public cartService: CartService) {
-    this.mode = this.navParams.get('mode');
-    console.log("MODE : ", this.mode);
+    this.mod = this.navParams.get('mod');
+    console.log("MODE : ", this.mod);
 
   }
 
@@ -27,7 +27,7 @@ export class Equipment {
   }
 
   tool() {
-    if (this.mode == 'fav') {
+    if (this.mod == 'fav') {
       this.navCtrl.push(EquipmentGallery, {
         category: "Tools",
         mode: 'fav'
@@ -41,7 +41,7 @@ export class Equipment {
   }
 
   books() {
-    if (this.mode == 'fav') {
+    if (this.mod == 'fav') {
       this.navCtrl.push(EquipmentGallery, {
         category: "Books",
         mode: 'fav'
@@ -54,7 +54,7 @@ export class Equipment {
   }
 
   statue() {
-    if (this.mode == 'fav') {
+    if (this.mod == 'fav') {
       this.navCtrl.push(EquipmentGallery, {
         category: "Statues",
         mode: 'fav'
@@ -67,7 +67,7 @@ export class Equipment {
   }
 
   accessories() {
-    if (this.mode == 'fav') {
+    if (this.mod == 'fav') {
       this.navCtrl.push(EquipmentGallery, {
         category: "Accessories",
         mode: 'fav'
@@ -80,7 +80,7 @@ export class Equipment {
   }
 
   textile() {
-    if (this.mode == 'fav') {
+    if (this.mod == 'fav') {
       this.navCtrl.push(EquipmentGallery, {
         category: "Textiles",
         mode: 'fav'

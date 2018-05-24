@@ -10,6 +10,7 @@ import {Equipment} from "../equipment/equipment";
 import {Places} from "../places/places";
 import {MyProfile} from "../my-profile/my-profile";
 import {EquipmentCart} from "../equipment-cart/equipment-cart";
+import {Signup} from "../signup/signup";
 
 @Component({
   selector: 'page-equipmentgallery',
@@ -28,17 +29,20 @@ export class EquipmentGallery {
               public navParams: NavParams, public  globalProvider: GlobalProvider, public cartService: CartService) {
     this.category = navParams.get("category");
     console.log("Equipment cat : " + this.category);
-    if(this.category != undefined) {
+    if (this.category != undefined) {
       this.pageTitle = this.category;
       this.category = this.category.toLowerCase();
-    }else{
-      this.navCtrl.setRoot(Equipment);
+    }
+    else {
+      this.navCtrl.pop();
     }
     let path = '/equipments/' + this.category;
     console.log("Equipment path : " + path);
     let mode = this.navParams.get('mode');
     if (mode == 'fav') {
       path = '/user/' + this.globalProvider.loggedInUser.id + '/favorite/equipments/' + this.category;
+    } else if (mode == 'add') {
+      path = '/user/' + this.globalProvider.loggedInUser.id + '/contributions/equipments/' + this.category;
     }
     this.equipments = afDatabase.list(path);
     this.items = this.equipments.valueChanges();
@@ -147,16 +151,18 @@ export class EquipmentGallery {
           {
             text: 'Save',
             handler: data => {
-              const newEquipmentRef = this.equipments.push({});
-
-              newEquipmentRef.set({
+              const newEquipmentRef = this.afDatabase.list('/equipments/' + this.category).push({});
+              let newitem = {
                 id: newEquipmentRef.key,
                 itemname: data.itemname,
                 price: data.price,
                 quantity: data.quantity,
                 image: 'assets/img/' + data.image,
                 user: this.globalProvider.loggedInUser.id
-              });
+              };
+              newEquipmentRef.set(newitem);
+              this.afDatabase.list('/user/' + this.globalProvider.loggedInUser.id + '/contributions/equipments/' + this.category).set(newEquipmentRef.key, newitem);
+              this.setupItems();
             }
           }
         ]
@@ -166,6 +172,8 @@ export class EquipmentGallery {
   }
 
   addToFavorite(item) {
+    console.log("Favorite click : ", item.itemname);
+    console.log("Favorite click user : ", this.globalProvider.loggedInUser);
     if (this.globalProvider.loggedInUser == null) {
       this.navCtrl.push(Login, {
         nextAction: Equipment
@@ -204,7 +212,7 @@ export class EquipmentGallery {
     return (this.cartService.getCartCount() > 0);
   }
 
-  delete(itemID){
+  delete(itemID) {
     let prompt = this.alertCtrl.create({
       title: 'Delete Item',
 

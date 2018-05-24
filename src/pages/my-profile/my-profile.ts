@@ -33,7 +33,6 @@ export class MyProfile {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyProfile');
-
   }
 
   favClick(){
